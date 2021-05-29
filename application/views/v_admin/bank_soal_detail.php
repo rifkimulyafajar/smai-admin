@@ -24,6 +24,7 @@
                 &nbsp;
               </div>
               <div class="card-body">
+
                 <div class="row form-group">
                   <div class="col-6">
                     <label>Nama Pengajar</label>
@@ -32,6 +33,17 @@
                   <div class="col-6">
                     <label>Mata Pelajaran</label>
                     <input type="text" class="form-control" disabled="" name="" value="<?= $soal['mapel'] ?>">
+                  </div>
+                </div>
+
+                <div class="row form-group">
+                  <div class="col-6">
+                    <label>Kelas</label>
+                    <input type="text" class="form-control" disabled="" name="" value="<?= $soal['kelas'] ?>">
+                  </div>
+                  <div class="col-6">
+                    <label>Jurusan</label>
+                    <input type="text" class="form-control" disabled="" name="" value="<?= $soal['jurusan'] ?>">
                   </div>
                 </div>
 

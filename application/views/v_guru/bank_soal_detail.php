@@ -22,6 +22,7 @@
             <div class="card">
               <div class="card-body">
                 <input type="hidden" name="" value="<?= $soal['id_soal'] ?>">
+                
                 <div class="row form-group">
                   <div class="col-6">
                     <input type="text" class="form-control" disabled="" name="" value="<?= $soal['nama'] ?>">
@@ -29,7 +30,18 @@
                   <div class="col-6">
                     <input type="text" class="form-control" disabled="" name="" value="<?= $soal['mapel'] ?>">
                   </div>
-                </div> <br>
+                </div>
+
+                <div class="row form-group">
+                  <div class="col-6">
+                    <label>Kelas</label>
+                    <input type="text" class="form-control" disabled="" name="" value="<?= $soal['kelas'] ?>">
+                  </div>
+                  <div class="col-6">
+                    <label>Jurusan</label>
+                    <input type="text" class="form-control" disabled="" name="" value="<?= $soal['jurusan'] ?>">
+                  </div>
+                </div>
 
                 <div class="row col-12">
                   <label>Kategori Soal : </label> &nbsp; <?= $soal['kategori'] ?>

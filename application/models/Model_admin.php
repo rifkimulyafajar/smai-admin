@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Model_admin extends CI_Model {
+class Model_Admin extends CI_Model {
 
 //=============================================RestServer============================================================
 
@@ -433,6 +433,8 @@ class Model_admin extends CI_Model {
         $this->db->select('*');
         $this->db->from('input_banksoal');
         $this->db->join('guru', 'input_banksoal.id_guru = guru.id_guru');
+        $this->db->join('kelas', 'input_banksoal.id_kelas = kelas.id_kelas', 'left');
+        $this->db->join('jurusan', 'input_banksoal.id_jurusan = jurusan.id_jurusan', 'left');
         $this->db->join('mapel', 'input_banksoal.id_mapel = mapel.id_mapel');
         $this->db->join('kategori', 'input_banksoal.id_kategori = kategori.id_kategori', 'left');
         $query = $this->db->get();
@@ -447,6 +449,8 @@ class Model_admin extends CI_Model {
         $this->db->from('input_banksoal');
         $this->db->join('mapel', 'input_banksoal.id_mapel = mapel.id_mapel');
         $this->db->join('guru', 'input_banksoal.id_guru = guru.id_guru');
+        $this->db->join('kelas', 'input_banksoal.id_kelas = kelas.id_kelas', 'left');
+        $this->db->join('jurusan', 'input_banksoal.id_jurusan = jurusan.id_jurusan', 'left');
         $this->db->where('id_soal', $id);
         $query = $this->db->get();
 
@@ -461,6 +465,8 @@ class Model_admin extends CI_Model {
             "id_guru" => $this->input->post('id_guru', true),
             "id_mapel" => $this->input->post('id_mapel', true),
             "id_kategori" => $this->input->post('id_kategori', true),
+            "id_kelas" => $this->input->post('id_kelas', true),
+            "id_jurusan" => $this->input->post('id_jurusan', true),
             "status" => $this->input->post('status', true),
             "soal" => $this->input->post('soal', true),
             "file_soal" => $this->file_soal(),
@@ -488,6 +494,9 @@ class Model_admin extends CI_Model {
 
         $this->id_soal = $post["id_soal"];
         $this->id_guru = $post["id_guru"];
+        $this->id_kelas = $post["id_kelas"];
+        $this->id_jurusan = $post["id_jurusan"];
+
         $this->status = $post["status"];
         
         if (!empty($post["soal"])) {

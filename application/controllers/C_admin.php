@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class C_admin extends CI_Controller {
+class C_Admin extends CI_Controller {
 
 	public function __construct()
 	{
@@ -285,6 +285,8 @@ class C_admin extends CI_Controller {
 			$data['title'] = 'Buat Soal Bank Soal';
 			$data['guru'] = $this->model_admin->getAllGuru();
 			$data['mapel'] = $this->model_admin->getMapel();
+			$data['kelas'] = $this->model_admin->getAllKelas();
+			$data['jurusan'] = $this->model_admin->getAllJurusan();
 
 			$this->form_validation->set_rules('id_guru', 'Guru', 'required');
 			$this->form_validation->set_rules('soal', 'Soal', 'required');
@@ -314,6 +316,8 @@ class C_admin extends CI_Controller {
 			$data['title'] = 'Edit Soal';
 			$data['guru'] = $this->model_admin->getAllGuru();
 			$data['soal'] = $this->model_admin->getSoalById($id);
+			$data['kelas'] = $this->model_admin->getAllKelas();
+			$data['jurusan'] = $this->model_admin->getAllJurusan();
 
 			$this->form_validation->set_rules('id_guru', 'Guru', 'required');
 			$this->form_validation->set_rules('status', 'Status', 'required');

@@ -161,7 +161,7 @@
                       <?php if ($kategori > 0) { ?>
                       
                       <?php } else { ?>
-                      <option>Kategori Soal Masing Kosong.</option>
+                      <option value="">Kategori Soal Masing Kosong.</option>
                       <?php } ?>
 
                       <?php foreach ($kat as $k) { ?>
@@ -172,6 +172,29 @@
 
                     </select>
                     <?= form_error('kategori', '<small class="text-danger">', '</small>'); ?>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label>Kelas</label>
+                      <select class="custom-select rounded-0" name="id_kelas">
+                        <?php foreach ($kelas as $k) { ?>
+
+                        <option value="<?= $k['id_kelas'] ?>"><?= $k['kelas'] ?></option>
+
+                        <?php } ?>
+                      </select>
+                    </div>
+                    <div class="form-group col-6">
+                      <label>Jurusan</label>
+                      <select class="custom-select rounded-0" name="id_jurusan">
+                        <?php foreach ($jurusan as $j) { ?>
+
+                        <option value="<?= $j['id_jurusan'] ?>"><?= $j['jurusan'] ?></option>
+
+                        <?php } ?>
+                      </select>
+                    </div>
                   </div>
 
                   <div class="form-group">

@@ -40,8 +40,8 @@
                     <th>No.</th>
                     <th>Pengajar</th>
                     <th>Mata Pelajaran</th>
-                    <th>Soal</th>
-                    <th>Tanggal Dibuat</th>
+                    <th>Kelas</th>
+                    <th>Jurusan</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
@@ -56,8 +56,8 @@
                       <td><?= $no++ ?></td>
                       <td><?= $s['nama'] ?></td>
                       <td><?= $s['mapel'] ?></td>
-                      <td><?= $s['soal'] ?></td>
-                      <td><?= $s['tanggal'] ?></td>
+                      <td><?= $s['kelas'] ?></td>
+                      <td><?= $s['jurusan'] ?></td>
                       <td><?= $s['status'] ?></td>
                       <td>
                         <a href="<?= base_url('c_admin/detail_soal/'.$s['id_soal']) ?>" class="btn bg-info">

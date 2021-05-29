@@ -40,7 +40,32 @@
                       <?php } ?>
 
                     </select>
-                    <?= form_error('kategori', '<small class="text-danger">', '</small>'); ?>
+                    <!-- <?= form_error('kategori', '<small class="text-danger">', '</small>'); ?> -->
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label>Kelas</label>
+                      <select class="custom-select rounded-0" name="id_kelas">
+                        <?php foreach ($kelas as $k) { ?>
+
+                        <option value="<?= $k['id_kelas'] ?>" <?php if ($k['id_kelas'] == $soal['id_kelas']) : ?> selected <?php endif ?>>
+                          <?= $k['kelas'] ?></option>
+
+                        <?php } ?>
+                      </select>
+                    </div>
+                    <div class="form-group col-6">
+                      <label>Jurusan</label>
+                      <select class="custom-select rounded-0" name="id_jurusan">
+                        <?php foreach ($jurusan as $j) { ?>
+
+                        <option value="<?= $j['id_jurusan'] ?>" <?php if ($j['id_jurusan'] == $soal['id_jurusan']): ?> selected <?php endif ?>>
+                        <?= $j['jurusan'] ?></option>
+
+                        <?php } ?>
+                      </select>
+                    </div>
                   </div>
 
                   <div class="row">

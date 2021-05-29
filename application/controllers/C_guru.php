@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class C_guru extends CI_Controller {
+class C_Guru extends CI_Controller {
 
 	public function __construct()
 	{
@@ -90,6 +90,8 @@ class C_guru extends CI_Controller {
 			$data['guru'] = $this->model_guru->getGuru($_SESSION['id_guru']);
 			$data['kategori'] = $this->model_guru->kategori($_SESSION['id_guru']);
 			$data['kat'] = $this->model_guru->getKategori($_SESSION['id_guru']);
+			$data['kelas'] = $this->model_guru->getAllKelas();
+			$data['jurusan'] = $this->model_guru->getAllJurusan();
 
 			// $this->form_validation->set_rules('kategori', 'Kategori', 'required');
 			$this->form_validation->set_rules('guru', 'Guru', 'required');
@@ -121,6 +123,8 @@ class C_guru extends CI_Controller {
 			$data['soal'] = $this->model_guru->getSoalById($id);
 			$data['guru'] = $this->model_guru->getGuru($_SESSION['id_guru']);
 			$data['kat'] = $this->model_guru->getKategori($_SESSION['id_guru']);
+			$data['kelas'] = $this->model_guru->getAllKelas();
+			$data['jurusan'] = $this->model_guru->getAllJurusan();
 
 			$this->form_validation->set_rules('id_guru', 'Guru', 'required');
 			$this->form_validation->set_rules('status', 'Status', 'required');

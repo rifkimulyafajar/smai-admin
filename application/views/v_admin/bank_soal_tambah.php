@@ -52,6 +52,29 @@
                   </div>
 
                   <div class="row">
+                    <div class="form-group col-6">
+                      <label>Kelas</label>
+                      <select class="custom-select rounded-0" name="id_kelas">
+                        <?php foreach ($kelas as $k) { ?>
+
+                        <option value="<?= $k['id_kelas'] ?>"><?= $k['kelas'] ?></option>
+
+                        <?php } ?>
+                      </select>
+                    </div>
+                    <div class="form-group col-6">
+                      <label>Jurusan</label>
+                      <select class="custom-select rounded-0" name="id_jurusan">
+                        <?php foreach ($jurusan as $j) { ?>
+
+                        <option value="<?= $j['id_jurusan'] ?>"><?= $j['jurusan'] ?></option>
+
+                        <?php } ?>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row">
                     <div class="col-12">
                       <label>Status Soal</label>
                       <select class="form-control" name="status">

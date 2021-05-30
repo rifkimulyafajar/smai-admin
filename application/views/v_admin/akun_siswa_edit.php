@@ -49,7 +49,8 @@
                         
                         <?php foreach ($kelas as $k) { ?>
                         
-                        <option value="<?= $k['kelas'] ?>" <?php if ($k['kelas'] == $siswa['kelas']) : ?> selected <?php endif;?>><?= $k['kelas'] ?></option>
+                        <option value="<?= $k['id_kelas'] ?>" <?php if ($k['id_kelas'] == $siswa['id_kelas']) : ?> selected <?php endif;?>>
+                          <?= $k['kelas'] ?></option>
 
                         <?php } ?>
 
@@ -61,7 +62,8 @@
 
                         <?php foreach ($jurusan as $j) { ?>
                         
-                        <option value="<?= $j['jurusan'] ?>" <?php if ($j['jurusan'] == $siswa['jurusan']) : ?> selected <?php endif;?>><?= $j['jurusan'] ?></option>
+                        <option value="<?= $j['id_jurusan'] ?>" <?php if ($j['id_jurusan'] == $siswa['id_jurusan']) : ?> selected <?php endif;?>>
+                          <?= $j['jurusan'] ?></option>
 
                         <?php } ?>
 

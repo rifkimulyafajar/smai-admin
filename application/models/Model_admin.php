@@ -223,15 +223,28 @@ class Model_Admin extends CI_Model {
 
     public function getAllSiswa()
     {
-    	$query = $this->db->get('siswa');
+        $this->db->select('*');
+        $this->db->from('siswa');
+        $this->db->join('kelas', 'siswa.id_kelas = kelas.id_kelas');
+        $this->db->join('jurusan', 'siswa.id_jurusan = jurusan.id_jurusan');
+        $query = $this->db->get();
+
         return $query->result_array();
     }
 
     public function getSiswaById($id)
     {
         # code...
-        return $this->db->get_where('siswa', array('id_siswa' => $id))->row_array();
+        // return $this->db->get_where('siswa', array('id_siswa' => $id))->row_array();
 
+        $this->db->select('*');
+        $this->db->from('siswa');
+        $this->db->join('kelas', 'siswa.id_kelas = kelas.id_kelas');
+        $this->db->join('jurusan', 'siswa.id_jurusan = jurusan.id_jurusan');
+        $this->db->where('id_siswa', $id);
+        $query = $this->db->get();
+
+        return $query->row_array();
     }
 
     public function tambahSiswa()
@@ -241,8 +254,8 @@ class Model_Admin extends CI_Model {
     	$data = [
     		"nis" => $this->input->post('nis', true),
     		"nama" => $this->input->post('nama', true),
-            "kelas" => $this->input->post('kelas', true),
-            "jurusan" => $this->input->post('jurusan', true),
+            "id_kelas" => $this->input->post('kelas', true),
+            "id_jurusan" => $this->input->post('jurusan', true),
             "username" => $this->input->post('nis', true),
             "password" => password_hash($this->input->post('password', true), PASSWORD_DEFAULT)
     	];
@@ -263,8 +276,8 @@ class Model_Admin extends CI_Model {
 
         $this->nis = $post["nis"];
         $this->nama = $post["nama"];
-        $this->kelas = $post["kelas"];
-        $this->jurusan = $post["jurusan"];
+        $this->id_kelas = $post["kelas"];
+        $this->id_jurusan = $post["jurusan"];
         $this->username = $post["username"];
         
         if (!empty($post["password"])) {

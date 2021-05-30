@@ -50,7 +50,7 @@
                         
                         <?php foreach ($kelas as $k) { ?>
                         
-                        <option value="<?= $k['kelas'] ?>"><?= $k['kelas'] ?></option>
+                        <option value="<?= $k['id_kelas'] ?>"><?= $k['kelas'] ?></option>
 
                         <?php } ?>
 
@@ -62,7 +62,7 @@
 
                         <?php foreach ($jurusan as $j) { ?>
                         
-                        <option value="<?= $j['jurusan'] ?>"><?= $j['jurusan'] ?></option>
+                        <option value="<?= $j['id_jurusan'] ?>"><?= $j['jurusan'] ?></option>
 
                         <?php } ?>
 

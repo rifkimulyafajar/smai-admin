@@ -28,46 +28,52 @@
               <form action="<?= base_url('c_guru/tambah_materi') ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                 <div class="card-body">
                   <input type="hidden" name="id_guru" value="<?= $guru['id_guru'] ?>">
+                  <input type="hidden" name="id_mapel" value="<?= $guru['id_mapel'] ?>">
 
-                  <div class="form-group">
-                    <label for="exampleSelectRounded0">Kelas</label>
-                    <select class="custom-select rounded-0" id="kelas" name="kelas">
-                      
-                      <?php foreach ($kelas as $k) { ?>
-                      
-                      <option value="<?= $k['id_kelas'] ?>"><?= $k['kelas'] ?></option>
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label for="exampleSelectRounded0">Kelas</label>
+                      <select class="custom-select rounded-0" id="kelas" name="kelas">
+                        
+                        <?php foreach ($kelas as $k) { ?>
+                        
+                        <option value="<?= $k['id_kelas'] ?>"><?= $k['kelas'] ?></option>
 
-                      <?php } ?>
+                        <?php } ?>
 
-                    </select>
-                  </div>
+                      </select>
+                    </div>
 
-                  <div class="form-group">
-                    <label for="exampleSelectRounded0">Jurusan</label>
-                    <select class="custom-select rounded-0" id="jurusan" name="jurusan">
+                    <div class="form-group col-6">
+                      <label for="exampleSelectRounded0">Jurusan</label>
+                      <select class="custom-select rounded-0" id="jurusan" name="jurusan">
 
-                      <?php foreach ($jurusan as $j) { ?>
-                      
-                      <option value="<?= $j['id_jurusan'] ?>"><?= $j['jurusan'] ?></option>
+                        <?php foreach ($jurusan as $j) { ?>
+                        
+                        <option value="<?= $j['id_jurusan'] ?>"><?= $j['jurusan'] ?></option>
 
-                      <?php } ?>
+                        <?php } ?>
 
-                    </select>
+                      </select>
+                    </div>
                   </div>
                   
                   <div class="form-group">
                     <label>File Input</label><br>
-                    <input type="file" id="file1" name="file1" class="form-control">
-                  </div>
+                      <input type="file" id="file1" name="file1" class="form-control">
+                      <?= form_error('soal', '<small class="text-danger">', '</small>'); ?>
+                    </div>
 
-                  <div class="form-group">
-                    ( Opsional ) <br>
-                    <input type="file" id="file2" name="file2" class="form-control">
-                  </div>
+                    <div class="row">
+                      <div class="form-group col-6">
+                      ( Opsional ) <br>
+                      <input type="file" id="file2" name="file2" class="form-control">
+                    </div>
 
-                  <div class="form-group">
-                    ( Opsional ) <br>
-                    <input type="file" id="file3" name="file3" class="form-control">
+                    <div class="form-group col-6">
+                      ( Opsional ) <br>
+                      <input type="file" id="file3" name="file3" class="form-control">
+                    </div>
                   </div>
 
                 </div>

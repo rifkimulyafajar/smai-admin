@@ -353,8 +353,8 @@ class Model_Admin extends CI_Model {
         $post = $this->input->post();
 
         $this->id_materi = $post["id_materi"];
-        $this->id_mapel = $post["id_mapel"];
         $this->id_guru = $post["id_guru"];
+        $this->id_mapel = $post["id_mapel"];
         $this->id_kelas = $post["kelas"];
         $this->id_jurusan = $post["jurusan"];
 

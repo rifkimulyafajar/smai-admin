@@ -31,34 +31,37 @@
                   <input type="hidden" name="id_materi" value="<?= $materi['id_materi'] ?>">
                   <input type="hidden" name="id_guru" value="<?= $materi['id_guru'] ?>">
                   
-                  <div class="form-group">
-                    <label for="exampleSelectRounded0">Kelas</label>
-                    <select class="custom-select rounded-0" id="kelas" name="kelas">
-                      
-                      <?php foreach ($kelas as $k) { ?>
-                      
-                      <option value="<?= $k['id_kelas'] ?>" <?php if ($k['id_kelas'] == $materi['id_kelas']) : ?> selected <?php endif; ?>>
-                        <?= $k['kelas'] ?></option>
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label for="exampleSelectRounded0">Kelas</label>
+                      <select class="custom-select rounded-0" id="kelas" name="kelas">
+                        
+                        <?php foreach ($kelas as $k) { ?>
+                        
+                        <option value="<?= $k['id_kelas'] ?>" <?php if ($k['id_kelas'] == $materi['id_kelas']) : ?> selected <?php endif; ?>>
+                          <?= $k['kelas'] ?></option>
 
-                      <?php } ?>
+                        <?php } ?>
 
-                    </select>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-6">
+                      <label for="exampleSelectRounded0">Jurusan</label>
+                      <select class="custom-select rounded-0" id="jurusan" name="jurusan">
+
+                        <?php foreach ($jurusan as $j) { ?>
+                        
+                        <option value="<?= $j['id_jurusan'] ?>" <?php if ($j['id_jurusan'] == $materi['id_jurusan']) : ?> selected <?php endif; ?>>
+                          <?= $j['jurusan'] ?></option>
+
+                        <?php } ?>
+
+                      </select>
+                    </div>
                   </div>
 
-                  <div class="form-group">
-                    <label for="exampleSelectRounded0">Jurusan</label>
-                    <select class="custom-select rounded-0" id="jurusan" name="jurusan">
-
-                      <?php foreach ($jurusan as $j) { ?>
-                      
-                      <option value="<?= $j['id_jurusan'] ?>" <?php if ($j['id_jurusan'] == $materi['id_jurusan']) : ?> selected <?php endif; ?>>
-                        <?= $j['jurusan'] ?></option>
-
-                      <?php } ?>
-
-                    </select>
-                  </div>
-
+                  <br>
                   <div class="form-group">
                     <label>File Input</label><br>
 
@@ -68,22 +71,24 @@
                     <input type="file" id="file1" name="file1" value="<?= $materi['file1'] ?>" class="form-control">
                   </div>
 
-                  <div class="form-group">
+                  <div class="row">
+                    <div class="form-group col-6">
 
-                    <a href="<?= base_url('c_guru/downloadF2/').$materi['id_materi']; ?>"><?= $materi['file2'] ?></a> <br>
-                    ( Opsional ) <br>
-                    <input type="hidden" name="old_f2" value="<?= $materi['file2'] ?>">
+                      <a href="<?= base_url('c_guru/downloadF2/').$materi['id_materi']; ?>"><?= $materi['file2'] ?></a> <br>
+                      ( Opsional ) <br>
+                      <input type="hidden" name="old_f2" value="<?= $materi['file2'] ?>">
 
-                    <input type="file" id="file2" name="file2" value="<?= $materi['file1'] ?>" class="form-control">
-                  </div>
+                      <input type="file" id="file2" name="file2" value="<?= $materi['file1'] ?>" class="form-control">
+                    </div>
 
-                  <div class="form-group">
+                    <div class="form-group col-6">
 
-                    <a href="<?= base_url('c_guru/downloadF3/').$materi['id_materi']; ?>"><?= $materi['file3'] ?></a> <br>
-                    ( Opsional ) <br>
-                    <input type="hidden" name="old_f3" value="<?= $materi['file3'] ?>">
+                      <a href="<?= base_url('c_guru/downloadF3/').$materi['id_materi']; ?>"><?= $materi['file3'] ?></a> <br>
+                      ( Opsional ) <br>
+                      <input type="hidden" name="old_f3" value="<?= $materi['file3'] ?>">
 
-                    <input type="file" id="file3" name="file3" value="<?= $materi['file1'] ?>" class="form-control">
+                      <input type="file" id="file3" name="file3" value="<?= $materi['file1'] ?>" class="form-control">
+                    </div>
                   </div>
 
                 </div>

@@ -75,7 +75,7 @@
                   </div>
 
                   <div class="row">
-                    <div class="col-12">
+                    <div class="form-group col-12">
                       <label>Status Soal</label>
                       <select class="form-control" name="status">
                         <option value="Latihan">Latihan</option>
@@ -83,54 +83,79 @@
                       </select>
                     </div>
                   </div>
-                  <br>
-                  <div class="form-group">
-                    <label>Input Soal</label>
-                    <textarea id="ckeditor" class="form-control" name="soal" placeholder="Tulis Pertanyaan disini..."></textarea>
 
-                    Tambahkan Gambar Soal (opsional)
-                    <input type="file" name="file_soal" class="form-control">
+                  <div class="row">
+                    <div class="form-group col-8">
+                      <label>Input Soal</label>
+                      <textarea id="ckeditor" class="form-control" name="soal" placeholder="Tulis Pertanyaan disini..."></textarea>
+                      <?= form_error('soal', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                    <div class="form-group col-4">
+                      <label>Tambahkan Gambar Soal (opsional)</label>
+                      <input type="file" name="file_soal" class="form-control">
+                    </div>
                   </div>
 
-                  <br>
-                  <div class="form-group">
-                    <label>Jawaban A</label>
-                    <input type="text" name="pilihan_a" class="form-control" placeholder="Isi disini .....">
-                    Tambah Gambar Jawaban A (opsional)
-                    <input type="file" name="file_a" class="form-control">
+                  <br><br>
+                  <div class="row">
+                    <div class="form-group col-8">
+                      <label>Jawaban A</label>
+                      <input type="text" name="pilihan_a" class="form-control" placeholder="Isi disini .....">
+                    </div>
+                    <div class="form-group col-4">
+                      <label>Tambah Gambar Jawaban A (opsional)</label>
+                      <input type="file" name="file_a" class="form-control">
+                    </div>
                   </div>
 
-                  <div class="form-group">
-                    <label>Jawaban B</label>
-                    <input type="text" name="pilihan_b" class="form-control" placeholder="Isi disini .....">
-                    Tambah Gambar Jawaban B (opsional)
-                    <input type="file" name="file_b" class="form-control">
+                  <div class="row">
+                    <div class="form-group col-8">
+                      <label>Jawaban B</label>
+                      <input type="text" name="pilihan_b" class="form-control" placeholder="Isi disini .....">
+                    </div>
+                    <div class="form-group col-4">
+                      <label>Tambah Gambar Jawaban B (opsional)</label>
+                      <input type="file" name="file_b" class="form-control">
+                    </div>
                   </div>
 
-                  <div class="form-group">
-                    <label>Jawaban C</label>
-                    <input type="text" name="pilihan_c" class="form-control" placeholder="Isi disini .....">
-                    Tambah Gambar Jawaban C (opsional)
-                    <input type="file" name="file_c" class="form-control">
+                  <div class="row">
+                    <div class="form-group col-8">
+                      <label>Jawaban C</label>
+                      <input type="text" name="pilihan_c" class="form-control" placeholder="Isi disini .....">
+                    </div>
+                    <div class="form-group col-4">
+                      <label>Tambah Gambar Jawaban C (opsional)</label>
+                      <input type="file" name="file_c" class="form-control">
+                    </div>
                   </div>
 
-                  <div class="form-group">
-                    <label>Jawaban D</label>
-                    <input type="text" name="pilihan_d" class="form-control" placeholder="Isi disini .....">
-                    Tambah Gambar Jawaban D (opsional)
-                    <input type="file" name="file_d" class="form-control">
+                  <div class="row">
+                    <div class="form-group col-8">
+                      <label>Jawaban D</label>
+                      <input type="text" name="pilihan_d" class="form-control" placeholder="Isi disini .....">
+                    </div>
+                    <div class="form-group col-4">
+                      <label>Tambah Gambar Jawaban D (opsional)</label>
+                      <input type="file" name="file_d" class="form-control">
+                    </div>
                   </div>
 
-                  <div class="form-group">
-                    <label>Jawaban E</label>
-                    <input type="text" name="pilihan_e" class="form-control" placeholder="Isi disini .....">
-                    Tambah Gambar Jawaban E (opsional)
-                    <input type="file" name="file_e" class="form-control">
+                  <div class="row">
+                    <div class="form-group col-8">
+                      <label>Jawaban E</label>
+                      <input type="text" name="pilihan_e" class="form-control" placeholder="Isi disini .....">
+                    </div>
+                    <div class="form-group col-4">
+                      <label>Tambah Gambar Jawaban E (opsional)</label>
+                      <input type="file" name="file_e" class="form-control">
+                    </div>
                   </div>
 
-                  <br>
-                  <div class="form-group">
-                    <label>Pilih Kunci Jawaban</label>
+                  <div class="row">
+                    <div class="form-group col-4"></div>
+                    <div class="form-group col-4">
+                      <label>Pilih Kunci Jawaban</label>
                     <select class="form-control" name="kunci">
                       <option value="A">A</option>
                       <option value="B">B</option>
@@ -138,6 +163,8 @@
                       <option value="D">D</option>
                       <option value="E">E</option>
                     </select>
+                    </div>
+                    <div class="form-group col-4"></div>
                   </div>
 
                   <?php
@@ -149,10 +176,17 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer text-center">
-                   <button class="btn bg-success">
-                    <i class="fas fa-check"></i>&nbsp;&nbsp; Simpan Soal
-                  </button>
+                   <div class="row">
+                     <div class="col-4"></div>
+                     <div class="col-4">
+                      <button class="btn btn-block bg-success">
+                        <i class="fas fa-check"></i>&nbsp;&nbsp; Simpan Soal
+                      </button>
+                     </div>
+                     <div class="col-4"></div>
+                   </div>
                 </div>
+                
               </form>
 
             </div>

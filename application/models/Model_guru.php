@@ -55,8 +55,9 @@ class Model_Guru extends CI_Model {
         $this->db->select('*');
         $this->db->from('materi');
         $this->db->join('guru', 'materi.id_guru = guru.id_guru');
-        $this->db->join('kelas', 'materi.id_kelas = kelas.id_kelas');
-        $this->db->join('jurusan', 'materi.id_jurusan = jurusan.id_jurusan');
+        $this->db->join('mapel', 'materi.id_mapel = mapel.id_mapel', 'left');
+        $this->db->join('kelas', 'materi.id_kelas = kelas.id_kelas', 'left');
+        $this->db->join('jurusan', 'materi.id_jurusan = jurusan.id_jurusan', 'left');
         $this->db->where('materi.id_guru', $id);
         $query = $this->db->get();
 

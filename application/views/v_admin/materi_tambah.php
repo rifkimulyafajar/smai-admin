@@ -52,43 +52,49 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <label for="exampleSelectRounded0">Kelas</label>
-                    <select class="custom-select rounded-0" id="id_kelas" name="id_kelas">
-                      
-                      <?php foreach ($kelas as $k) { ?>
-                      
-                      <option value="<?= $k['id_kelas'] ?>"><?= $k['kelas'] ?></option>
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label for="exampleSelectRounded0">Kelas</label>
+                      <select class="custom-select rounded-0" id="id_kelas" name="id_kelas">
+                        
+                        <?php foreach ($kelas as $k) { ?>
+                        
+                        <option value="<?= $k['id_kelas'] ?>"><?= $k['kelas'] ?></option>
 
-                      <?php } ?>
+                        <?php } ?>
 
-                    </select>
+                      </select>
+                    </div>
+                    <div class="form-group col-6">
+                      <label for="exampleSelectRounded0">Jurusan</label>
+                      <select class="custom-select rounded-0" id="id_jurusan" name="id_jurusan">
+
+                        <?php foreach ($jurusan as $j) { ?>
+                        
+                        <option value="<?= $j['id_jurusan'] ?>"><?= $j['jurusan'] ?></option>
+
+                        <?php } ?>
+
+                      </select>
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label for="exampleSelectRounded0">Jurusan</label>
-                    <select class="custom-select rounded-0" id="id_jurusan" name="id_jurusan">
 
-                      <?php foreach ($jurusan as $j) { ?>
-                      
-                      <option value="<?= $j['id_jurusan'] ?>"><?= $j['jurusan'] ?></option>
-
-                      <?php } ?>
-
-                    </select>
-                  </div>
                   <div class="form-group">
                     <label>File Input</label><br>
                     <input type="file" id="file1" name="file1" class="form-control">
+                    <?= form_error('soal', '<small class="text-danger">', '</small>'); ?>
                   </div>
 
-                  <div class="form-group">
-                    ( Opsional ) <br>
-                    <input type="file" id="file2" name="file2" class="form-control">
-                  </div>
+                  <div class="row">
+                    <div class="form-group col-6">
+                      ( Opsional ) <br>
+                      <input type="file" id="file2" name="file2" class="form-control">
+                    </div>
 
-                  <div class="form-group">
-                    ( Opsional ) <br>
-                    <input type="file" id="file3" name="file3" class="form-control">
+                    <div class="form-group col-6">
+                      ( Opsional ) <br>
+                      <input type="file" id="file3" name="file3" class="form-control">
+                    </div>
                   </div>
 
                 </div>

@@ -25,7 +25,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="<?= base_url('c_guru/tambah_materi') ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+              <form action="<?= base_url('C_Guru/tambah_materi') ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                 <div class="card-body">
                   <input type="hidden" name="id_guru" value="<?= $guru['id_guru'] ?>">
                   <input type="hidden" name="id_mapel" value="<?= $guru['id_mapel'] ?>">

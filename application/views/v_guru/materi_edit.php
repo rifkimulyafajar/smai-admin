@@ -25,7 +25,7 @@
               </div>
               <!-- /.card-header -->
 
-              <form action="<?= base_url('c_guru/edit_materi/'.$materi['id_materi']) ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+              <form action="<?= base_url('C_Guru/edit_materi/'.$materi['id_materi']) ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                 <div class="card-body">
                   
                   <input type="hidden" name="id_materi" value="<?= $materi['id_materi'] ?>">
@@ -65,7 +65,7 @@
                   <div class="form-group">
                     <label>File Input</label><br>
 
-                    <a href="<?= base_url('c_guru/downloadF1/').$materi['id_materi']; ?>"><?= $materi['file1'] ?></a> <br>
+                    <a href="<?= base_url('C_Guru/downloadF1/').$materi['id_materi']; ?>"><?= $materi['file1'] ?></a> <br>
                     <input type="hidden" name="old_f1" value="<?= $materi['file1'] ?>">
 
                     <input type="file" id="file1" name="file1" value="<?= $materi['file1'] ?>" class="form-control">
@@ -74,7 +74,7 @@
                   <div class="row">
                     <div class="form-group col-6">
 
-                      <a href="<?= base_url('c_guru/downloadF2/').$materi['id_materi']; ?>"><?= $materi['file2'] ?></a> <br>
+                      <a href="<?= base_url('C_Guru/downloadF2/').$materi['id_materi']; ?>"><?= $materi['file2'] ?></a> <br>
                       ( Opsional ) <br>
                       <input type="hidden" name="old_f2" value="<?= $materi['file2'] ?>">
 
@@ -83,7 +83,7 @@
 
                     <div class="form-group col-6">
 
-                      <a href="<?= base_url('c_guru/downloadF3/').$materi['id_materi']; ?>"><?= $materi['file3'] ?></a> <br>
+                      <a href="<?= base_url('C_Guru/downloadF3/').$materi['id_materi']; ?>"><?= $materi['file3'] ?></a> <br>
                       ( Opsional ) <br>
                       <input type="hidden" name="old_f3" value="<?= $materi['file3'] ?>">
 

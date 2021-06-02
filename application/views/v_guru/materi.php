@@ -22,7 +22,7 @@
             <div class="card">
               <div class="card-header">
                 <div class="col-lg-3">
-                  <a href="<?= base_url('c_guru/tambah_materi') ?>" class="btn btn-block btn-danger btn-lg">
+                  <a href="<?= base_url('C_Guru/tambah_materi') ?>" class="btn btn-block btn-danger btn-lg">
                     <i class="fa fa-user"><sup>+</sup></i>
                     &nbsp;&nbsp; Tambah Materi
                   </a>
@@ -57,17 +57,17 @@
                         <td><?= $m['kelas'] ?></td>
                         <td><?= $m['jurusan'] ?></td>
                         <td>
-                          <a href="<?= base_url('c_guru/downloadF1/').$m['id_materi']; ?>"><?= $m['file1'] ?></a> <br>
+                          <a href="<?= base_url('C_Guru/downloadF1/').$m['id_materi']; ?>"><?= $m['file1'] ?></a> <br>
                           <!-- <embed type="application/pdf|docx|pptx" height="100" height="100" src="<?= base_url('upload/materi/echo($m["file1"])') ?>"></embed> -->
                         </td>
                         <td>
-                          <a href="<?= base_url('c_guru/downloadF2/').$m['id_materi']; ?>"><?= $m['file2'] ?></a>
+                          <a href="<?= base_url('C_Guru/downloadF2/').$m['id_materi']; ?>"><?= $m['file2'] ?></a>
                         </td>
                         <td>
-                          <a href="<?= base_url('c_guru/downloadF3/').$m['id_materi']; ?>"><?= $m['file3'] ?></a>
+                          <a href="<?= base_url('C_Guru/downloadF3/').$m['id_materi']; ?>"><?= $m['file3'] ?></a>
                         </td>
                         <td>
-                          <a href="<?= base_url('c_guru/edit_materi/').$m['id_materi']; ?>" class="btn btn-app bg-info">
+                          <a href="<?= base_url('C_Guru/edit_materi/').$m['id_materi']; ?>" class="btn btn-app bg-info">
                             <i class="fas fa-edit"></i> Edit
                           </a>
                           <button type="button" class="btn btn-app bg-danger" data-toggle="modal" data-target="#hapus-<?= $m['id_materi'];?>">

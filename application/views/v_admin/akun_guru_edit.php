@@ -25,7 +25,7 @@
               </div>
               <!-- /.card-header -->
 
-              <form action="<?= base_url('c_admin/edit_guru/'.$guru['id_guru']) ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+              <form action="<?= base_url('C_Admin/edit_guru/'.$guru['id_guru']) ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                 <div class="card-body after-add-more">
                   <input type="hidden" name="id_guru" value="<?= $guru['id_guru'] ?>">
                   <div class="form-group">

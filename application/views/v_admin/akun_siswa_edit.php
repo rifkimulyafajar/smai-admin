@@ -25,7 +25,7 @@
               </div>
               <!-- /.card-header -->
 
-              <form action="<?= base_url('c_admin/edit_siswa/'.$siswa['id_siswa']) ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+              <form action="<?= base_url('C_Admin/edit_siswa/'.$siswa['id_siswa']) ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                 <div class="card-body">
                   <input type="hidden" name="id_siswa" value="<?= $siswa['id_siswa'] ?>">
                   <div class="form-group">

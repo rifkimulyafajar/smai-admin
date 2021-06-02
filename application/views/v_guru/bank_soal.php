@@ -19,7 +19,7 @@
 
         <div class="row">
           <div class="col-lg-3">
-            <a href="<?= base_url('c_guru/tambah_bank_soal'); ?>" class="btn btn-block btn-success btn-lg">
+            <a href="<?= base_url('C_Guru/tambah_bank_soal'); ?>" class="btn btn-block btn-success btn-lg">
               <i class="fa fa-user"><sup>+</sup></i>
                 &nbsp;&nbsp; Buat Soal
             </a>
@@ -61,10 +61,10 @@
                       <td><?= $s['jurusan'] ?></td>
                       <td><?= $s['status'] ?></td>
                       <td>
-                        <a href="<?= base_url('C_guru/detail_soal/'.$s['id_soal']) ?>" class="btn bg-info">
+                        <a href="<?= base_url('C_Guru/detail_soal/'.$s['id_soal']) ?>" class="btn bg-info">
                           <i class="fas fa-info"></i>
                         </a> &nbsp;
-                        <a href="<?= base_url('C_guru/edit_soal/'). $s['id_soal'] ?>" class="btn bg-success">
+                        <a href="<?= base_url('C_Guru/edit_soal/'). $s['id_soal'] ?>" class="btn bg-success">
                           <i class="fas fa-edit"></i>
                         </a> &nbsp;
                         <button type="button" class="btn bg-danger" data-toggle="modal" data-target="#hapus-<?= $s['id_soal'];?>">
@@ -85,7 +85,7 @@
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-          <a href="<?= base_url('c_guru/hapus_soal/').$s['id_soal']; ?>" type="button" class="btn btn-danger">Sangat Yakin!</a>
+          <a href="<?= base_url('C_Guru/hapus_soal/').$s['id_soal']; ?>" type="button" class="btn btn-danger">Sangat Yakin!</a>
         </div>
       </div>
       <!-- /.modal-content -->

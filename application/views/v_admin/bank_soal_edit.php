@@ -17,7 +17,7 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
 
-        <form action="<?= base_url('C_admin/edit_soal/') .$soal['id_soal'] ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+        <form action="<?= base_url('C_Admin/edit_soal/') .$soal['id_soal'] ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
           <div class="row">
             <div class="col-lg-12">
               <div class="card">

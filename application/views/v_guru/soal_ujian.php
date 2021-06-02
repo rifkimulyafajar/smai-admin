@@ -19,7 +19,7 @@
 
         <div class="row">
           <div class="col-lg-3">
-            <a href="<?= base_url('c_guru/tambah_soal_ujian'); ?>" class="btn btn-block btn-info btn-lg">
+            <a href="<?= base_url('C_Guru/tambah_soal_ujian'); ?>" class="btn btn-block btn-info btn-lg">
               <i class="fa fa-user"><sup>+</sup></i>
                 &nbsp;&nbsp; Buat Soal Ujian
             </a>

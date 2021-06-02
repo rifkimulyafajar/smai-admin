@@ -58,7 +58,7 @@
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-          <a href="<?= base_url('c_guru/hapus_kategori/').$k['id_kategori']; ?>" type="button" class="btn btn-danger">Sangat Yakin!</a>
+          <a href="<?= base_url('C_Guru/hapus_kategori/').$k['id_kategori']; ?>" type="button" class="btn btn-danger">Sangat Yakin!</a>
         </div>
       </div>
     </div>
@@ -75,7 +75,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="<?= base_url('C_guru/edit_kategori/') ?>" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+          <form action="<?= base_url('C_Guru/edit_kategori/') ?>" method="post" enctype="multipart/form-data" accept-charset="utf-8">
             <div class="form-group">
               <label>Kategori</label>
               <input type="hidden" name="id_kategori" value="<?= $k['id_kategori'] ?>">
@@ -126,7 +126,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="<?= base_url('C_guru/tambah_kategori') ?>" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+          <form action="<?= base_url('C_Guru/tambah_kategori') ?>" method="post" enctype="multipart/form-data" accept-charset="utf-8">
             <div class="form-group">
               <label>Kategori</label>
               <input type="text" name="kategori" class="form-control" placeholder="Masukkan Kategori Soal Baru">
@@ -148,7 +148,7 @@
               </div>    
               <!-- /.card-header -->
 
-              <form action="<?= base_url('C_guru/tambah_bank_soal') ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+              <form action="<?= base_url('C_Guru/tambah_bank_soal') ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                 <div class="card-body after-add-more">
 
                   <input type="hidden" name="guru" value="<?= $guru['id_guru'] ?>">

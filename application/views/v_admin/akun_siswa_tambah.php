@@ -25,7 +25,7 @@
               </div>
               <!-- /.card-header -->
 
-              <form action="<?= base_url('c_admin/tambah_siswa') ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+              <form action="<?= base_url('C_Admin/tambah_siswa') ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                 <div class="card-body">
                   <div class="form-group">
                     <div class="form-group">

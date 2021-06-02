@@ -107,7 +107,7 @@
                 <div class="row">
                   <div class="col-4"></div>
                   <div class="col-4">
-                    <a href="<?= base_url('c_guru/edit_soal/'). $soal['id_soal'] ?>" class="btn btn-lg btn-block bg-info">
+                    <a href="<?= base_url('C_Guru/edit_soal/'). $soal['id_soal'] ?>" class="btn btn-lg btn-block bg-info">
                       <i class="fas fa-edit"></i> &nbsp;&nbsp; Edit Soal Ini
                     </a>
                   </div>

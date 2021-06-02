@@ -25,7 +25,7 @@
               </div>
               <!-- /.card-header -->
 
-              <form action="<?= base_url('c_admin/tambah_guru') ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+              <form action="<?= base_url('C_Admin/tambah_guru') ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                 <div class="card-body after-add-more">
                   <div class="form-group">
                     <label for="exampleInputEmail1">NIP Guru</label>

@@ -25,8 +25,8 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <!-- <?php echo form_open_multipart('c_admin/tambah_materi'); ?> -->
-              <form action="<?= base_url('c_admin/tambah_materi') ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+              <!-- <?php echo form_open_multipart('C_Admin/tambah_materi'); ?> -->
+              <form action="<?= base_url('C_Admin/tambah_materi') ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                 <div class="card-body">
 
                   <div class="row">

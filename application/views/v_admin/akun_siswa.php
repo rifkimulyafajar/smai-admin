@@ -22,7 +22,7 @@
             <div class="card">
               <div class="card-header">
                 <div class="col-lg-3">
-                  <a href="<?= base_url('c_admin/tambah_siswa') ?>" class="btn btn-block btn-info btn-lg">
+                  <a href="<?= base_url('C_Admin/tambah_siswa') ?>" class="btn btn-block btn-info btn-lg">
                     <i class="fa fa-user"><sup>+</sup></i>
                     &nbsp;&nbsp;Tambah Akun Siswa
                   </a>
@@ -55,7 +55,7 @@
                         <td><?= $s['jurusan'] ?></td>
 
                         <td class="text-center">
-                          <a href="<?= base_url('c_admin/edit_siswa/').$s['id_siswa']; ?>" class="btn bg-info">
+                          <a href="<?= base_url('C_Admin/edit_siswa/').$s['id_siswa']; ?>" class="btn bg-info">
                             <i class="fas fa-edit"></i>
                           </a> &nbsp;
                           <button type="button" class="btn bg-danger" data-toggle="modal" data-target="#hapus-<?= $s['id_siswa'];?>">
@@ -76,7 +76,7 @@
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-          <a href="<?= base_url('c_admin/hapus_siswa/').$s['id_siswa']; ?>" type="button" class="btn btn-danger">Sangat Yakin!</a>
+          <a href="<?= base_url('C_Admin/hapus_siswa/').$s['id_siswa']; ?>" type="button" class="btn btn-danger">Sangat Yakin!</a>
         </div>
       </div>
       <!-- /.modal-content -->

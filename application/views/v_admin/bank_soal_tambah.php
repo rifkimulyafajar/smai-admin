@@ -25,7 +25,7 @@
               </div>    
               <!-- /.card-header -->
 
-              <form action="<?= base_url('C_admin/tambah_bank_soal') ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+              <form action="<?= base_url('C_Admin/tambah_bank_soal') ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                 <div class="card-body after-add-more">
 
                   <div class="row">

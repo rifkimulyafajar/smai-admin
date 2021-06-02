@@ -30,6 +30,13 @@ class Model_Siswa extends CI_Model {
 
     }
 
+    public function updateSiswa($data, $id)
+    {
+        // code...
+        $this->db->update('siswa', $data, ['id_siswa' => $id]);
+        return $this->db->affected_rows();
+    }
+
 //=========================================================================================
 
     public function getMateri($id = null)

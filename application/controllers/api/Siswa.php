@@ -22,10 +22,10 @@ class Siswa extends REST_Controller {
 
 		if ($id === null) {
 			# code...
-			$siswa = $this->model_siswa->getSiswa();
+			$siswa = $this->Model_Siswa->getSiswa();
 		}
 		else {
-			$siswa = $this->model_siswa->getSiswa($id);
+			$siswa = $this->Model_Siswa->getSiswa($id);
 		}
 
 
@@ -52,13 +52,11 @@ class Siswa extends REST_Controller {
 		$data = [
 	 		'nis' => $this->put('nis'),
 	 		'nama' => $this->put('nama'),
-	 		'kelas' => $this->put('kelas'),
-	 		'jurusan' => $this->put('jurusan'),
 	 		'username' => $this->put('username'),
 	 		'password' => $this->put('password')
 	 	];
 
-	 	if ($this->model_admin->updateSiswa($data, $id) > 0) {
+	 	if ($this->Model_Siswa->updateSiswa($data, $id) > 0) {
 	 		# code...
 	 		$this->response([
                 'status' => true,
@@ -82,10 +80,10 @@ class Siswa extends REST_Controller {
 
 		if ($id === null) {
 			# code...
-			$siswa = $this->model_siswa->getMateri();
+			$siswa = $this->Model_Siswa->getMateri();
 		}
 		else {
-			$siswa = $this->model_siswa->getMateri($id);
+			$siswa = $this->Model_Siswa->getMateri($id);
 		}
 
 

@@ -7,10 +7,23 @@ class Model_Siswa extends CI_Model {
         # code...
         if ($id === null) {
             # code...
-            return $this->db->get('siswa')->result_array();
+            $this->db->select('*');
+            $this->db->from('siswa');
+            $this->db->join('kelas', 'siswa.id_kelas = kelas.id_kelas');
+            $this->db->join('jurusan', 'siswa.id_jurusan = jurusan.id_jurusan');
+            $query = $this->db->get();
+
+            return $query->result_array();
         } 
         else {
-            return $this->db->get_where('siswa', ['id_siswa' => $id])->result_array();
+            $this->db->select('*');
+            $this->db->from('siswa');
+            $this->db->join('kelas', 'siswa.id_kelas = kelas.id_kelas');
+            $this->db->join('jurusan', 'siswa.id_jurusan = jurusan.id_jurusan');
+            $this->db->where('id_siswa', $id);
+            $query = $this->db->get();
+
+            return $query->row_array();
         }
 
     }

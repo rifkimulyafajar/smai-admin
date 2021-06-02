@@ -1,4 +1,5 @@
 <?php
+ob_start();
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_Guru extends CI_Controller {
@@ -8,7 +9,7 @@ class C_Guru extends CI_Controller {
 		# code...
 		parent::__construct();
 
-		$this->load->model('model_guru');
+		$this->load->model('Model_Guru');
 		$this->load->library('form_validation');
 	}
 
@@ -17,15 +18,15 @@ class C_Guru extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Guru - Dashboard';
-			$data['materi'] = $this->model_guru->hitungMateri($_SESSION['id_guru']);
-			$data['soal'] = $this->model_guru->hitungSoalById($_SESSION['id_guru']);
+			$data['materi'] = $this->Model_Guru->hitungMateri($_SESSION['id_guru']);
+			$data['soal'] = $this->Model_Guru->hitungSoalById($_SESSION['id_guru']);
 
 			$this->load->view('v_guru/header', $data);
 			$this->load->view('v_guru/index', $data);
 			$this->load->view('v_guru/footer');
 		}
 		else {
-			redirect('c_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -42,7 +43,7 @@ class C_Guru extends CI_Controller {
 			$this->load->view('v_guru/footer');
 		}
 		else {
-			redirect('c_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -52,14 +53,14 @@ class C_Guru extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Buat Soal Ujian';
-			$data['soal'] = $this->model_guru->getSoal($_SESSION['id_guru']);
+			$data['soal'] = $this->Model_Guru->getSoal($_SESSION['id_guru']);
 
 			$this->load->view('v_guru/header', $data);
 			$this->load->view('v_guru/soal_ujian_tambah');
 			$this->load->view('v_guru/footer');
 		}
 		else {
-			redirect('c_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -70,15 +71,15 @@ class C_Guru extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Bank Soal';
-			$data['guru'] = $this->model_guru->getGuru($_SESSION['id_guru']);
-			$data['soal'] = $this->model_guru->getSoal($_SESSION['id_guru']);
+			$data['guru'] = $this->Model_Guru->getGuru($_SESSION['id_guru']);
+			$data['soal'] = $this->Model_Guru->getSoal($_SESSION['id_guru']);
 
 			$this->load->view('v_guru/header', $data);
 			$this->load->view('v_guru/bank_soal', $data);
 			$this->load->view('v_guru/footer');
 		}
 		else {
-			redirect('c_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -88,11 +89,11 @@ class C_Guru extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Buat Soal Bank Soal';
-			$data['guru'] = $this->model_guru->getGuru($_SESSION['id_guru']);
-			$data['kategori'] = $this->model_guru->kategori($_SESSION['id_guru']);
-			$data['kat'] = $this->model_guru->getKategori($_SESSION['id_guru']);
-			$data['kelas'] = $this->model_guru->getAllKelas();
-			$data['jurusan'] = $this->model_guru->getAllJurusan();
+			$data['guru'] = $this->Model_Guru->getGuru($_SESSION['id_guru']);
+			$data['kategori'] = $this->Model_Guru->kategori($_SESSION['id_guru']);
+			$data['kat'] = $this->Model_Guru->getKategori($_SESSION['id_guru']);
+			$data['kelas'] = $this->Model_Guru->getAllKelas();
+			$data['jurusan'] = $this->Model_Guru->getAllJurusan();
 
 			// $this->form_validation->set_rules('kategori', 'Kategori', 'required');
 			$this->form_validation->set_rules('guru', 'Guru', 'required');
@@ -105,13 +106,13 @@ class C_Guru extends CI_Controller {
 				$this->load->view('v_guru/bank_soal_tambah' , $data);
 				$this->load->view('v_guru/footer');
 			} else {
-				$this->model_guru->tambahSoal();
+				$this->Model_Guru->tambahSoal();
 				echo "<script>alert('Soal Berhasil Dibuat');</script>";
-				redirect('C_guru/bank_soal', 'refresh');
+				redirect('C_Guru/bank_soal', 'refresh');
 			}
 		}
 		else {
-			redirect('c_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -121,11 +122,11 @@ class C_Guru extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			
 			$data['title'] = 'Edit Soal';
-			$data['soal'] = $this->model_guru->getSoalById($id);
-			$data['guru'] = $this->model_guru->getGuru($_SESSION['id_guru']);
-			$data['kat'] = $this->model_guru->getKategori($_SESSION['id_guru']);
-			$data['kelas'] = $this->model_guru->getAllKelas();
-			$data['jurusan'] = $this->model_guru->getAllJurusan();
+			$data['soal'] = $this->Model_Guru->getSoalById($id);
+			$data['guru'] = $this->Model_Guru->getGuru($_SESSION['id_guru']);
+			$data['kat'] = $this->Model_Guru->getKategori($_SESSION['id_guru']);
+			$data['kelas'] = $this->Model_Guru->getAllKelas();
+			$data['jurusan'] = $this->Model_Guru->getAllJurusan();
 
 			$this->form_validation->set_rules('id_guru', 'Guru', 'required');
 			$this->form_validation->set_rules('status', 'Status', 'required');
@@ -137,9 +138,9 @@ class C_Guru extends CI_Controller {
 				$this->load->view('v_guru/bank_soal_edit' , $data);
 				$this->load->view('v_guru/footer');
 			} else {
-				$this->model_guru->editSoal();
+				$this->Model_Guru->editSoal();
 				echo "<script>alert('Soal Berhasil Diedit');</script>";
-				redirect('C_guru/bank_soal', 'refresh');
+				redirect('C_Guru/bank_soal', 'refresh');
 			}
 		}
 	}
@@ -150,14 +151,14 @@ class C_Guru extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Detail Soal';
-			$data['soal'] = $this->model_guru->getSoalById($id);
+			$data['soal'] = $this->Model_Guru->getSoalById($id);
 
 			$this->load->view('v_guru/header', $data);
 			$this->load->view('v_guru/bank_soal_detail', $data);
 			$this->load->view('v_guru/footer');
 		}
 		else {
-			redirect('c_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -166,15 +167,15 @@ class C_Guru extends CI_Controller {
 		# code...
 		if (isset($_SESSION['id_guru'])) {
 
-			if ($this->model_guru->hapusSoal($id)) {
+			if ($this->Model_Guru->hapusSoal($id)) {
 				$this->session->set_flashdata('hapus_soal', true);
 			} else {
 				$this->session->set_flashdata('hapus_soal', false);
 			}
 			echo "<script>alert('Data Soal Terhapus');</script>";
-			redirect('c_guru/bank_soal', 'refresh');
+			redirect('C_Guru/bank_soal', 'refresh');
 		} else {
-			redirect('c_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -190,9 +191,9 @@ class C_Guru extends CI_Controller {
 				$this->load->view('v_guru/bank_soal' , $data);
 				$this->load->view('v_guru/footer');
 			} else {
-				$this->model_guru->tambahKategori();
+				$this->Model_Guru->tambahKategori();
 				echo "<script>alert('Berhasil menambah kategori soal baru');</script>";
-				redirect('C_guru/tambah_bank_soal', 'refresh');
+				redirect('C_Guru/tambah_bank_soal', 'refresh');
 			}
 		}
 	}
@@ -202,15 +203,15 @@ class C_Guru extends CI_Controller {
 		// code...
 		if (isset($_SESSION['id_guru'])) {
 
-			if ($this->model_guru->hapusKategori($id)) {
+			if ($this->Model_Guru->hapusKategori($id)) {
 				$this->session->set_flashdata('hapus_soal', true);
 			} else {
 				$this->session->set_flashdata('hapus_soal', false);
 			}
 			echo "<script>alert('Data Kategori Soal Terhapus');</script>";
-			redirect('c_guru/tambah_bank_soal', 'refresh');
+			redirect('C_Guru/tambah_bank_soal', 'refresh');
 		} else {
-			redirect('c_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -228,9 +229,9 @@ class C_Guru extends CI_Controller {
 				$this->load->view('v_guru/bank_soal_tambah' , $data);
 				$this->load->view('v_guru/footer');
 			} else {
-				$this->model_guru->editKategori();
+				$this->Model_Guru->editKategori();
 				echo "<script>alert('Kategori Berhasil Diedit');</script>";
-				redirect('C_guru/tambah_bank_soal', 'refresh');
+				redirect('C_Guru/tambah_bank_soal', 'refresh');
 			}
 		}
 	}
@@ -242,14 +243,14 @@ class C_Guru extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Materi Siswa';
-			$data['materi'] = $this->model_guru->getAllMateri($_SESSION['id_guru']);
+			$data['materi'] = $this->Model_Guru->getAllMateri($_SESSION['id_guru']);
 
 			$this->load->view('v_guru/header', $data);
 			$this->load->view('v_guru/materi', $data);
 			$this->load->view('v_guru/footer');
 		}
 		else {
-			redirect('c_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -258,10 +259,10 @@ class C_Guru extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Upload Materi';
-			$data['mapel'] = $this->model_guru->getAllMapel();
-			$data['jurusan'] = $this->model_guru->getAllJurusan();
-			$data['kelas'] = $this->model_guru->getAllKelas();
-			$data['guru'] = $this->model_guru->getGuru($_SESSION['id_guru']);
+			$data['mapel'] = $this->Model_Guru->getAllMapel();
+			$data['jurusan'] = $this->Model_Guru->getAllJurusan();
+			$data['kelas'] = $this->Model_Guru->getAllKelas();
+			$data['guru'] = $this->Model_Guru->getGuru($_SESSION['id_guru']);
 
 			$this->form_validation->set_rules('kelas', 'Kelas', 'required');
 			$this->form_validation->set_rules('jurusan', 'Jurusan', 'required');
@@ -271,13 +272,13 @@ class C_Guru extends CI_Controller {
 				$this->load->view('v_guru/materi_tambah', $data);
 				$this->load->view('v_guru/footer');
 			} else {
-				$this->model_guru->tambahMateri();
+				$this->Model_Guru->tambahMateri();
 				echo "<script>alert('Anda berhasil mengupload materi');</script>";
-				redirect('C_guru/materi', 'refresh');
+				redirect('C_Guru/materi', 'refresh');
 			}
 		}
 		else {
-			redirect('c_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -287,10 +288,10 @@ class C_Guru extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			
 			$data['title'] = 'Edit Materi';
-			$data['materi'] = $this->model_guru->getMateriById($id);
-			$data['mapel'] = $this->model_guru->getAllMapel();
-			$data['jurusan'] = $this->model_guru->getAllJurusan();
-			$data['kelas'] = $this->model_guru->getAllKelas();
+			$data['materi'] = $this->Model_Guru->getMateriById($id);
+			$data['mapel'] = $this->Model_Guru->getAllMapel();
+			$data['jurusan'] = $this->Model_Guru->getAllJurusan();
+			$data['kelas'] = $this->Model_Guru->getAllKelas();
 
 			$this->form_validation->set_rules('kelas', 'Kelas', 'required');
 			$this->form_validation->set_rules('jurusan', 'Jurusan', 'required');
@@ -300,9 +301,9 @@ class C_Guru extends CI_Controller {
 				$this->load->view('v_guru/materi_edit', $data);
 				$this->load->view('v_guru/footer');
 			} else {
-				$this->model_guru->editMateri();
+				$this->Model_Guru->editMateri();
 				echo "<script>alert('Anda berhasil mengedit materi');</script>";
-				redirect('C_guru/materi', 'refresh');
+				redirect('C_Guru/materi', 'refresh');
 			}
 		}
 	}
@@ -311,14 +312,14 @@ class C_Guru extends CI_Controller {
 	{
 		if (isset($_SESSION['id_guru'])) {
 
-			if ($this->model_guru->hapusMateri($id)) {
+			if ($this->Model_Guru->hapusMateri($id)) {
 				$this->session->set_flashdata('hapus_materi', true);
 			} else {
 				$this->session->set_flashdata('hapus_materi', false);
 			}
-			redirect('c_guru/materi', 'refresh');
+			redirect('C_Guru/materi', 'refresh');
 		} else {
-			redirect('c_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -348,14 +349,14 @@ class C_Guru extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Ganti Akun Saya';
-			$data['guru'] = $this->model_guru->getGuru($id);
+			$data['guru'] = $this->Model_Guru->getGuru($id);
 
 			$this->load->view('v_guru/header', $data);
 			$this->load->view('v_guru/akun_saya', $data);
 			$this->load->view('v_guru/footer');
 		}
 		else {
-			redirect('c_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -363,7 +364,7 @@ class C_Guru extends CI_Controller {
 	{
 		# code...
 		$data['title'] = 'Ganti Akun Saya';
-		$data['guru'] = $this->model_guru->getGuru($_SESSION['id_guru']);
+		$data['guru'] = $this->Model_Guru->getGuru($_SESSION['id_guru']);
 
 		$this->form_validation->set_rules('nip', 'Nip', 'required');
 		$this->form_validation->set_rules('nama', 'Nama', 'required');
@@ -374,9 +375,9 @@ class C_Guru extends CI_Controller {
 			$this->load->view('v_guru/akun_saya', $data);
 			$this->load->view('v_guru/footer');
 		} else {
-			$this->model_guru->update_akun($id);
+			$this->Model_Guru->update_akun($id);
 			echo "<script>alert('Anda berhasil mengedit data');</script>";
-			redirect('C_guru/akun_saya/'.$_SESSION['id_guru'], 'refresh');
+			redirect('C_Guru/akun_saya/'.$_SESSION['id_guru'], 'refresh');
 		}
 
 	}

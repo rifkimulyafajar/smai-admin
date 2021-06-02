@@ -1,4 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+ob_start();
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Model_Guru extends CI_Model {
 

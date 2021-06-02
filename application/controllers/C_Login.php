@@ -1,4 +1,5 @@
 <?php
+ob_start();
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_Login extends CI_Controller {
@@ -8,7 +9,7 @@ class C_Login extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->helper('form');
-		$this->load->model('model_login');
+		$this->load->model('Model_Login');
 		$this->load->library('form_validation');
 	}
 
@@ -27,7 +28,7 @@ class C_Login extends CI_Controller {
 
 		$password = password_verify($pass, 'password');
 
-		$cek_login = $this->model_login->login($username, $password);
+		$cek_login = $this->Model_Login->login($username, $password);
 
 		if ($cek_login) {
 			foreach ($cek_login as $row);

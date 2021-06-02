@@ -74,7 +74,7 @@
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Nanti dulu</button>
-          <a href="<?= base_url('c_login/logout') ?>" type="button" class="btn btn-danger">Logout Sekarang!</a>
+          <a href="<?= base_url('C_Login/logout') ?>" type="button" class="btn btn-danger">Logout Sekarang!</a>
         </div>
       </div>
       <!-- /.modal-content -->
@@ -100,7 +100,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item user-panel mt-1 pb-3 mb-3">
-            <a href="<?= base_url('C_admin') ?>" class="nav-link">
+            <a href="<?= base_url('C_Admin') ?>" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -117,7 +117,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?= base_url("C_admin/akun_guru"); ?>" class="nav-link">
+                <a href="<?= base_url("C_Admin/akun_guru"); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Akun Guru</p>
                 </a>
@@ -125,7 +125,7 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?= base_url("C_admin/akun_siswa"); ?>" class="nav-link">
+                <a href="<?= base_url("C_Admin/akun_siswa"); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Akun Siswa</p>
                 </a>
@@ -133,7 +133,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('C_admin/bank_soal') ?>" class="nav-link">
+            <a href="<?= base_url('C_Admin/bank_soal') ?>" class="nav-link">
               <i class="nav-icon fas fa-scroll"></i>
               <p>
                 Bank Soal
@@ -141,7 +141,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('C_admin/soal_ujian') ?>" class="nav-link">
+            <a href="<?= base_url('C_Admin/soal_ujian') ?>" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Soal Ujian
@@ -149,7 +149,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url("C_admin/materi"); ?>" class="nav-link">
+            <a href="<?= base_url("C_Admin/materi"); ?>" class="nav-link">
               <i class="nav-icon fas fa-paste"></i>
               <p>
                 Materi

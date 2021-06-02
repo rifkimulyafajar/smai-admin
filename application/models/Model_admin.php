@@ -1,4 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+ob_start();
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Model_Admin extends CI_Model {
 
@@ -115,15 +117,15 @@ class Model_Admin extends CI_Model {
     public function hitungGuru()
     {
         # code...
-        $this->db->where('level', "guru");
-        $this->db->from("guru");
+        $this->db->where('level', 'guru');
+        $this->db->from('guru');
         return $this->db->count_all_results();
     }
 
     public function hitungSiswa()
     {
         # code...
-        return $this->db->count_all('siswa');
+        return $this->db->count_all_results('siswa');
     }
 
     public function hitungBankSoal()

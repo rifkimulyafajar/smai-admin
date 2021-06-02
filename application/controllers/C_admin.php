@@ -1,4 +1,5 @@
 <?php
+ob_start();
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_Admin extends CI_Controller {
@@ -8,7 +9,7 @@ class C_Admin extends CI_Controller {
 		# code...
 		parent::__construct();
 
-		$this->load->model('model_admin');
+		$this->load->model('Model_Admin');
 		$this->load->library('form_validation');
 	}
 
@@ -17,17 +18,17 @@ class C_Admin extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Admin - Dashboard';
-			$data['guru'] = $this->model_admin->hitungGuru();
-			$data['siswa'] = $this->model_admin->hitungSiswa();
-			$data['materi'] = $this->model_admin->hitungMateri();
-			$data['soal'] = $this->model_admin->hitungBankSoal();
+			$data['guru'] = $this->Model_Admin->hitungGuru();
+			$data['siswa'] = $this->Model_Admin->hitungSiswa();
+			$data['materi'] = $this->Model_Admin->hitungMateri();
+			$data['soal'] = $this->Model_Admin->hitungBankSoal();
 
 			$this->load->view('v_admin/header', $data);
 			$this->load->view('v_admin/index', $data);
 			$this->load->view('v_admin/footer');
 		}
 		else {
-			redirect('C_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -38,14 +39,14 @@ class C_Admin extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Akun Guru';
-			$data['guru'] = $this->model_admin->getAllGuru();
+			$data['guru'] = $this->Model_Admin->getAllGuru();
 
 			$this->load->view('v_admin/header', $data);
 			$this->load->view('v_admin/akun_guru', $data);
 			$this->load->view('v_admin/footer');
 		}
 		else {
-			redirect('C_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -54,8 +55,8 @@ class C_Admin extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Tambah Data Guru';
-			$data['guru'] = $this->model_admin->getAllGuru();
-			$data['mapel'] = $this->model_admin->getAllMapel();
+			$data['guru'] = $this->Model_Admin->getAllGuru();
+			$data['mapel'] = $this->Model_Admin->getAllMapel();
 
 
 			$this->form_validation->set_rules('nip', 'NIP', 'required|trim');
@@ -67,13 +68,13 @@ class C_Admin extends CI_Controller {
 				$this->load->view('v_admin/akun_guru_tambah', $data);
 				$this->load->view('v_admin/footer');
 			} else {
-				$this->model_admin->tambahGuru();
+				$this->Model_Admin->tambahGuru();
 				echo "<script>alert('Anda berhasil menambahkan data guru');</script>";
-				redirect('C_admin/akun_guru', 'refresh');
+				redirect('C_Admin/akun_guru', 'refresh');
 			}
 		}
 		else {
-			redirect('C_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -81,15 +82,15 @@ class C_Admin extends CI_Controller {
 	{
 		if (isset($_SESSION['id_guru'])) {
 
-			if ($this->model_admin->hapusGuru($id)) {
+			if ($this->Model_Admin->hapusGuru($id)) {
 				$this->session->set_flashdata('hapus_guru', true);
 			} else {
 				$this->session->set_flashdata('hapus_guru', false);
 			}
 			echo "<script>alert('Anda berhasil menghapus akun tersebut');</script>";
-			redirect('C_admin/akun_guru', 'refresh');
+			redirect('C_Admin/akun_guru', 'refresh');
 		} else {
-			redirect('C_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -99,8 +100,8 @@ class C_Admin extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			
 			$data['title'] = 'Edit Data Guru';
-			$data['guru'] = $this->model_admin->guruById($id);
-			$data['mapel'] = $this->model_admin->getAllMapel();
+			$data['guru'] = $this->Model_Admin->guruById($id);
+			$data['mapel'] = $this->Model_Admin->getAllMapel();
 
 			$this->form_validation->set_rules('nip', 'Nip', 'required|trim');
 			$this->form_validation->set_rules('nama', 'Nama', 'required|trim');
@@ -112,9 +113,9 @@ class C_Admin extends CI_Controller {
 				$this->load->view('v_admin/akun_guru_edit', $data);
 				$this->load->view('v_admin/footer');
 			} else {
-				$this->model_admin->editGuru();
+				$this->Model_Admin->editGuru();
 				echo "<script>alert('Anda berhasil mengedit akun guru');</script>";
-				redirect('C_admin/akun_guru', 'refresh');
+				redirect('C_Admin/akun_guru', 'refresh');
 			}
 		}
 	}
@@ -126,14 +127,14 @@ class C_Admin extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Akun Siswa';
-			$data['siswa'] = $this->model_admin->getAllSiswa();
+			$data['siswa'] = $this->Model_Admin->getAllSiswa();
 
 			$this->load->view('v_admin/header', $data);
 			$this->load->view('v_admin/akun_siswa', $data);
 			$this->load->view('v_admin/footer');
 		}
 		else {
-			redirect('C_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -142,9 +143,9 @@ class C_Admin extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Tambah Data Siswa';
-			$data['siswa'] = $this->model_admin->getAllSiswa();
-			$data['jurusan'] = $this->model_admin->getAllJurusan();
-			$data['kelas'] = $this->model_admin->getAllKelas();
+			$data['siswa'] = $this->Model_Admin->getAllSiswa();
+			$data['jurusan'] = $this->Model_Admin->getAllJurusan();
+			$data['kelas'] = $this->Model_Admin->getAllKelas();
 
 			$this->form_validation->set_rules('nis', 'NIS', 'required|trim');
 			$this->form_validation->set_rules('nama', 'Nama', 'required|trim');
@@ -154,13 +155,13 @@ class C_Admin extends CI_Controller {
 				$this->load->view('v_admin/akun_siswa_tambah', $data);
 				$this->load->view('v_admin/footer');
 			} else {
-				$this->model_admin->tambahSiswa();
+				$this->Model_Admin->tambahSiswa();
 				echo "<script>alert('Anda berhasil menambahkan data siswa');</script>";
-				redirect('C_admin/akun_siswa', 'refresh');
+				redirect('C_Admin/akun_siswa', 'refresh');
 			}
 		}
 		else {
-			redirect('C_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -168,15 +169,15 @@ class C_Admin extends CI_Controller {
 	{
 		if (isset($_SESSION['id_guru'])) {
 
-			if ($this->model_admin->hapusSiswa($id)) {
+			if ($this->Model_Admin->hapusSiswa($id)) {
 				$this->session->set_flashdata('hapus_siswa', true);
 			} else {
 				$this->session->set_flashdata('hapus_siswa', false);
 			}
 			echo "<script>alert('Anda berhasil menghapus akun tersebut');</script>";
-			redirect('C_admin/akun_siswa', 'refresh');
+			redirect('C_Admin/akun_siswa', 'refresh');
 		} else {
-			redirect('C_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -186,9 +187,9 @@ class C_Admin extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			
 			$data['title'] = 'Edit Data Siswa';
-			$data['siswa'] = $this->model_admin->getSiswaById($id);
-			$data['jurusan'] = $this->model_admin->getAllJurusan();
-			$data['kelas'] = $this->model_admin->getAllKelas();
+			$data['siswa'] = $this->Model_Admin->getSiswaById($id);
+			$data['jurusan'] = $this->Model_Admin->getAllJurusan();
+			$data['kelas'] = $this->Model_Admin->getAllKelas();
 
 			$this->form_validation->set_rules('nis', 'Nis', 'required|trim');
 			$this->form_validation->set_rules('nama', 'Nama', 'required|trim');
@@ -201,9 +202,9 @@ class C_Admin extends CI_Controller {
 				$this->load->view('v_admin/akun_siswa_edit', $data);
 				$this->load->view('v_admin/footer');
 			} else {
-				$this->model_admin->editSiswa();
+				$this->Model_Admin->editSiswa();
 				echo "<script>alert('Anda berhasil mengedit akun siswa');</script>";
-				redirect('C_admin/akun_siswa', 'refresh');
+				redirect('C_Admin/akun_siswa', 'refresh');
 			}
 		}
 	}
@@ -221,7 +222,7 @@ class C_Admin extends CI_Controller {
 			$this->load->view('v_admin/footer');
 		}
 		else {
-			redirect('C_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -231,14 +232,14 @@ class C_Admin extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Buat Soal Ujian';
-			$data['soal'] = $this->model_admin->getSoalUjian();
+			$data['soal'] = $this->Model_Admin->getSoalUjian();
 
 			$this->load->view('v_admin/header', $data);
 			$this->load->view('v_admin/soal_ujian_tambah', $data);
 			$this->load->view('v_admin/footer');
 		}
 		else {
-			redirect('C_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -273,14 +274,14 @@ class C_Admin extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Bank Soal';
-			$data['soal'] = $this->model_admin->getSoal();
+			$data['soal'] = $this->Model_Admin->getSoal();
 
 			$this->load->view('v_admin/header', $data);
 			$this->load->view('v_admin/bank_soal', $data);
 			$this->load->view('v_admin/footer');
 		}
 		else {
-			redirect('C_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -290,14 +291,14 @@ class C_Admin extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Detail Soal';
-			$data['soal'] = $this->model_admin->getSoalById($id);
+			$data['soal'] = $this->Model_Admin->getSoalById($id);
 
 			$this->load->view('v_admin/header', $data);
 			$this->load->view('v_admin/bank_soal_detail', $data);
 			$this->load->view('v_admin/footer');
 		}
 		else {
-			redirect('C_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -307,10 +308,10 @@ class C_Admin extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Buat Soal Bank Soal';
-			$data['guru'] = $this->model_admin->getAllGuru();
-			$data['mapel'] = $this->model_admin->getMapel();
-			$data['kelas'] = $this->model_admin->getAllKelas();
-			$data['jurusan'] = $this->model_admin->getAllJurusan();
+			$data['guru'] = $this->Model_Admin->getAllGuru();
+			$data['mapel'] = $this->Model_Admin->getMapel();
+			$data['kelas'] = $this->Model_Admin->getAllKelas();
+			$data['jurusan'] = $this->Model_Admin->getAllJurusan();
 
 			$this->form_validation->set_rules('id_guru', 'Guru', 'required');
 			$this->form_validation->set_rules('soal', 'Soal', 'required');
@@ -322,13 +323,13 @@ class C_Admin extends CI_Controller {
 				$this->load->view('v_admin/bank_soal_tambah' , $data);
 				$this->load->view('v_admin/footer');
 			} else {
-				$this->model_admin->tambahSoal();
+				$this->Model_Admin->tambahSoal();
 				echo "<script>alert('Soal Berhasil Dibuat');</script>";
-				redirect('C_admin/bank_soal', 'refresh');
+				redirect('C_Admin/bank_soal', 'refresh');
 			}
 		}
 		else {
-			redirect('C_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -338,10 +339,10 @@ class C_Admin extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			
 			$data['title'] = 'Edit Soal';
-			$data['guru'] = $this->model_admin->getAllGuru();
-			$data['soal'] = $this->model_admin->getSoalById($id);
-			$data['kelas'] = $this->model_admin->getAllKelas();
-			$data['jurusan'] = $this->model_admin->getAllJurusan();
+			$data['guru'] = $this->Model_Admin->getAllGuru();
+			$data['soal'] = $this->Model_Admin->getSoalById($id);
+			$data['kelas'] = $this->Model_Admin->getAllKelas();
+			$data['jurusan'] = $this->Model_Admin->getAllJurusan();
 
 			$this->form_validation->set_rules('id_guru', 'Guru', 'required');
 			$this->form_validation->set_rules('status', 'Status', 'required');
@@ -353,9 +354,9 @@ class C_Admin extends CI_Controller {
 				$this->load->view('v_admin/bank_soal_edit' , $data);
 				$this->load->view('v_admin/footer');
 			} else {
-				$this->model_admin->editSoal();
+				$this->Model_Admin->editSoal();
 				echo "<script>alert('Soal Berhasil Diedit');</script>";
-				redirect('C_admin/bank_soal', 'refresh');
+				redirect('C_Admin/bank_soal', 'refresh');
 			}
 		}
 	}
@@ -365,15 +366,15 @@ class C_Admin extends CI_Controller {
 		# code...
 		if (isset($_SESSION['id_guru'])) {
 
-			if ($this->model_admin->hapusSoal($id)) {
+			if ($this->Model_Admin->hapusSoal($id)) {
 				$this->session->set_flashdata('hapus_soal', true);
 			} else {
 				$this->session->set_flashdata('hapus_soal', false);
 			}
 			echo "<script>alert('Data Soal Terhapus');</script>";
-			redirect('C_admin/bank_soal', 'refresh');
+			redirect('C_Admin/bank_soal', 'refresh');
 		} else {
-			redirect('C_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -384,14 +385,14 @@ class C_Admin extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Materi Siswa';
-			$data['materi'] = $this->model_admin->getAllMateri();
+			$data['materi'] = $this->Model_Admin->getAllMateri();
 
 			$this->load->view('v_admin/header', $data);
 			$this->load->view('v_admin/materi', $data);
 			$this->load->view('v_admin/footer');
 		}
 		else {
-			redirect('C_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -400,10 +401,10 @@ class C_Admin extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Upload Materi';
-			$data['guru'] = $this->model_admin->getAllGuru();
-			$data['mapel'] = $this->model_admin->getAllMapel();
-			$data['jurusan'] = $this->model_admin->getAllJurusan();
-			$data['kelas'] = $this->model_admin->getAllKelas();
+			$data['guru'] = $this->Model_Admin->getAllGuru();
+			$data['mapel'] = $this->Model_Admin->getAllMapel();
+			$data['jurusan'] = $this->Model_Admin->getAllJurusan();
+			$data['kelas'] = $this->Model_Admin->getAllKelas();
 
 			$this->form_validation->set_rules('id_guru', 'Guru', 'required|trim');
 			$this->form_validation->set_rules('id_kelas', 'Kelas', 'required|trim');
@@ -414,13 +415,13 @@ class C_Admin extends CI_Controller {
 				$this->load->view('v_admin/materi_tambah', $data);
 				$this->load->view('v_admin/footer');
 			} else {
-				$this->model_admin->tambahMateri();
+				$this->Model_Admin->tambahMateri();
 				echo "<script>alert('Anda berhasil mengupload materi');</script>";
-				redirect('C_admin/materi', 'refresh');
+				redirect('C_Admin/materi', 'refresh');
 			}
 		}
 		else {
-			redirect('C_login/index');
+			redirect('C_Login/index');
 		}
 	}
 
@@ -449,11 +450,11 @@ class C_Admin extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			
 			$data['title'] = 'Edit Materi';
-			$data['materi'] = $this->model_admin->getMateriById($id);
-			$data['guru'] = $this->model_admin->getAllGuru();
-			$data['mapel'] = $this->model_admin->getAllMapel();
-			$data['jurusan'] = $this->model_admin->getAllJurusan();
-			$data['kelas'] = $this->model_admin->getAllKelas();
+			$data['materi'] = $this->Model_Admin->getMateriById($id);
+			$data['guru'] = $this->Model_Admin->getAllGuru();
+			$data['mapel'] = $this->Model_Admin->getAllMapel();
+			$data['jurusan'] = $this->Model_Admin->getAllJurusan();
+			$data['kelas'] = $this->Model_Admin->getAllKelas();
 
 			$this->form_validation->set_rules('id_guru', 'Guru', 'required|trim');
 			$this->form_validation->set_rules('kelas', 'Kelas', 'required|trim');
@@ -464,9 +465,9 @@ class C_Admin extends CI_Controller {
 				$this->load->view('v_admin/materi_edit', $data);
 				$this->load->view('v_admin/footer');
 			} else {
-				$this->model_admin->editMateri();
+				$this->Model_Admin->editMateri();
 				echo "<script>alert('Anda berhasil mengedit materi');</script>";
-				redirect('C_admin/materi', 'refresh');
+				redirect('C_Admin/materi', 'refresh');
 			}
 		}
 	}
@@ -475,15 +476,15 @@ class C_Admin extends CI_Controller {
 	{
 		if (isset($_SESSION['id_guru'])) {
 
-			if ($this->model_admin->hapusMateri($id)) {
+			if ($this->Model_Admin->hapusMateri($id)) {
 				$this->session->set_flashdata('hapus_materi', true);
 			} else {
 				$this->session->set_flashdata('hapus_materi', false);
 			}
 			echo "<script>alert('Data Materi Terhapus');</script>";
-			redirect('C_admin/materi', 'refresh');
+			redirect('C_Admin/materi', 'refresh');
 		} else {
-			redirect('C_login/index');
+			redirect('C_Login/index');
 		}
 	}
 

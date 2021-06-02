@@ -1,4 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+ob_start();
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Model_Siswa extends CI_Model {
 

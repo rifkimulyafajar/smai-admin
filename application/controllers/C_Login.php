@@ -36,9 +36,9 @@ class C_Login extends CI_Controller {
 			$this->session->set_userdata('level', $row->level);
 
 			if ($this->session->userdata('level') == "admin") {
-				redirect('c_admin\index');
+				redirect('C_Admin\index');
 			} else if ($this->session->userdata('level') == "guru") {
-				redirect('c_guru\index');
+				redirect('C_Guru\index');
 			}
 		} else {
 			$data['title'] = 'Login';
@@ -50,6 +50,6 @@ class C_Login extends CI_Controller {
 	{
 		$this->session->sess_destroy();
 		echo "<script>alert('Anda berhasil Logout');</script>";
-		redirect('c_login/index', 'refresh');
+		redirect('C_Login/index', 'refresh');
 	}
 }

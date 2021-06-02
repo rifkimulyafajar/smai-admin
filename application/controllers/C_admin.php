@@ -231,13 +231,37 @@ class C_Admin extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Buat Soal Ujian';
+			$data['soal'] = $this->model_admin->getSoalUjian();
 
 			$this->load->view('v_admin/header', $data);
-			$this->load->view('v_admin/soal_ujian_tambah');
+			$this->load->view('v_admin/soal_ujian_tambah', $data);
 			$this->load->view('v_admin/footer');
 		}
 		else {
 			redirect('C_login/index');
+		}
+	}
+
+	public function pilih_soal()
+	{
+		// code...
+		$id = $this->input->post('pilih');
+		
+		for ($i=0 ; $i<count($id) ; $i++) { 
+			// $result = $this->db->set('status', 'Ujian')->where(['bank_soal.id_soal', $id[$i]])->update('bank_soal');
+
+			$result = $this->db->where(['bank_soal.id_soal', $id[$i]])->update('bank_soal',[
+				'status' => 'Ujian'
+			]);
+		}
+
+		if ($result) {
+			echo "<script>alert('berhasil');</script>";
+			redirect('C_Admin/tambah_soal_ujian', 'refresh');
+		}
+		else {
+			echo "<script>alert('gagal');</script>";
+			redirect('C_Admin/tambah_soal_ujian', 'refresh');
 		}
 	}
 

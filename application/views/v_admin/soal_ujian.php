@@ -21,7 +21,7 @@
           <div class="col-lg-3">
             <a href="<?= base_url('c_admin/tambah_soal_ujian'); ?>" class="btn btn-block btn-success btn-lg">
               <i class="fa fa-user"><sup>+</sup></i>
-                &nbsp;&nbsp; Buat Soal Ujian
+                &nbsp;&nbsp; Pilih Soal Ujian
             </a>
           </div>
           <div class="col-lg-9"></div>
@@ -31,7 +31,7 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <h3>Daftar Soal yang Telah Dibuat</h3>
+                <h3>Daftar Ujian</h3>
               </div>
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">

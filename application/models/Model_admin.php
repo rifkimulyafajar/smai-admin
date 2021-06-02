@@ -129,7 +129,7 @@ class Model_Admin extends CI_Model {
     public function hitungBankSoal()
     {
         # code...
-        return $this->db->count_all('input_banksoal');
+        return $this->db->count_all('bank_soal');
     }
 
     public function hitungMateri()
@@ -444,12 +444,27 @@ class Model_Admin extends CI_Model {
     {
         # code...
         $this->db->select('*');
-        $this->db->from('input_banksoal');
-        $this->db->join('guru', 'input_banksoal.id_guru = guru.id_guru');
-        $this->db->join('kelas', 'input_banksoal.id_kelas = kelas.id_kelas', 'left');
-        $this->db->join('jurusan', 'input_banksoal.id_jurusan = jurusan.id_jurusan', 'left');
-        $this->db->join('mapel', 'input_banksoal.id_mapel = mapel.id_mapel');
-        $this->db->join('kategori', 'input_banksoal.id_kategori = kategori.id_kategori', 'left');
+        $this->db->from('bank_soal');
+        $this->db->join('guru', 'bank_soal.id_guru = guru.id_guru');
+        $this->db->join('kelas', 'bank_soal.id_kelas = kelas.id_kelas', 'left');
+        $this->db->join('jurusan', 'bank_soal.id_jurusan = jurusan.id_jurusan', 'left');
+        $this->db->join('mapel', 'bank_soal.id_mapel = mapel.id_mapel');
+        $this->db->join('kategori', 'bank_soal.id_kategori = kategori.id_kategori', 'left');
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
+    public function getSoalUjian()
+    {
+        // code...
+        $this->db->select('*');
+        $this->db->from('bank_soal');
+        $this->db->join('guru', 'bank_soal.id_guru = guru.id_guru');
+        $this->db->join('kelas', 'bank_soal.id_kelas = kelas.id_kelas', 'left');
+        $this->db->join('jurusan', 'bank_soal.id_jurusan = jurusan.id_jurusan', 'left');
+        $this->db->join('mapel', 'bank_soal.id_mapel = mapel.id_mapel');
+        $this->db->join('kategori', 'bank_soal.id_kategori = kategori.id_kategori', 'left');
         $query = $this->db->get();
 
         return $query->result_array();
@@ -459,11 +474,11 @@ class Model_Admin extends CI_Model {
     {
         # code...
         $this->db->select('*');
-        $this->db->from('input_banksoal');
-        $this->db->join('mapel', 'input_banksoal.id_mapel = mapel.id_mapel');
-        $this->db->join('guru', 'input_banksoal.id_guru = guru.id_guru');
-        $this->db->join('kelas', 'input_banksoal.id_kelas = kelas.id_kelas', 'left');
-        $this->db->join('jurusan', 'input_banksoal.id_jurusan = jurusan.id_jurusan', 'left');
+        $this->db->from('bank_soal');
+        $this->db->join('mapel', 'bank_soal.id_mapel = mapel.id_mapel');
+        $this->db->join('guru', 'bank_soal.id_guru = guru.id_guru');
+        $this->db->join('kelas', 'bank_soal.id_kelas = kelas.id_kelas', 'left');
+        $this->db->join('jurusan', 'bank_soal.id_jurusan = jurusan.id_jurusan', 'left');
         $this->db->where('id_soal', $id);
         $query = $this->db->get();
 
@@ -497,7 +512,7 @@ class Model_Admin extends CI_Model {
             "tanggal" => $this->input->post('tanggal', true)
         ];
 
-        $this->db->insert('input_banksoal', $data);
+        $this->db->insert('bank_soal', $data);
     }
 
     public function editSoal()
@@ -562,7 +577,7 @@ class Model_Admin extends CI_Model {
         $this->kunci = $post["kunci"];
         $this->tanggal = $post["tanggal"];
 
-        $this->db->update('input_banksoal', $this, array('id_soal' => $post["id_soal"]));
+        $this->db->update('bank_soal', $this, array('id_soal' => $post["id_soal"]));
     }
 
     public function file_soal()
@@ -665,7 +680,7 @@ class Model_Admin extends CI_Model {
     public function hapusSoal($id)
     {
         # code...
-        return $this->db->delete('input_banksoal', array("id_soal" => $id));
+        return $this->db->delete('bank_soal', array("id_soal" => $id));
     }
 
 }

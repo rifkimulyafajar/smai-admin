@@ -58,33 +58,6 @@
                     <td>-</td>
                     <td>-</td>
                   </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>AOL browser (AOL desktop)</td>
-                    <td>Win XP</td>
-                    <td>6</td>
-                    <td>A</td>
-                    <td>-</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>AOL browser (AOL desktop)</td>
-                    <td>Win XP</td>
-                    <td>6</td>
-                    <td>A</td>
-                    <td>-</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>AOL browser (AOL desktop)</td>
-                    <td>Win XP</td>
-                    <td>6</td>
-                    <td>A</td>
-                    <td>-</td>
-                    <td>-</td>
-                  </tr>
                   </tbody>
                   <tfoot>
                   <tr>
@@ -105,6 +78,7 @@
         </div>
 
       </div><!-- /.container-fluid -->
+      
     </section>
     <!-- /.content -->
   </div>

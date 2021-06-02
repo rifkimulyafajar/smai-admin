@@ -8,12 +8,6 @@
             <h1 class="m-0">Buat Soal Untuk Ujian</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
-        <div class="row">
-          <div class="col-sm-9"></div>
-          <div class="col-sm-3">
-            <button class="btn btn-block btn-lg btn-success"> + Tambah Form</button>
-          </div>
-        </div>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
@@ -22,100 +16,75 @@
     <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
+
         <div class="row">
-          <div class="col-lg-12 col-6">
-            <!-- general form elements -->
-            <div class="card card-success">
+          <div class="col-lg-12">
+            <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Pertanyaan 1</h3>
-              </div>    
-              <!-- /.card-header -->
+                <h3>Daftar Soal yang Telah Dibuat</h3>
+              </div>
+              <div class="card-body">
+                <?= form_open('C_Admin/pilih_soal'); ?>
+                <table class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th class="text-center"> + </th>
+                      <th>Nama Guru</th>
+                      <th>Mata Pelajaran</th>
+                      <th>Kelas</th>
+                      <th>Jurusan</th>
+                      <th>Status</th>
+                      <th>Soal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
 
-              <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
-                <div class="card-body after-add-more">
-                  <div class="form-group">
-                    <textarea class="form-control" rows="4" placeholder="Tulis Pertanyaan disini..."></textarea>
+                    <?php
+                    $i = 1;
+
+                    if (count($soal)) { 
+                    
+                    foreach ($soal as $s) { ?>
+
+                    <tr>
+                      <td class="text-center">
+                        <input type="checkbox" name="pilih[]" value="<?= $s['id_soal'] ?>">
+                      </td>
+                      <td><?= $s['nama'] ?></td>
+                      <td><?= $s['mapel'] ?></td>
+                      <td><?= $s['kelas'] ?></td>
+                      <td><?= $s['jurusan'] ?></td>
+                      <td><?= $s['status'] ?></td>
+                      <td><?= $s['soal'] ?></td>
+                    </tr>
+
+                    <?php $i++; } } ?>
+
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th class="text-center"> + </th>
+                      <th>Nama Guru</th>
+                      <th>Mata Pelajaran</th>
+                      <th>Kelas</th>
+                      <th>Jurusan</th>
+                      <th>Status</th>
+                      <th>Soal</th>
+                    </tr>
+                  </tfoot>
+                </table>
+                <br>
+                <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4">
+                    <button class="btn btn-block btn-lg bg-success" type="submit">Submit</button>
                   </div>
-
-                  <label>Pilihan Jawaban</label>
-                  <div class="row">
-                    <div class="col-4">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">A</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder=".....">
-                      </div>
-                    </div>
-                    <div class="col-4">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">B</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder=".....">
-                      </div>
-                    </div>
-                    <div class="col-4">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">C</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder=".....">
-                      </div>
-                    </div>
-                  </div>
-
-                  <br>
-                  <div class="row">
-                    <div class="col-4">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">D</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder=".....">
-                      </div>
-                    </div>
-                    <div class="col-4">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">E</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder=".....">
-                      </div>
-                    </div>
-                    <div class="col-4">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">Kunci Jawaban</span>
-                        </div>
-                        <select class="form-control">
-                          <option>A</option>
-                          <option>B</option>
-                          <option>C</option>
-                          <option>D</option>
-                          <option>E</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
+                  <div class="col-4"></div>
                 </div>
-                <!-- /.card-body -->
-
-                <div class="card-footer text-right">
-<!--                   <button class="btn bg-danger">
-                    <i class="fas fa-trash"></i>
-                  </button>
- -->                </div>
-              </form>
-
+                <?= form_close(); ?>
+              </div>
+              <!-- /.card-body -->
             </div>
-            <!-- /.card -->
-
-            <div class="text-center">
-              <button class="btn btn-lg btn-success">&nbsp;&nbsp; Simpan Soal &nbsp;&nbsp;</button>
-            </div>
-
           </div>
         </div>
         <!-- /.row -->

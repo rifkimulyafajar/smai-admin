@@ -52,6 +52,7 @@ class C_Guru extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Buat Soal Ujian';
+			$data['soal'] = $this->model_guru->getSoal($_SESSION['id_guru']);
 
 			$this->load->view('v_guru/header', $data);
 			$this->load->view('v_guru/soal_ujian_tambah');

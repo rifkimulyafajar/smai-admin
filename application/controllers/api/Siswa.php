@@ -130,4 +130,36 @@ class Siswa extends REST_Controller {
             ], REST_Controller::HTTP_BAD_REQUEST);
 	 	}
 	}
+
+// ===================================================================
+
+	public function materi_get()
+	{
+		# code...
+		$id = $this->get('id_materi');
+
+		if ($id === null) {
+			# code...
+			$siswa = $this->model_siswa->getMateri();
+		}
+		else {
+			$siswa = $this->model_siswa->getMateri($id);
+		}
+
+
+		if ($siswa) {
+			# code...
+			$this->response([
+                    'status' => true,
+                    'message' => 'Success',
+                    'data' => $siswa
+                ], REST_Controller::HTTP_OK);
+		}
+		else {
+			$this->response([
+                    'status' => false,
+                    'message' => 'id not found!'
+                ], REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
 }

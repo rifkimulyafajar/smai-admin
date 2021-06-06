@@ -58,7 +58,9 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-info">Submit</button>
+                  <button type="submit" class="btn btn-info">
+                    <i class="fas fa-check"></i>&nbsp;&nbsp; Submit
+                  </button>
                 </div>
               </form>
 

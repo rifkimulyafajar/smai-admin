@@ -18,56 +18,77 @@
         <!-- Small boxes (Stat box) -->
 
         <div class="row">
-          <div class="col-lg-3">
+          <div class="col-4">
             <a href="<?= base_url('C_Guru/tambah_soal_ujian'); ?>" class="btn btn-block btn-info btn-lg">
-              <i class="fa fa-user"><sup>+</sup></i>
-                &nbsp;&nbsp; Buat Soal Ujian
+              <i class="fa fa-scroll"><sup>+</sup></i>
+                &nbsp;&nbsp; Pilih Soal Ujian
             </a>
           </div>
-          <div class="col-lg-9"></div>
+          <div class="col-4">
+            <a href="<?= base_url('C_Guru/buat_ujian'); ?>" class="btn btn-block btn-info btn-lg">
+              <i class="fa fa-copy"><sup>+</sup></i>
+                &nbsp;&nbsp; Buat Ujian
+            </a>
+          </div>
+          <div class="col-4"></div>
         </div> <br>
 
         <div class="row">
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <h3>Daftar Soal yang Telah Dibuat</h3>
+                <h3>Daftar Ujian yang Telah Dibuat</h3>
               </div>
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
-                    <th>1</th>
-                    <th>2</th>
+                    <th>Mata Pelajaran</th>
+                    <th>Kelas</th>
+                    <th>Jumlah Soal</th>
+                    <th>Durasi</th>
+                    <th>Jenis</th>
+                    <th>Waktu Mulai</th>
+                    <th>Token</th>
+                    <th>Status</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td> 4</td>
-                    <td>X</td>
-                    <td>-</td>
-                    <td>-</td>
-                  </tr>
+
+                    <?php 
+                    $no = 1;
+                    foreach ($ujian as $u) { ?>
+
+                    <tr>
+                      <td><?= $u['mapel'] ?></td>
+                      <td><?= $u['kelas'] ?> - <?= $u['jurusan'] ?></td>
+                      <td><?= $u['jumlah_soal'] ?></td>
+                      <td><?= $u['durasi'] ?> menit</td>
+                      <td><?= $u['jenis'] ?></td>
+                      <td><?= $u['waktu_mulai'] ?></td>
+                      <td><?= $u['token'] ?></td>
+                      <td>
+                        <?php if ($u['status'] == 'Y') { ?>
+                          Aktif
+                        <?php } else { ?>
+                          Tidak Aktif
+                        <?php } ?>
+                      </td>
+                    </tr>
+
+                    <?php } ?>
+
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
-                    <th>1</th>
-                    <th>2</th>
+                    <th>Mata Pelajaran</th>
+                    <th>Kelas</th>
+                    <th>Jumlah Soal</th>
+                    <th>Durasi</th>
+                    <th>Jenis</th>
+                    <th>Waktu Mulai</th>
+                    <th>Token</th>
+                    <th>Status</th>
                   </tr>
                   </tfoot>
                 </table>

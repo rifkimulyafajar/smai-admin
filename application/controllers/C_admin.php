@@ -249,11 +249,8 @@ class C_Admin extends CI_Controller {
 		$id = $this->input->post('pilih');
 		
 		for ($i=0 ; $i<count($id) ; $i++) { 
-			// $result = $this->db->set('status', 'Ujian')->where(['bank_soal.id_soal', $id[$i]])->update('bank_soal');
-
-			$result = $this->db->where(['bank_soal.id_soal', $id[$i]])->update('bank_soal',[
-				'status' => 'Ujian'
-			]);
+			$result = $this->db->set('status', 'Ujian')->where('id_soal', $id[$i])->update('bank_soal');
+			
 		}
 
 		if ($result) {

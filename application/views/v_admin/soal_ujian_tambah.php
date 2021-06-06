@@ -77,7 +77,9 @@
                 <div class="row">
                   <div class="col-4"></div>
                   <div class="col-4">
-                    <button class="btn btn-block btn-lg bg-success" type="submit">Submit</button>
+                    <button class="btn btn-block btn-lg bg-success" type="submit">
+                      <i class="fas fa-check"></i>&nbsp;&nbsp; Jadikan Sebagai Soal Ujian
+                    </button>
                   </div>
                   <div class="col-4"></div>
                 </div>

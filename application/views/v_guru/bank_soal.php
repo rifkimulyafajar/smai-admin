@@ -20,7 +20,7 @@
         <div class="row">
           <div class="col-lg-3">
             <a href="<?= base_url('C_Guru/tambah_bank_soal'); ?>" class="btn btn-block btn-success btn-lg">
-              <i class="fa fa-user"><sup>+</sup></i>
+              <i class="fa fa-scroll"><sup>+</sup></i>
                 &nbsp;&nbsp; Buat Soal
             </a>
           </div>

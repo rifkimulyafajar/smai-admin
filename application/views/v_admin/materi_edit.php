@@ -119,7 +119,9 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-info">Update</button>
+                  <button type="submit" class="btn btn-info">
+                    <i class="fas fa-check"></i>&nbsp;&nbsp; Update
+                  </button>
                 </div>
 
               </form>

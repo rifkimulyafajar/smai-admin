@@ -19,9 +19,13 @@
 
         <div class="row">
           <div class="col-lg-3">
-            <a href="<?= base_url('C_Admin/tambah_soal_ujian'); ?>" class="btn btn-block btn-success btn-lg">
+            <!-- <a href="<?= base_url('C_Admin/tambah_soal_ujian'); ?>" class="btn btn-block btn-success btn-lg">
               <i class="fa fa-user"><sup>+</sup></i>
                 &nbsp;&nbsp; Pilih Soal Ujian
+            </a> -->
+            <a href="<?= base_url('C_Admin/buat_ujian'); ?>" class="btn btn-block btn-success btn-lg">
+              <i class="fa fa-user"><sup>+</sup></i>
+                &nbsp;&nbsp; Buat Ujian
             </a>
           </div>
           <div class="col-lg-9"></div>

@@ -23,7 +23,7 @@
               <div class="card-header">
                 <div class="col-lg-3">
                   <a href="<?= base_url('C_Guru/tambah_materi') ?>" class="btn btn-block btn-danger btn-lg">
-                    <i class="fa fa-user"><sup>+</sup></i>
+                    <i class="fa fa-paste"><sup>+</sup></i>
                     &nbsp;&nbsp; Tambah Materi
                   </a>
                 </div>
@@ -88,7 +88,7 @@
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-          <a href="<?= base_url('c_admin/hapus_materi/').$m['id_materi']; ?>" type="button" class="btn btn-danger">Sangat Yakin!</a>
+          <a href="<?= base_url('C_Guru/hapus_materi/').$m['id_materi']; ?>" type="button" class="btn btn-danger">Sangat Yakin!</a>
         </div>
       </div>
       <!-- /.modal-content -->

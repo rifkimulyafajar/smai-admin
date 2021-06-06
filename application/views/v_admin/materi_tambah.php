@@ -101,7 +101,9 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-danger">Submit</button>
+                  <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-check"></i>&nbsp;&nbsp; Submit
+                  </button>
                 </div>
               </form>
             </div>

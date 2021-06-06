@@ -30,17 +30,53 @@ class C_Guru extends CI_Controller {
 		}
 	}
 
-// ===============================================================================
+
+
+// ==========================================================================================================================
+
+
 
 	public function soal_ujian()
 	{
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Soal Ujian';
+			$data['ujian'] = $this->Model_Guru->getUjianGuru($_SESSION['id_guru']);
 
 			$this->load->view('v_guru/header', $data);
-			$this->load->view('v_guru/soal_ujian');
+			$this->load->view('v_guru/soal_ujian', $data);
 			$this->load->view('v_guru/footer');
+		}
+		else {
+			redirect('C_Login/index');
+		}
+	}
+
+	public function buat_ujian()
+	{
+		// code...
+		if (isset($_SESSION['id_guru'])) {
+			# code...
+			$data['title'] = 'Buat Ujian';
+			$data['guru'] = $this->Model_Guru->getGuru($_SESSION['id_guru']);
+			$data['kelas'] = $this->Model_Guru->getAllKelas();
+			$data['jurusan'] = $this->Model_Guru->getAllJurusan();
+			$data['total'] = $this->Model_Guru->totalSoalUjian($_SESSION['id_guru']);
+
+			$this->form_validation->set_rules('jumlah', 'Jumlah Soal', 'required');
+			$this->form_validation->set_rules('durasi', 'Durasi', 'required');
+			$this->form_validation->set_rules('waktu_mulai', 'Waktu', 'required');
+
+			if ($this->form_validation->run() == FALSE) {
+				$this->load->view('v_guru/header', $data);
+				$this->load->view('v_guru/ujian_tambah', $data);
+				$this->load->view('v_guru/footer');
+			} else {
+				$this->Model_Guru->tambahUjian();
+				echo "<script>alert('Ujian Berhasil Dibuat');</script>";
+				redirect('C_Guru/buat_ujian', 'refresh');
+			}
+
 		}
 		else {
 			redirect('C_Login/index');
@@ -52,11 +88,12 @@ class C_Guru extends CI_Controller {
 		# code...
 		if (isset($_SESSION['id_guru'])) {
 			# code...
-			$data['title'] = 'Buat Soal Ujian';
+			$data['title'] = 'Pilih Soal Ujian';
 			$data['soal'] = $this->Model_Guru->getSoal($_SESSION['id_guru']);
+			$data['total'] = $this->Model_Guru->totalSoalUjian($_SESSION['id_guru']);
 
 			$this->load->view('v_guru/header', $data);
-			$this->load->view('v_guru/soal_ujian_tambah');
+			$this->load->view('v_guru/soal_ujian_tambah', $data);
 			$this->load->view('v_guru/footer');
 		}
 		else {
@@ -64,7 +101,31 @@ class C_Guru extends CI_Controller {
 		}
 	}
 
-// ===============================================================================
+	public function pilih_soal()
+	{
+		// code...
+		$id = $this->input->post('pilih');
+		
+		for ($i=0 ; $i<count($id) ; $i++) { 
+			$result = $this->db->set('status', 'Ujian')->where('id_soal', $id[$i])->update('bank_soal');
+			
+		}
+
+		if ($result) {
+			echo "<script>alert('berhasil');</script>";
+			redirect('C_Guru/tambah_soal_ujian', 'refresh');
+		}
+		else {
+			echo "<script>alert('gagal');</script>";
+			redirect('C_Guru/tambah_soal_ujian', 'refresh');
+		}
+	}
+
+
+
+// ==========================================================================================================================
+
+
 
 	public function bank_soal()
 	{
@@ -236,8 +297,12 @@ class C_Guru extends CI_Controller {
 		}
 	}
 
-// ===============================================================================	
+
+
+// ==========================================================================================================================
 	
+
+
 	public function materi()
 	{
 		if (isset($_SESSION['id_guru'])) {
@@ -342,7 +407,11 @@ class C_Guru extends CI_Controller {
 		force_download('upload/materi/'.$data->file3,NULL);
 	}
 
-// ===============================================================================
+
+
+// ==========================================================================================================================
+
+
 
 	public function akun_saya($id)
 	{

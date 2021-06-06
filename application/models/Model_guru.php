@@ -11,6 +11,8 @@ class Model_Guru extends CI_Model {
         return $query->result_array();
     }
 
+//============================================================================================================
+
     public function getGuru($id)
     {
     	# code...
@@ -43,6 +45,8 @@ class Model_Guru extends CI_Model {
 
 //============================================================================================================
 
+
+
     public function hitungMateri($id)
     {
         # code...
@@ -69,7 +73,15 @@ class Model_Guru extends CI_Model {
     public function getMateriById($id)
     {
         # code...
-        $query = $this->db->get_where('materi', array('id_materi' => $id));
+        $this->db->select('*');
+        $this->db->from('materi');
+        $this->db->join('guru', 'materi.id_guru = guru.id_guru');
+        $this->db->join('mapel', 'materi.id_mapel = mapel.id_mapel', 'left');
+        $this->db->join('kelas', 'materi.id_kelas = kelas.id_kelas', 'left');
+        $this->db->join('jurusan', 'materi.id_jurusan = jurusan.id_jurusan', 'left');
+        $this->db->where('materi.id_materi', $id);
+        $query = $this->db->get();
+
         return $query->row_array();
     }
 
@@ -79,6 +91,7 @@ class Model_Guru extends CI_Model {
     	$this->id_materi = uniqid();
     	$data = [
     		"id_guru" => $this->input->post('id_guru', true),
+            "id_mapel" => $this->input->post('id_mapel', true),
     		"id_kelas" => $this->input->post('kelas', true),
     		"id_jurusan" => $this->input->post('jurusan', true),
     		"file1" => $this->uploadFile1(),
@@ -176,7 +189,11 @@ class Model_Guru extends CI_Model {
         }
     }
 
+
+
 //============================================================================================================
+
+
 
     public function update_akun($id)
     {
@@ -196,7 +213,11 @@ class Model_Guru extends CI_Model {
         $this->db->update('guru', $this, array('id_guru' => $post["id_guru"]));
     }
 
+
+
 //============================================================================================================
+
+
 
     public function hitungSoalById($id)
     {
@@ -220,6 +241,22 @@ class Model_Guru extends CI_Model {
         $query = $this->db->get();
 
         return $query->result_array();
+    }
+
+    public function totalSoalUjian($id)
+    {
+        // code...
+        $this->db->select('*');
+        $this->db->from('bank_soal');
+        $this->db->join('guru', 'bank_soal.id_guru = guru.id_guru');
+        $this->db->join('mapel', 'bank_soal.id_mapel = mapel.id_mapel');
+        $this->db->join('kelas', 'bank_soal.id_kelas = kelas.id_kelas', 'left');
+        $this->db->join('jurusan', 'bank_soal.id_jurusan = jurusan.id_jurusan', 'left');
+        $this->db->join('kategori', 'bank_soal.id_kategori = kategori.id_kategori', 'left');
+        $this->db->where('guru.id_guru', $id);
+        $this->db->where('status', 'Ujian');
+
+        return $this->db->count_all_results();
     }
 
     public function getSoalById($id)
@@ -476,5 +513,45 @@ class Model_Guru extends CI_Model {
         if ($this->upload->do_upload('file_e')) {
             return $this->upload->data("file_name");
         }
+    }
+
+
+
+//============================================================================================================
+
+
+
+    public function getUjianGuru($id)
+    {
+        // code...
+        $this->db->select('*');
+        $this->db->from('ujian');
+        $this->db->join('guru', 'ujian.id_guru = guru.id_guru');
+        $this->db->join('mapel', 'ujian.id_mapel = mapel.id_mapel');
+        $this->db->join('kelas', 'ujian.id_kelas = kelas.id_kelas', 'left');
+        $this->db->join('jurusan', 'ujian.id_jurusan = jurusan.id_jurusan', 'left');
+        $this->db->where('guru.id_guru', $id);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
+    public function tambahUjian()
+    {
+        // code...
+        $this->id_ujian = uniqid();
+        $data = [
+            "id_guru" => $this->input->post('id_guru', true),
+            "id_mapel" => $this->input->post('id_mapel', true),
+            "id_kelas" => $this->input->post('kelas', true),
+            "id_jurusan" => $this->input->post('jurusan', true),
+            "jumlah_soal" => $this->input->post('jumlah', true),
+            "durasi" => $this->input->post('durasi', true),
+            "jenis" => $this->input->post('jenis', true),
+            "waktu_mulai" => $this->input->post('waktu_mulai', true),
+            "token" => $this->input->post('token', true),
+        ];
+
+        $this->db->insert('ujian', $data);
     }
 }

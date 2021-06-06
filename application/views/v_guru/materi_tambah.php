@@ -32,6 +32,17 @@
 
                   <div class="row">
                     <div class="form-group col-6">
+                      <label>Nama Guru</label>
+                      <input type="text" name="" class="form-control" value="<?= $guru['nama'] ?>" disabled>
+                    </div>
+                    <div class="form-group col-6">
+                      <label>Mata Pelajaran</label>
+                      <input type="text" name="" class="form-control" value="<?= $guru['mapel'] ?>" disabled>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-6">
                       <label for="exampleSelectRounded0">Kelas</label>
                       <select class="custom-select rounded-0" id="kelas" name="kelas">
                         
@@ -80,7 +91,9 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-danger">Submit</button>
+                  <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-check"></i>&nbsp;&nbsp; Submit
+                  </button>
                 </div>
               </form>
             </div>

@@ -33,6 +33,9 @@
   <link rel="stylesheet" href="<?php echo base_url('asset/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'); ?>">
   <link rel="stylesheet" href="<?php echo base_url('asset/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'); ?>">
   <link rel="stylesheet" href="<?php echo base_url('asset/admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
+
+  <!-- DareTimePicker -->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('asset/admin/plugins/datetimepicker/build/jquery.datetimepicker.min.css'); ?>">
   
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -119,7 +122,7 @@
             <a href="<?= base_url('C_Guru/soal_ujian') ?>" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Soal Ujian
+                Ujian
               </p>
             </a>
           </li>

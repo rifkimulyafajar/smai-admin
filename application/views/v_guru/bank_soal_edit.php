@@ -26,6 +26,17 @@
                   <input type="hidden" name="id_guru" value="<?= $guru['id_guru'] ?>">
                   <input type="hidden" name="id_mapel" value="<?= $soal['id_mapel'] ?>">
 
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label>Nama Guru</label>
+                      <input type="text" name="" class="form-control" value="<?= $guru['nama'] ?>" disabled>
+                    </div>
+                    <div class="form-group col-6">
+                      <label>Mata Pelajaran</label>
+                      <input type="text" name="" class="form-control" value="<?= $guru['mapel'] ?>" disabled>
+                    </div>
+                  </div>
+
                   <div class="form-group">
                     <label for="exampleSelectRounded0">Kategori Soal</label>
                     <select class="custom-select rounded-0" id="id_kategori" name="id_kategori">

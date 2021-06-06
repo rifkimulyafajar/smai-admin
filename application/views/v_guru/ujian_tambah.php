@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Update Materi</h1>
+            <h1 class="m-0">Buat Ujian</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -21,27 +21,27 @@
             <!-- general form elements -->
             <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Update Materi Anda</h3>
+                <h3 class="card-title">Buat Ujian</h3>
               </div>
               <!-- /.card-header -->
-
-              <form action="<?= base_url('C_Guru/edit_materi/'.$materi['id_materi']) ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+              <!-- form start -->
+              <form action="<?= base_url('C_Guru/buat_ujian') ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                 <div class="card-body">
-                  
-                  <input type="hidden" name="id_materi" value="<?= $materi['id_materi'] ?>">
-                  <input type="hidden" name="id_guru" value="<?= $materi['id_guru'] ?>">
 
                   <div class="row">
                     <div class="form-group col-6">
                       <label>Nama Guru</label>
-                      <input type="text" name="" class="form-control" value="<?= $materi['nama'] ?>" disabled>
+                      <input type="text" name="" class="form-control" value="<?= $guru['nama'] ?>" disabled>
                     </div>
                     <div class="form-group col-6">
                       <label>Mata Pelajaran</label>
-                      <input type="text" name="" class="form-control" value="<?= $materi['mapel'] ?>" disabled>
+                      <input type="text" name="" class="form-control" value="<?= $guru['mapel'] ?>" disabled>
                     </div>
                   </div>
-                  
+
+                  <input type="hidden" name="id_guru" value="<?= $guru['id_guru'] ?>">
+                  <input type="hidden" name="id_mapel" value="<?= $guru['id_mapel'] ?>">
+
                   <div class="row">
                     <div class="form-group col-6">
                       <label for="exampleSelectRounded0">Kelas</label>
@@ -49,8 +49,7 @@
                         
                         <?php foreach ($kelas as $k) { ?>
                         
-                        <option value="<?= $k['id_kelas'] ?>" <?php if ($k['id_kelas'] == $materi['id_kelas']) : ?> selected <?php endif; ?>>
-                          <?= $k['kelas'] ?></option>
+                        <option value="<?= $k['id_kelas'] ?>"><?= $k['kelas'] ?></option>
 
                         <?php } ?>
 
@@ -63,8 +62,7 @@
 
                         <?php foreach ($jurusan as $j) { ?>
                         
-                        <option value="<?= $j['id_jurusan'] ?>" <?php if ($j['id_jurusan'] == $materi['id_jurusan']) : ?> selected <?php endif; ?>>
-                          <?= $j['jurusan'] ?></option>
+                        <option value="<?= $j['id_jurusan'] ?>"><?= $j['jurusan'] ?></option>
 
                         <?php } ?>
 
@@ -72,45 +70,62 @@
                     </div>
                   </div>
 
-                  <br>
-                  <div class="form-group">
-                    <label>File Input</label><br>
-
-                    <a href="<?= base_url('C_Guru/downloadF1/').$materi['id_materi']; ?>"><?= $materi['file1'] ?></a> <br>
-                    <input type="hidden" name="old_f1" value="<?= $materi['file1'] ?>">
-
-                    <input type="file" id="file1" name="file1" value="<?= $materi['file1'] ?>" class="form-control">
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label>Jumlah Soal</label>
+                      <input type="number" name="jumlah" class="form-control" placeholder="Masukkan jumlah soal" min="0" max="<?= $total ?>">
+                      <?= form_error('jumlah', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                    <div class="form-group col-6">
+                      <label>Durasi Ujian</label>
+                      <input type="number" name="durasi" class="form-control" placeholder="Durasi Ujian - Menit">
+                      <?= form_error('durasi', '<small class="text-danger">', '</small>'); ?>
+                    </div>
                   </div>
 
                   <div class="row">
                     <div class="form-group col-6">
-
-                      <a href="<?= base_url('C_Guru/downloadF2/').$materi['id_materi']; ?>"><?= $materi['file2'] ?></a> <br>
-                      ( Opsional ) <br>
-                      <input type="hidden" name="old_f2" value="<?= $materi['file2'] ?>">
-
-                      <input type="file" id="file2" name="file2" value="<?= $materi['file1'] ?>" class="form-control">
+                      <label>Jenis</label>
+                      <select class="custom-select rounded-0" name="jenis">
+                        <option value="acak">Acak</option>
+                        <option value="urut">Urut</option>
+                      </select>
                     </div>
-
                     <div class="form-group col-6">
-
-                      <a href="<?= base_url('C_Guru/downloadF3/').$materi['id_materi']; ?>"><?= $materi['file3'] ?></a> <br>
-                      ( Opsional ) <br>
-                      <input type="hidden" name="old_f3" value="<?= $materi['file3'] ?>">
-
-                      <input type="file" id="file3" name="file3" value="<?= $materi['file1'] ?>" class="form-control">
+                      <label>Waktu Mulai Ujian</label>
+                      <input type="text" name="waktu_mulai" class="form-control" id="picker" placeholder="Waktu Mulai Ujian">
+                      <?= form_error('waktu_mulai', '<small class="text-danger">', '</small>'); ?>
                     </div>
                   </div>
+
+<?php
+
+  function acak()
+  {
+    // code...
+    $karakter = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $data = '';
+
+    for ($i=0; $i<5 ; $i++) { 
+      // code...
+      $random = rand(0, strlen($karakter)-1);
+      $data .= $karakter[$random];
+    }
+    return $data;
+  }
+
+?>
+                
+                  <input type="hidden" name="token" value="<?= acak(); ?>">
 
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-info">
-                    <i class="fas fa-check"></i>&nbsp;&nbsp; Update
+                    <i class="fas fa-check"></i>&nbsp;&nbsp; Submit
                   </button>
                 </div>
-
               </form>
             </div>
             <!-- /.card -->

@@ -17,7 +17,7 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-12 col-6">
+          <div class="col-lg-12">
             <!-- general form elements -->
             <div class="card card-info">
               <div class="card-header">
@@ -105,7 +105,9 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-info">Submit</button>
+                  <button type="submit" class="btn btn-info">
+                    <i class="fas fa-check"></i>&nbsp;&nbsp; Submit
+                  </button>
                 </div>
               </form>
             </div>

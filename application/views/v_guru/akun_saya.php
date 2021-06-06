@@ -19,7 +19,7 @@
         <div class="row">
           <div class="col-lg-12">
             <!-- general form elements -->
-            <div class="card card-info">
+            <div class="card card-warning">
               <div class="card-header">
                 <h3 class="card-title">Username dan Password Saat Ini</h3>
               </div>
@@ -75,7 +75,9 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-info">Update</button>
+                  <button type="submit" class="btn btn-warning">
+                    <i class="fas fa-check"></i>&nbsp;&nbsp; Update
+                  </button>
                 </div>
 
               </form>

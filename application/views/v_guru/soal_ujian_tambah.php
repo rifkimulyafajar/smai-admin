@@ -24,43 +24,72 @@
                 <h3>Daftar Soal yang Telah Dibuat</h3>
               </div>
               <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
+                
+                <p class="text-center"><?= $total; ?> Soal siap untuk ujian</p>
+
+                <?= form_open('C_Guru/pilih_soal'); ?>
+                <table class="table table-bordered table-striped">
                   <thead>
-                  <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
-                    <th>1</th>
-                    <th>2</th>
-                  </tr>
+                    <tr>
+                      <th class="text-center"> + </th>
+                      <th>Nama Guru</th>
+                      <th>Mata Pelajaran</th>
+                      <th>Kelas</th>
+                      <th>Jurusan</th>
+                      <th>Kategori</th>
+                      <th>Status</th>
+                      <th>Soal</th>
+                    </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td> 4</td>
-                    <td>X</td>
-                    <td>-</td>
-                    <td>-</td>
-                  </tr>
+
+                    <?php
+                    $i = 1;
+
+                    if (count($soal)) { 
+                    
+                    foreach ($soal as $s) { ?>
+
+                    <tr>
+                      <td class="text-center">
+                        <input type="checkbox" name="pilih[]" value="<?= $s['id_soal'] ?>">
+                      </td>
+                      <td><?= $s['nama'] ?></td>
+                      <td><?= $s['mapel'] ?></td>
+                      <td><?= $s['kelas'] ?></td>
+                      <td><?= $s['jurusan'] ?></td>
+                      <td><?= $s['kategori'] ?></td>
+                      <td><?= $s['status'] ?></td>
+                      <td><?= $s['soal'] ?></td>
+                    </tr>
+
+                    <?php $i++; } } ?>
+
                   </tbody>
                   <tfoot>
-                  <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
-                    <th>1</th>
-                    <th>2</th>
-                  </tr>
+                    <tr>
+                      <th class="text-center"> + </th>
+                      <th>Nama Guru</th>
+                      <th>Mata Pelajaran</th>
+                      <th>Kelas</th>
+                      <th>Jurusan</th>
+                      <th>Kategori</th>
+                      <th>Status</th>
+                      <th>Soal</th>
+                    </tr>
                   </tfoot>
                 </table>
+                <br>
+                <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4">
+                    <button class="btn btn-block btn-lg bg-success" type="submit">
+                      <i class="fas fa-check"></i>&nbsp;&nbsp; Jadikan Sebagai Soal Ujian
+                    </button>
+                  </div>
+                  <div class="col-4"></div>
+                </div>
+                <?= form_close(); ?>
               </div>
               <!-- /.card-body -->
             </div>

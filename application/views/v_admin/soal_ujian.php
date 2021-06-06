@@ -18,87 +18,113 @@
         <!-- Small boxes (Stat box) -->
 
         <div class="row">
-          <div class="col-lg-3">
-            <!-- <a href="<?= base_url('C_Admin/tambah_soal_ujian'); ?>" class="btn btn-block btn-success btn-lg">
-              <i class="fa fa-user"><sup>+</sup></i>
-                &nbsp;&nbsp; Pilih Soal Ujian
-            </a> -->
+          <div class="col-lg-4">
             <a href="<?= base_url('C_Admin/buat_ujian'); ?>" class="btn btn-block btn-success btn-lg">
-              <i class="fa fa-user"><sup>+</sup></i>
+              <i class="fa fa-copy"><sup> +</sup></i>
                 &nbsp;&nbsp; Buat Ujian
             </a>
           </div>
-          <div class="col-lg-9"></div>
+          <div class="col-lg-4">
+            <a href="<?= base_url('C_Admin/pilih_soal_ujian'); ?>" class="btn btn-block btn-success btn-lg">
+              <i class="fa fa-copy"><sup> +</sup></i>
+                &nbsp;&nbsp; Pilih Soal Ujian
+            </a>
+          </div>
+          <div class="col-lg-4"></div>
         </div> <br>
 
         <div class="row">
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <h3>Daftar Ujian</h3>
+                <h3>Daftar Ujian yang Telah Dibuat</h3>
               </div>
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
-                    <th>1</th>
-                    <th>2</th>
+                    <th>Nama Guru</th>
+                    <th>Mata Pelajaran</th>
+                    <th>Kelas</th>
+                    <th>Jumlah Soal</th>
+                    <th>Durasi</th>
+                    <th>Jenis</th>
+                    <th>Waktu Mulai</th>
+                    <th>Token</th>
+                    <th>Status</th>
+                    <th></th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td> 4</td>
-                    <td>X</td>
-                    <td>-</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>AOL browser (AOL desktop)</td>
-                    <td>Win XP</td>
-                    <td>6</td>
-                    <td>A</td>
-                    <td>-</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>AOL browser (AOL desktop)</td>
-                    <td>Win XP</td>
-                    <td>6</td>
-                    <td>A</td>
-                    <td>-</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>AOL browser (AOL desktop)</td>
-                    <td>Win XP</td>
-                    <td>6</td>
-                    <td>A</td>
-                    <td>-</td>
-                    <td>-</td>
-                  </tr>
+
+                    <?php 
+                    $no = 1;
+                    foreach ($ujian as $u) { ?>
+
+                    <tr>
+                      <td><?= $u['nama'] ?></td>
+                      <td><?= $u['mapel'] ?></td>
+                      <td><?= $u['kelas'] ?> - <?= $u['jurusan'] ?></td>
+                      <td><?= $u['jumlah_soal'] ?></td>
+                      <td><?= $u['durasi'] ?> menit</td>
+                      <td><?= $u['jenis'] ?></td>
+                      <td><?= $u['waktu_mulai'] ?></td>
+                      <td><?= $u['token'] ?></td>
+                      <td>
+                        <?php if ($u['status'] == 'Y') { ?>
+                          Aktif
+                        <?php } else { ?>
+                          Tidak Aktif
+                        <?php } ?>
+                      </td>
+                      <td>
+                        <a href="<?= base_url('C_Admin/edit_ujian/').$u['id_ujian']; ?>" class="btn bg-warning">
+                          <i class="fas fa-edit"></i>
+                        </a> &nbsp;
+                        <button type="button" class="btn bg-danger" data-toggle="modal" data-target="#hapus-<?= $u['id_ujian'];?>">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+
+  <div class="modal fade" id="hapus-<?= $u['id_ujian'];?>">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Anda Yakin Ingin Menghapus Materi Ini?</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+          <a href="<?= base_url('C_Admin/hapus_ujian/').$u['id_ujian']; ?>" type="button" class="btn btn-danger">Sangat Yakin!</a>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+                    </tr>
+
+                    <?php } ?>
+
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
-                    <th>1</th>
-                    <th>2</th>
+                    <th>Nama Guru</th>
+                    <th>Mata Pelajaran</th>
+                    <th>Kelas</th>
+                    <th>Jumlah Soal</th>
+                    <th>Durasi</th>
+                    <th>Jenis</th>
+                    <th>Waktu Mulai</th>
+                    <th>Token</th>
+                    <th>Status</th>
+                    <th></th>
                   </tr>
                   </tfoot>
                 </table>

@@ -154,6 +154,22 @@ class Model_Admin extends CI_Model {
         // return $query->result_array();
     }
 
+    public function getAllMapel()
+    {
+        # code...
+        $query = $this->db->get('mapel');
+        return $query->result_array();
+    }
+
+    public function getAllJurusan()
+    {
+        # code...
+        $query = $this->db->get('jurusan');
+        return $query->result_array();
+    }
+
+//============================================================================================================
+
   	public function getAllGuru()
     {
         // return $this->db->get_where('guru', array('level' => 'guru'))->result_array();
@@ -289,24 +305,6 @@ class Model_Admin extends CI_Model {
         }
 
         $this->db->update('siswa', $this, array('id_siswa' => $post["id_siswa"]));
-    }
-
-//============================================================================================================
-
-    public function getAllMapel()
-    {
-    	# code...
-    	$query = $this->db->get('mapel');
-        return $query->result_array();
-    }
-
-//============================================================================================================
-
-    public function getAllJurusan()
-    {
-    	# code...
-    	$query = $this->db->get('jurusan');
-        return $query->result_array();
     }
 
 //============================================================================================================
@@ -683,6 +681,75 @@ class Model_Admin extends CI_Model {
     {
         # code...
         return $this->db->delete('bank_soal', array("id_soal" => $id));
+    }
+
+
+//============================================================================================================
+
+
+    public function getUjian()
+    {
+        // code...
+        $this->db->select('*');
+        $this->db->from('ujian');
+        $this->db->join('guru', 'ujian.id_guru = guru.id_guru');
+        $this->db->join('mapel', 'ujian.id_mapel = mapel.id_mapel');
+        $this->db->join('kelas', 'ujian.id_kelas = kelas.id_kelas', 'left');
+        $this->db->join('jurusan', 'ujian.id_jurusan = jurusan.id_jurusan', 'left');
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
+    public function getUjianById($id)
+    {
+        // code...
+        $this->db->select('*');
+        $this->db->from('ujian');
+        $this->db->join('guru', 'ujian.id_guru = guru.id_guru');
+        $this->db->join('mapel', 'ujian.id_mapel = mapel.id_mapel');
+        $this->db->join('kelas', 'ujian.id_kelas = kelas.id_kelas', 'left');
+        $this->db->join('jurusan', 'ujian.id_jurusan = jurusan.id_jurusan', 'left');
+        $this->db->where('id_ujian', $id);
+        $query = $this->db->get();
+
+        return $query->row_array();
+    }
+
+    public function editUjian()
+    {
+        // code...
+        $a = $this->input->post('waktu_mulai');
+        $b = strtotime($a);
+
+        $d = $this->input->post('durasi');
+        $e = 60 * $d;
+
+        $x = $b + $e;
+        $z = date("Y-m-d H:i:s", $x);
+
+        $post = $this->input->post();
+
+        $this->id_ujian = $post["id_ujian"];
+        $this->id_guru = $post["id_guru"];
+        $this->id_mapel = $post["id_mapel"];
+        $this->id_kelas = $post["id_kelas"];
+        $this->id_jurusan = $post["id_jurusan"];
+        $this->jumlah_soal = $post["jumlah"];
+        $this->durasi = $post["durasi"];
+        $this->jenis = $post["jenis"];
+        $this->waktu_mulai = $post["waktu_mulai"];
+        $this->waktu_selesai = $z;
+        $this->token = $post["token"];
+        $this->status = $post["status"];
+
+        $this->db->update('ujian', $this, array('id_ujian' => $post["id_ujian"]));
+    }
+
+    public function hapusUjian($id)
+    {
+        // code...
+        return $this->db->delete('ujian', array("id_ujian" => $id));
     }
 
 }

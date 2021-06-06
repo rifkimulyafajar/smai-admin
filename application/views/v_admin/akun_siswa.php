@@ -55,7 +55,7 @@
                         <td><?= $s['jurusan'] ?></td>
 
                         <td class="text-center">
-                          <a href="<?= base_url('C_Admin/edit_siswa/').$s['id_siswa']; ?>" class="btn bg-info">
+                          <a href="<?= base_url('C_Admin/edit_siswa/').$s['id_siswa']; ?>" class="btn bg-success">
                             <i class="fas fa-edit"></i>
                           </a> &nbsp;
                           <button type="button" class="btn bg-danger" data-toggle="modal" data-target="#hapus-<?= $s['id_siswa'];?>">

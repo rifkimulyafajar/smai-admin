@@ -21,7 +21,7 @@
           <div class="col-lg-3">
             <a href="<?= base_url('C_Guru/tambah_bank_soal'); ?>" class="btn btn-block btn-success btn-lg">
               <i class="fa fa-scroll"><sup>+</sup></i>
-                &nbsp;&nbsp; Buat Soal
+                &nbsp;&nbsp; Buat Soal Baru
             </a>
           </div>
           <div class="col-lg-9"></div>
@@ -42,7 +42,7 @@
                     <th>Pengajar</th>
                     <th>Mata Pelajaran</th>
                     <th>Kelas</th>
-                    <th>Jurusan</th>
+                    <th>Soal</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
@@ -57,8 +57,8 @@
                       <td><?= $no++ ?></td>
                       <td><?= $s['nama'] ?></td>
                       <td><?= $s['mapel'] ?></td>
-                      <td><?= $s['kelas'] ?></td>
-                      <td><?= $s['jurusan'] ?></td>
+                      <td><?= $s['kelas'] ?> - <?= $s['jurusan'] ?></td>
+                      <td><?= $s['soal'] ?></td>
                       <td><?= $s['status'] ?></td>
                       <td>
                         <a href="<?= base_url('C_Guru/detail_soal/'.$s['id_soal']) ?>" class="btn bg-info">
@@ -104,8 +104,8 @@
                     <th>No.</th>
                     <th>Pengajar</th>
                     <th>Mata Pelajaran</th>
-                    <th>Soal</th>
-                    <th>Tanggal Dibuat</th>
+                    <th>Kelas</th>
+                    <td>Soal</td>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>

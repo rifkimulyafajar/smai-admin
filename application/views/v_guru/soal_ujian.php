@@ -19,7 +19,7 @@
 
         <div class="row">
           <div class="col-4">
-            <a href="<?= base_url('C_Guru/tambah_soal_ujian'); ?>" class="btn btn-block btn-info btn-lg">
+            <a href="<?= base_url('C_Guru/pilih_soal_ujian'); ?>" class="btn btn-block btn-info btn-lg">
               <i class="fa fa-scroll"><sup>+</sup></i>
                 &nbsp;&nbsp; Pilih Soal Ujian
             </a>
@@ -51,6 +51,7 @@
                     <th>Waktu Mulai</th>
                     <th>Token</th>
                     <th>Status</th>
+                    <th></th>
                   </tr>
                   </thead>
                   <tbody>
@@ -74,6 +75,37 @@
                           Tidak Aktif
                         <?php } ?>
                       </td>
+                      <td>
+                        <a href="<?= base_url('C_Guru/edit_ujian/').$u['id_ujian']; ?>" class="btn bg-warning">
+                          <i class="fas fa-edit"></i>
+                        </a> &nbsp;
+                        <button type="button" class="btn bg-danger" data-toggle="modal" data-target="#hapus-<?= $u['id_ujian'];?>">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+
+  <div class="modal fade" id="hapus-<?= $u['id_ujian'];?>">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Anda Yakin Ingin Menghapus Materi Ini?</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+          <a href="<?= base_url('C_Guru/hapus_ujian/').$u['id_ujian']; ?>" type="button" class="btn btn-danger">Sangat Yakin!</a>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
                     </tr>
 
                     <?php } ?>
@@ -89,6 +121,7 @@
                     <th>Waktu Mulai</th>
                     <th>Token</th>
                     <th>Status</th>
+                    <th></th>
                   </tr>
                   </tfoot>
                 </table>

@@ -23,7 +23,7 @@
               <div class="card-header">
                 <div class="col-lg-3">
                   <a href="<?= base_url('C_Admin/tambah_materi') ?>" class="btn btn-block btn-danger btn-lg">
-                    <i class="fa fa-user"><sup>+</sup></i>
+                    <i class="fa fa-paste"><sup> +</sup></i>
                     &nbsp;&nbsp; Tambah Materi
                   </a>
                 </div>
@@ -37,7 +37,6 @@
                       <th>Nama Pengajar</th>
                       <th>Mata Pelajaran</th>
                       <th>Kelas</th>
-                      <th>Jrusan</th>
                       <th>File 1</th>
                       <th>File 2</th>
                       <th>File 3</th>
@@ -54,8 +53,7 @@
                         <td><?= $no++ ?></td>
                         <td><?= $m['nama'] ?></td>
                         <td><?= $m['mapel'] ?></td>
-                        <td><?= $m['kelas'] ?></td>
-                        <td><?= $m['jurusan'] ?></td>
+                        <td><?= $m['kelas'] ?> - <?= $m['jurusan'] ?></td>
                         <td>
                           <a href="<?= base_url('C_Admin/downloadF1/').$m['id_materi']; ?>"><?= $m['file1'] ?></a> <br>
                           <!-- <embed type="application/pdf|docx|pptx" height="100" height="100" src="<?= base_url('upload/materi/echo($m["file1"])') ?>"></embed> -->
@@ -108,7 +106,6 @@
                     <th>Nama Pengajar</th>
                     <th>Mata Pelajaran</th>
                     <th>Kelas</th>
-                    <th>Jrusan</th>
                     <th>File 1</th>
                     <th>File 2</th>
                     <th>File 3</th>

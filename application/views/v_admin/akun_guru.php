@@ -53,7 +53,7 @@
                         <td><?= $g['mapel'] ?></td>
                         
                         <td class="text-center">
-                          <a href="<?= base_url('C_Admin/edit_guru/').$g['id_guru']; ?>" class="btn bg-info">
+                          <a href="<?= base_url('C_Admin/edit_guru/').$g['id_guru']; ?>" class="btn bg-success">
                             <i class="fas fa-edit"></i>
                           </a> &nbsp;
                           <button type="button" class="btn bg-danger" data-toggle="modal" data-target="#hapus-<?= $g['id_guru'];?>">

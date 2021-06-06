@@ -74,7 +74,7 @@ class C_Guru extends CI_Controller {
 			} else {
 				$this->Model_Guru->tambahUjian();
 				echo "<script>alert('Ujian Berhasil Dibuat');</script>";
-				redirect('C_Guru/buat_ujian', 'refresh');
+				redirect('C_Guru/soal_ujian', 'refresh');
 			}
 
 		}
@@ -83,7 +83,52 @@ class C_Guru extends CI_Controller {
 		}
 	}
 
-	public function tambah_soal_ujian()
+	public function hapus_ujian($id)
+	{
+		// code...
+		if (isset($_SESSION['id_guru'])) {
+
+			if ($this->Model_Guru->hapusUjian($id)) {
+				$this->session->set_flashdata('hapus_soal', true);
+			} else {
+				$this->session->set_flashdata('hapus_soal', false);
+			}
+			echo "<script>alert('Data Ujian Terhapus');</script>";
+			redirect('C_Guru/soal_ujian', 'refresh');
+		} else {
+			redirect('C_Login/index');
+		}
+	}
+
+	public function edit_ujian($id)
+	{
+		// code...
+		if (isset($_SESSION['id_guru'])) {
+			
+			$data['title'] = 'Edit Ujian';
+			$data['ujian'] = $this->Model_Guru->getUjianById($id);
+			$data['guru'] = $this->Model_Guru->getGuru($_SESSION['id_guru']);
+			$data['kelas'] = $this->Model_Guru->getAllKelas();
+			$data['jurusan'] = $this->Model_Guru->getAllJurusan();
+			$data['total'] = $this->Model_Guru->totalSoalUjian($_SESSION['id_guru']);
+
+			$this->form_validation->set_rules('jumlah', 'Jumlah Soal', 'required');
+			$this->form_validation->set_rules('durasi', 'Durasi', 'required');
+			$this->form_validation->set_rules('waktu_mulai', 'Waktu', 'required');
+
+			if ($this->form_validation->run() == FALSE) {
+				$this->load->view('v_guru/header', $data);
+				$this->load->view('v_guru/ujian_edit' , $data);
+				$this->load->view('v_guru/footer');
+			} else {
+				$this->Model_Guru->editUjian();
+				echo "<script>alert('Soal Berhasil Diupdate');</script>";
+				redirect('C_Guru/soal_ujian', 'refresh');
+			}
+		}
+	}
+
+	public function pilih_soal_ujian()
 	{
 		# code...
 		if (isset($_SESSION['id_guru'])) {
@@ -93,7 +138,7 @@ class C_Guru extends CI_Controller {
 			$data['total'] = $this->Model_Guru->totalSoalUjian($_SESSION['id_guru']);
 
 			$this->load->view('v_guru/header', $data);
-			$this->load->view('v_guru/soal_ujian_tambah', $data);
+			$this->load->view('v_guru/soal_ujian_pilih', $data);
 			$this->load->view('v_guru/footer');
 		}
 		else {
@@ -113,7 +158,7 @@ class C_Guru extends CI_Controller {
 
 		if ($result) {
 			echo "<script>alert('berhasil');</script>";
-			redirect('C_Guru/tambah_soal_ujian', 'refresh');
+			redirect('C_Guru/soal_ujian', 'refresh');
 		}
 		else {
 			echo "<script>alert('gagal');</script>";

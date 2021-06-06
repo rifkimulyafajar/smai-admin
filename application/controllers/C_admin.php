@@ -216,6 +216,7 @@ class C_Admin extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Soal Ujian';
+			$data['ujian'] = $this->Model_Admin->getUjian();
 
 			$this->load->view('v_admin/header', $data);
 			$this->load->view('v_admin/soal_ujian');
@@ -226,7 +227,33 @@ class C_Admin extends CI_Controller {
 		}
 	}
 
-	public function tambah_soal_ujian()
+	public function edit_ujian($id)
+	{
+		// code...
+		if (isset($_SESSION['id_guru'])) {
+			
+			$data['title'] = 'Edit Ujian';
+			$data['ujian'] = $this->Model_Admin->getUjianById($id);
+			$data['kelas'] = $this->Model_Admin->getAllKelas();
+			$data['jurusan'] = $this->Model_Admin->getAllJurusan();
+
+			$this->form_validation->set_rules('jumlah', 'Jumlah Soal', 'required');
+			$this->form_validation->set_rules('durasi', 'Durasi', 'required');
+			$this->form_validation->set_rules('waktu_mulai', 'Waktu', 'required');
+
+			if ($this->form_validation->run() == FALSE) {
+				$this->load->view('v_admin/header', $data);
+				$this->load->view('v_admin/soal_ujian_edit' , $data);
+				$this->load->view('v_admin/footer');
+			} else {
+				$this->Model_Admin->editUjian();
+				echo "<script>alert('Soal Berhasil Diupdate');</script>";
+				redirect('C_Admin/soal_ujian', 'refresh');
+			}
+		}
+	}
+
+	public function pilih_soal_ujian()
 	{
 		# code...
 		if (isset($_SESSION['id_guru'])) {
@@ -235,10 +262,27 @@ class C_Admin extends CI_Controller {
 			$data['soal'] = $this->Model_Admin->getSoalUjian();
 
 			$this->load->view('v_admin/header', $data);
-			$this->load->view('v_admin/soal_ujian_tambah', $data);
+			$this->load->view('v_admin/soal_ujian_pilih', $data);
 			$this->load->view('v_admin/footer');
 		}
 		else {
+			redirect('C_Login/index');
+		}
+	}
+
+	public function hapus_ujian($id)
+	{
+		// code...
+		if (isset($_SESSION['id_guru'])) {
+
+			if ($this->Model_Admin->hapusUjian($id)) {
+				$this->session->set_flashdata('hapus_ujian', true);
+			} else {
+				$this->session->set_flashdata('hapus_ujian', false);
+			}
+			echo "<script>alert('Data Ujian Terhapus');</script>";
+			redirect('C_Admin/soal_ujian', 'refresh');
+		} else {
 			redirect('C_Login/index');
 		}
 	}
@@ -259,7 +303,7 @@ class C_Admin extends CI_Controller {
 		}
 		else {
 			echo "<script>alert('gagal');</script>";
-			redirect('C_Admin/tambah_soal_ujian', 'refresh');
+			redirect('C_Admin/pilih_soal_ujian', 'refresh');
 		}
 	}
 

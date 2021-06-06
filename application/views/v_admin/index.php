@@ -50,7 +50,7 @@
             <div class="small-box bg-success">
               <div class="inner">
                 <h3>53</h3>
-                <p>Total Soal Ujian Diupload</p>
+                <p>Total Ujian Dibuat</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>

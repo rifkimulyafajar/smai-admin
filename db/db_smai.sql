@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Jun 2021 pada 09.34
+-- Waktu pembuatan: 06 Jun 2021 pada 18.24
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -29,11 +29,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bank_soal` (
   `id_soal` int(11) NOT NULL,
-  `id_guru` int(11) DEFAULT NULL,
-  `id_mapel` int(11) DEFAULT NULL,
-  `id_kategori` int(11) DEFAULT NULL,
-  `id_kelas` int(11) DEFAULT NULL,
-  `id_jurusan` int(11) DEFAULT NULL,
+  `id_guru` int(11) NOT NULL,
+  `id_mapel` int(11) NOT NULL,
+  `id_kategori` int(11) NOT NULL,
+  `id_kelas` int(11) NOT NULL,
+  `id_jurusan` int(11) NOT NULL,
   `status` enum('Latihan','Ujian') NOT NULL,
   `soal` longtext NOT NULL,
   `file_soal` varchar(250) DEFAULT NULL,
@@ -56,18 +56,17 @@ CREATE TABLE `bank_soal` (
 --
 
 INSERT INTO `bank_soal` (`id_soal`, `id_guru`, `id_mapel`, `id_kategori`, `id_kelas`, `id_jurusan`, `status`, `soal`, `file_soal`, `pilihan_a`, `file_a`, `pilihan_b`, `file_b`, `pilihan_c`, `file_c`, `pilihan_d`, `file_d`, `pilihan_e`, `file_e`, `kunci`, `tanggal`) VALUES
-(1, 23, 1, NULL, 2, 5, 'Ujian', '<p>siapa?</p>\r\n', NULL, 'saya', NULL, 'kamu', NULL, 'dia', NULL, 'mereka', NULL, 'kami', NULL, 'B', '2021-05-20 22:38:57'),
-(2, 24, 7, NULL, 1, 6, 'Ujian', '<p>dimana?</p>\r\n', '', 'atas', '', 'bawah', '', 'kanan', '', 'kiri', '', 'belakang', '', 'D', '2021-05-20 22:55:00'),
-(3, 30, 3, NULL, 1, 3, 'Latihan', '<p>two?</p>\r\n', '', '', '1.png', '', '2.png', '', '3.png', '', '4.png', '', '5.png', 'B', '2021-05-21 09:42:00'),
+(1, 23, 1, 0, 2, 5, 'Ujian', '<p>siapa?</p>\r\n', NULL, 'saya', NULL, 'kamu', NULL, 'dia', NULL, 'mereka', NULL, 'kami', NULL, 'B', '2021-05-20 22:38:57'),
+(2, 24, 7, 0, 1, 6, 'Ujian', '<p>dimana?</p>\r\n', '', 'atas', '', 'bawah', '', 'kanan', '', 'kiri', '', 'belakang', '', 'D', '2021-05-20 22:55:00'),
+(3, 30, 3, 0, 1, 3, 'Ujian', '<p>two?</p>\r\n', '', '', '1.png', '', '2.png', '', '3.png', '', '4.png', '', '5.png', 'B', '2021-05-21 09:42:00'),
 (8, 29, 2, 1, 3, 1, 'Latihan', '<p>ha?</p>\r\n', 'user.jpg', 'saya', '', 'kamu', '', 'kanan', '', 'mereka', '', 'belakang', '', 'E', '2021-05-24 09:38:53'),
-(9, 30, 3, NULL, 3, 3, 'Latihan', '<p>Cc</p>\r\n', '', '1', '', '2', '', '1', '', 'mereka', '', 'kami', '', 'B', '2021-05-25 13:18:49'),
-(11, 25, 5, NULL, 2, 5, 'Ujian', '<p>Z</p>\r\n', 'smai.jpeg', '', '', '', '', '', '', '', '', '', '', 'A', '2021-05-26 21:32:12'),
-(12, 36, 2, NULL, 3, 1, 'Ujian', '<p>AAAAaaaa</p>\r\n', '', 'A', '', 'B', '', 'C', '', '', '', '', '', 'A', '2021-05-26 22:09:45'),
-(16, 23, 1, NULL, 1, 2, 'Latihan', '<p>a</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', '2021-05-28 08:41:19'),
-(19, 23, 1, 10, 2, 4, 'Latihan', '<p>AAA</p>\r\n', '', '', '', '', '', '', '', '', '', '', '', 'A', '2021-05-28 19:26:26'),
-(22, 29, 2, NULL, 1, 5, 'Latihan', '<p>T</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', '2021-05-28 21:48:46'),
-(23, 24, 7, NULL, 2, 4, 'Latihan', '<p>P</p>\r\n', '', '', '', '', '', '', '', '', '', '', '', 'A', '2021-05-29 22:27:47'),
-(30, 20, 1, NULL, 1, 1, 'Latihan', '<p>1</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'B', '2021-05-31 10:37:54');
+(9, 30, 3, 0, 3, 3, 'Ujian', '<p>Cc</p>\r\n', '', '1', '', '2', '', '1', '', 'mereka', '', 'kami', '', 'B', '2021-05-25 13:18:49'),
+(12, 36, 2, 0, 3, 1, 'Ujian', '<p>AAAAaaaa</p>\r\n', '', 'A', '', 'B', '', 'C', '', '', '', '', '', 'A', '2021-05-26 22:09:45'),
+(16, 23, 1, 0, 1, 2, 'Ujian', '<p>a</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', '2021-05-28 08:41:19'),
+(22, 29, 2, 0, 1, 5, 'Latihan', '<p>T</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', '2021-05-28 21:48:46'),
+(23, 24, 7, 0, 2, 4, 'Ujian', '<p>P</p>\r\n', '', '', '', '', '', '', '', '', '', '', '', 'A', '2021-05-29 22:27:47'),
+(30, 20, 1, 0, 1, 1, 'Ujian', '<p>1</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'B', '2021-05-31 10:37:54'),
+(32, 23, 1, 11, 1, 1, 'Ujian', '<p>?</p>\r\n', '', '', '', '', '', '', '', '', '', '', '', 'B', '2021-06-04 15:26:39');
 
 -- --------------------------------------------------------
 
@@ -79,7 +78,7 @@ CREATE TABLE `guru` (
   `id_guru` int(11) NOT NULL,
   `nip` varchar(50) NOT NULL,
   `nama` varchar(50) NOT NULL,
-  `id_mapel` int(11) DEFAULT NULL,
+  `id_mapel` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `level` varchar(10) NOT NULL
@@ -90,7 +89,7 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`id_guru`, `nip`, `nama`, `id_mapel`, `username`, `password`, `level`) VALUES
-(6, '111', 'admin', NULL, '111', '$2y$10$v/kiEqoQx4lCPuNd42Ts9uJoEq0M9lW4UJd50vTYq0S', 'admin'),
+(6, '111', 'admin', 0, '111', '$2y$10$v/kiEqoQx4lCPuNd42Ts9uJoEq0M9lW4UJd50vTYq0S', 'admin'),
 (20, '10', 'Dra. Hj. Maftukhah', 1, '10', '$2y$10$Y1v8mi8cBTG.Y7DuaxmhOuD2TKUMnrZPfMpH5yfYu11', 'guru'),
 (21, '15', 'Endah Setyowati, S.Pd.', 3, '15', '$2y$10$uQOLQ9zWPEl4sPHxWDMmpudIdyWBdsSDNNoquHJEoFG', 'guru'),
 (22, '17', 'Drs. Endik Sujatmiko', 1, '17', '$2y$10$cXEl68GZwyBTVkqaY4SJqOdp5eX/47/H1QFS4ygFkyP', 'guru'),
@@ -160,8 +159,7 @@ INSERT INTO `kategori` (`id_kategori`, `kategori`, `id_guru`) VALUES
 (2, 'Persamaan Variabel', 29),
 (7, 'Mudah', 25),
 (8, 'Susah', 25),
-(10, 'Listening', 23),
-(11, 'Grammar', 23);
+(11, 'Sinonim', 23);
 
 -- --------------------------------------------------------
 
@@ -220,10 +218,10 @@ INSERT INTO `mapel` (`id_mapel`, `mapel`) VALUES
 
 CREATE TABLE `materi` (
   `id_materi` int(11) NOT NULL,
-  `id_guru` int(11) DEFAULT NULL,
-  `id_mapel` int(11) DEFAULT NULL,
-  `id_kelas` int(11) DEFAULT NULL,
-  `id_jurusan` int(11) DEFAULT NULL,
+  `id_guru` int(11) NOT NULL,
+  `id_mapel` int(11) NOT NULL,
+  `id_kelas` int(11) NOT NULL,
+  `id_jurusan` int(11) NOT NULL,
   `file1` varchar(250) NOT NULL,
   `file2` varchar(250) DEFAULT NULL,
   `file3` varchar(250) DEFAULT NULL
@@ -242,7 +240,7 @@ INSERT INTO `materi` (`id_materi`, `id_guru`, `id_mapel`, `id_kelas`, `id_jurusa
 (24, 31, 7, 1, 1, '2021-SURAT_PERNYATAAN_IJAZAH.doc', NULL, NULL),
 (26, 28, 6, 3, 3, 'dosen.xlsx', '', ''),
 (27, 36, 2, 3, 2, 'dosen.xlsx', '', ''),
-(29, 23, NULL, 3, 1, '40__Perubahan_Jam_Perkuliahan_selama_Puasa.pdf', '', '');
+(29, 23, 1, 2, 2, '40__Perubahan_Jam_Perkuliahan_selama_Puasa.pdf', '', '');
 
 -- --------------------------------------------------------
 
@@ -254,8 +252,8 @@ CREATE TABLE `siswa` (
   `id_siswa` int(11) NOT NULL,
   `nis` varchar(50) NOT NULL,
   `nama` varchar(100) NOT NULL,
-  `id_kelas` int(11) DEFAULT NULL,
-  `id_jurusan` int(11) DEFAULT NULL,
+  `id_kelas` int(11) NOT NULL,
+  `id_jurusan` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -280,9 +278,42 @@ INSERT INTO `siswa` (`id_siswa`, `nis`, `nama`, `id_kelas`, `id_jurusan`, `usern
 
 CREATE TABLE `ujian` (
   `id_ujian` int(10) NOT NULL,
-  `id_soal` int(11) DEFAULT NULL,
-  `durasi` text NOT NULL,
-  `tanggal` datetime NOT NULL
+  `id_guru` int(11) NOT NULL,
+  `id_mapel` int(11) NOT NULL,
+  `id_kelas` int(11) NOT NULL,
+  `id_jurusan` int(11) NOT NULL,
+  `jumlah_soal` int(11) NOT NULL,
+  `durasi` int(11) NOT NULL,
+  `jenis` enum('acak','urut') NOT NULL,
+  `waktu_mulai` datetime NOT NULL,
+  `waktu_selesai` datetime NOT NULL,
+  `token` varchar(5) NOT NULL,
+  `status` enum('Y','N') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `ujian`
+--
+
+INSERT INTO `ujian` (`id_ujian`, `id_guru`, `id_mapel`, `id_kelas`, `id_jurusan`, `jumlah_soal`, `durasi`, `jenis`, `waktu_mulai`, `waktu_selesai`, `token`, `status`) VALUES
+(13, 23, 1, 3, 4, 3, 90, 'urut', '2021-06-08 13:00:00', '2021-06-08 14:30:00', 'D4KEM', 'N'),
+(14, 30, 3, 3, 3, 2, 45, 'acak', '2021-06-08 07:00:00', '2021-06-08 07:45:00', 'XH108', 'Y');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `ujian_hasil`
+--
+
+CREATE TABLE `ujian_hasil` (
+  `id` int(11) NOT NULL,
+  `id_ujian` int(11) NOT NULL,
+  `id_siswa` int(11) NOT NULL,
+  `list_soal` longtext NOT NULL,
+  `list_jawaban` longtext NOT NULL,
+  `jml_benar` int(11) NOT NULL,
+  `nilai` int(11) NOT NULL,
+  `status` enum('N','Y') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -355,7 +386,18 @@ ALTER TABLE `siswa`
 --
 ALTER TABLE `ujian`
   ADD PRIMARY KEY (`id_ujian`),
-  ADD KEY `id_soal` (`id_soal`);
+  ADD KEY `id_guru` (`id_guru`),
+  ADD KEY `id_mapel` (`id_mapel`),
+  ADD KEY `id_kelas` (`id_kelas`),
+  ADD KEY `id_jurusan` (`id_jurusan`);
+
+--
+-- Indeks untuk tabel `ujian_hasil`
+--
+ALTER TABLE `ujian_hasil`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_siswa` (`id_siswa`),
+  ADD KEY `id_ujian` (`id_ujian`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -365,7 +407,7 @@ ALTER TABLE `ujian`
 -- AUTO_INCREMENT untuk tabel `bank_soal`
 --
 ALTER TABLE `bank_soal`
-  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT untuk tabel `guru`
@@ -401,13 +443,25 @@ ALTER TABLE `mapel`
 -- AUTO_INCREMENT untuk tabel `materi`
 --
 ALTER TABLE `materi`
-  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
   MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT untuk tabel `ujian`
+--
+ALTER TABLE `ujian`
+  MODIFY `id_ujian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT untuk tabel `ujian_hasil`
+--
+ALTER TABLE `ujian_hasil`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -455,7 +509,17 @@ ALTER TABLE `siswa`
 -- Ketidakleluasaan untuk tabel `ujian`
 --
 ALTER TABLE `ujian`
-  ADD CONSTRAINT `ujian_ibfk_1` FOREIGN KEY (`id_soal`) REFERENCES `bank_soal` (`id_soal`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `ujian_ibfk_1` FOREIGN KEY (`id_guru`) REFERENCES `guru` (`id_guru`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ujian_ibfk_2` FOREIGN KEY (`id_mapel`) REFERENCES `mapel` (`id_mapel`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ujian_ibfk_3` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ujian_ibfk_4` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`);
+
+--
+-- Ketidakleluasaan untuk tabel `ujian_hasil`
+--
+ALTER TABLE `ujian_hasil`
+  ADD CONSTRAINT `ujian_hasil_ibfk_2` FOREIGN KEY (`id_siswa`) REFERENCES `siswa` (`id_siswa`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ujian_hasil_ibfk_3` FOREIGN KEY (`id_ujian`) REFERENCES `ujian` (`id_ujian`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

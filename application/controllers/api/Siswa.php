@@ -15,6 +15,28 @@ class Siswa extends REST_Controller {
 		$this->load->model('Model_Siswa');
 	}
 
+	public function login_post()
+	{
+		$username = $this->post('username');
+        $password = $this->post('password');
+
+        if (!empty($username) && !empty($password)) {
+            $user = $this->Model_Siswa->login($username, $password);
+            if ($user) {
+                $this->response([
+                    'status' => true,
+                    'data' => $user
+                ], REST_Controller::HTTP_OK);
+            }
+            else {
+            	$this->response([
+					'status' => false,
+                    'data' => 'user not found'
+                ], REST_Controller::HTTP_NOT_FOUND);
+            }
+		}
+	}
+
 	public function index_get()
 	{
 		# code...
@@ -71,14 +93,18 @@ class Siswa extends REST_Controller {
 	 	}
 	}
 
-// ===================================================================
+//==============================================================================================================================
 
 	public function materi_get()
 	{
 		# code...
 		$id = $this->get('id_materi');
+		$kls = $this->get('id_kelas');
+		$jrs = $this->get('id_jurusan');
 
-		if ($id === null) {
+
+
+		if ($id == null) {
 			# code...
 			$siswa = $this->Model_Siswa->getMateri();
 		}
@@ -102,4 +128,59 @@ class Siswa extends REST_Controller {
                 ], REST_Controller::HTTP_NOT_FOUND);
 		}
 	}
+
+	public function matkeljur_get()
+	{
+		// code...
+		$id = $this->get('id_materi');
+		$kls = $this->get('id_kelas');
+		$jrs = $this->get('id_jurusan');
+
+		$siswa = $this->Model_Siswa->getMat($id, $kls, $jrs);
+
+		if ($siswa) {
+			# code...
+			$this->response([
+                    'status' => true,
+                    'message' => 'Success',
+                    'data' => $siswa
+                ], REST_Controller::HTTP_OK);
+		}
+		else {
+			$this->response([
+                    'status' => false,
+                    'message' => 'materi not found!'
+                ], REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
+
+
+//==============================================================================================================================
+
+
+	public function bankSoal_get()
+	{
+		// code...
+		$id = $this->get('id_soal');
+		$kls = $this->get('id_kelas');
+		$jrs = $this->get('id_jurusan');
+
+		$soal = $this->Model_Siswa->getBankSoal($id, $kls, $jrs);
+
+		if ($soal) {
+			# code...
+			$this->response([
+                    'status' => true,
+                    'message' => 'Success',
+                    'data' => $soal
+                ], REST_Controller::HTTP_OK);
+		}
+		else {
+			$this->response([
+                    'status' => false,
+                    'message' => 'bank soal not found!'
+                ], REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
+
 }

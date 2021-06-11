@@ -32,10 +32,8 @@
                   <thead>
                     <tr>
                       <th class="text-center"> + </th>
-                      <th>Nama Guru</th>
                       <th>Mata Pelajaran</th>
                       <th>Kelas</th>
-                      <th>Jurusan</th>
                       <th>Kategori</th>
                       <th>Status</th>
                       <th>Soal</th>
@@ -54,10 +52,8 @@
                       <td class="text-center">
                         <input type="checkbox" name="pilih[]" value="<?= $s['id_soal'] ?>">
                       </td>
-                      <td><?= $s['nama'] ?></td>
                       <td><?= $s['mapel'] ?></td>
-                      <td><?= $s['kelas'] ?></td>
-                      <td><?= $s['jurusan'] ?></td>
+                      <td><?= $s['kelas'] ?> - <?= $s['jurusan'] ?></td>
                       <td><?= $s['kategori'] ?></td>
                       <td><?= $s['status'] ?></td>
                       <td><?= $s['soal'] ?></td>
@@ -69,10 +65,8 @@
                   <tfoot>
                     <tr>
                       <th class="text-center"> + </th>
-                      <th>Nama Guru</th>
                       <th>Mata Pelajaran</th>
                       <th>Kelas</th>
-                      <th>Jurusan</th>
                       <th>Kategori</th>
                       <th>Status</th>
                       <th>Soal</th>

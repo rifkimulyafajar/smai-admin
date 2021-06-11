@@ -63,7 +63,6 @@ class C_Guru extends CI_Controller {
 			$data['jurusan'] = $this->Model_Guru->getAllJurusan();
 			$data['total'] = $this->Model_Guru->totalSoalUjian($_SESSION['id_guru']);
 
-			$this->form_validation->set_rules('jumlah', 'Jumlah Soal', 'required');
 			$this->form_validation->set_rules('durasi', 'Durasi', 'required');
 			$this->form_validation->set_rules('waktu_mulai', 'Waktu', 'required');
 

@@ -176,7 +176,7 @@ class Model_Admin extends CI_Model {
 
         $this->db->select('*');
         $this->db->from('guru');
-        $this->db->join('mapel', 'guru.id_mapel = mapel.id_mapel');
+        $this->db->join('mapel', 'guru.id_mapel = mapel.id_mapel', 'left');
         $this->db->where('level', 'guru');
         $query = $this->db->get();
 
@@ -192,7 +192,15 @@ class Model_Admin extends CI_Model {
     public function guruById($id)
     {
         # code...
-        return $this->db->get_where('guru', array('id_guru' => $id))->row_array();
+        // return $this->db->get_where('guru', array('id_guru' => $id))->row_array();
+
+        $this->db->select('*');
+        $this->db->from('guru');
+        $this->db->join('mapel', 'guru.id_mapel = mapel.id_mapel', 'left');
+        $this->db->where('id_guru', $id);
+        $query = $this->db->get();
+
+        return $query->row_array();
     }
 
     public function tambahGuru()
@@ -714,6 +722,46 @@ class Model_Admin extends CI_Model {
         $query = $this->db->get();
 
         return $query->row_array();
+    }
+
+    public function buatUjian($id)
+    {
+        // code...
+        $this->id_ujian = uniqid();
+
+        $data = array(
+            'id_guru' => $id
+        );
+
+        $this->db->insert('ujian', $data);
+    }
+
+    public function tambahUjian()
+    {
+        // code...
+        $a = $this->input->post('waktu_mulai');
+        $b = strtotime($a);
+
+        $d = $this->input->post('durasi');
+        $e = 60 * $d;
+
+        $x = $b + $e;
+        $z = date("Y-m-d H:i:s", $x);
+
+        $this->id_ujian = uniqid();
+        $data = [
+            "id_guru" => $this->input->post('id_guru', true),
+            "id_mapel" => $this->input->post('id_mapel', true),
+            "id_kelas" => $this->input->post('kelas', true),
+            "id_jurusan" => $this->input->post('jurusan', true),
+            "durasi" => $this->input->post('durasi', true),
+            "jenis" => $this->input->post('jenis', true),
+            "waktu_mulai" => $this->input->post('waktu_mulai', true),
+            "waktu_selesai" => $z,
+            "token" => $this->input->post('token', true),
+        ];
+
+        $this->db->insert('ujian', $data);
     }
 
     public function editUjian()

@@ -55,7 +55,7 @@
 <!-- DateTimePicker -->
 <script src="<?php echo base_url('asset/admin/'); ?>plugins/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
 <script>
-  $('#pickerr').datetimepicker({
+  $('#picker').datetimepicker({
     timepicker : true,
     datepicker : true,
     format : 'Y-m-d H:i:s',

@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="<?php echo base_url('asset/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'); ?>">
   <link rel="stylesheet" href="<?php echo base_url('asset/admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
 
-    <!-- DareTimePicker -->
+  <!-- DareTimePicker -->
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('asset/admin/plugins/datetimepicker/build/jquery.datetimepicker.min.css'); ?>">
 
 </head>

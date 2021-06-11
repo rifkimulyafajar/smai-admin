@@ -32,7 +32,11 @@ class C_Admin extends CI_Controller {
 		}
 	}
 
-// ===============================================================================
+
+
+// ==============================================================================================================
+
+
 
 	public function akun_guru()
 	{
@@ -120,7 +124,11 @@ class C_Admin extends CI_Controller {
 		}
 	}
 
-// ===============================================================================
+
+
+// ==============================================================================================================
+
+
 
 	public function akun_siswa()
 	{
@@ -209,7 +217,11 @@ class C_Admin extends CI_Controller {
 		}
 	}
 
-// ===============================================================================
+
+
+// ==============================================================================================================
+
+
 
 	public function soal_ujian()
 	{
@@ -217,10 +229,45 @@ class C_Admin extends CI_Controller {
 			# code...
 			$data['title'] = 'Soal Ujian';
 			$data['ujian'] = $this->Model_Admin->getUjian();
+			$data['guru'] = $this->Model_Admin->getAllGuru();
 
 			$this->load->view('v_admin/header', $data);
 			$this->load->view('v_admin/soal_ujian');
 			$this->load->view('v_admin/footer');
+		}
+		else {
+			redirect('C_Login/index');
+		}
+	}
+
+	public function buat_ujian($id)
+	{
+		// code...
+		redirect('C_Admin/tambah_ujian/'.$id, 'refresh');
+	}
+
+	public function tambah_ujian($id)
+	{
+		// code...
+		if (isset($_SESSION['id_guru'])) {
+			# code...
+			$data['title'] = 'Buat Ujian Soal';
+			$data['guru'] = $this->Model_Admin->guruById($id);
+			$data['kelas'] = $this->Model_Admin->getAllKelas();
+			$data['jurusan'] = $this->Model_Admin->getAllJurusan();
+
+			$this->form_validation->set_rules('durasi', 'Durasi', 'required');
+			$this->form_validation->set_rules('waktu_mulai', 'Waktu', 'required');
+
+			if ($this->form_validation->run() == FALSE) {
+				$this->load->view('v_admin/header', $data);
+				$this->load->view('v_admin/ujian_tambah' , $data);
+				$this->load->view('v_admin/footer');
+			} else {
+				$this->Model_Admin->tambahUjian();
+				echo "<script>alert('Ujian Berhasil Dibuat');</script>";
+				redirect('C_Admin/soal_ujian', 'refresh');
+			}
 		}
 		else {
 			redirect('C_Login/index');
@@ -307,7 +354,11 @@ class C_Admin extends CI_Controller {
 		}
 	}
 
-// ===============================================================================
+
+
+// ==============================================================================================================
+
+
 
 	public function bank_soal()
 	{
@@ -419,7 +470,11 @@ class C_Admin extends CI_Controller {
 		}
 	}
 
-// ===============================================================================	
+
+
+// ==============================================================================================================
+
+
 
 	public function materi()
 	{

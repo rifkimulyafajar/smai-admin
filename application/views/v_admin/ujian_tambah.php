@@ -26,7 +26,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="<?= base_url('C_Guru/buat_ujian') ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+              <form action="<?= base_url('C_Admin/tambah_ujian/'.$guru['id_guru']) ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                 <div class="card-body">
 
                   <div class="row">

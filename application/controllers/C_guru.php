@@ -162,7 +162,7 @@ class C_Guru extends CI_Controller {
 		}
 		else {
 			echo "<script>alert('gagal');</script>";
-			redirect('C_Guru/tambah_soal_ujian', 'refresh');
+			redirect('C_Guru/pilih_soal_ujian', 'refresh');
 		}
 	}
 

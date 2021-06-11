@@ -3,7 +3,7 @@ ob_start();
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Model_Siswa extends CI_Model {
-
+    
     public function login($username, $password)
     {
         $this->db->select('*');
@@ -22,7 +22,7 @@ class Model_Siswa extends CI_Model {
         }
     }
 
-	public function getSiswa($id = null)
+    public function getSiswa($id = null)
     {
         # code...
         if ($id === null) {
@@ -48,69 +48,12 @@ class Model_Siswa extends CI_Model {
 
     }
 
-    public function inputSiswa($data)
-    {
-        # code...
-        // $this->db->insert('siswa', $data);
-        // return $this->db->affected_rows();
-
-        $this->db->select('*');
-            $this->db->from('siswa');
-            $this->db->join('kelas', 'siswa.id_kelas = kelas.id_kelas');
-            $this->db->join('jurusan', 'siswa.id_jurusan = jurusan.id_jurusan');
-            $query = $this->db->get();
-
-            return $query->result_array();
-    }
-
-    public function updateSiswa($data, $id)
+//=========================================================================================
+    
+    public function getMat($kls, $jrs)
     {
         // code...
-        $this->db->update('siswa', $data, ['id_siswa' => $id]);
-        return $this->db->affected_rows();
-    }
-
-
-
-//==============================================================================================================================
-
-
-
-    public function getMateri($id = null)
-    {
-        # code...
-        if ($id == null) {
-            # code...
-            $this->db->select('*');
-            $this->db->from('materi');
-            $this->db->join('guru', 'materi.id_guru = guru.id_guru');
-            $this->db->join('mapel', 'materi.id_mapel = mapel.id_mapel');
-            $this->db->join('kelas', 'materi.id_kelas = kelas.id_kelas');
-            $this->db->join('jurusan', 'materi.id_jurusan = jurusan.id_jurusan');
-            $query = $this->db->get();
-
-            return $query->result_array();
-        } 
-        else {
-            # code...
-            $this->db->select('*');
-            $this->db->from('materi');
-            $this->db->join('guru', 'materi.id_guru = guru.id_guru');
-            $this->db->join('mapel', 'materi.id_mapel = mapel.id_mapel');
-            $this->db->join('kelas', 'materi.id_kelas = kelas.id_kelas');
-            $this->db->join('jurusan', 'materi.id_jurusan = jurusan.id_jurusan');
-            $this->db->where('id_materi', $id);
-            $query = $this->db->get();
-
-            return $query->result_array();
-        }
-
-    }
-
-    public function getMat($id, $kls, $jrs)
-    {
-        // code...
-        if ($id == null & $kls != null & $jrs != null) {
+        if ($kls != null & $jrs != null) {
 
             $this->db->select('*');
             $this->db->from('materi');
@@ -124,26 +67,10 @@ class Model_Siswa extends CI_Model {
 
             return $query->result_array();
         }
-
-        elseif ($id != null & $kls == null & $jrs == null) {
-
-            $this->db->select('*');
-            $this->db->from('materi');
-            $this->db->join('guru', 'materi.id_guru = guru.id_guru');
-            $this->db->join('mapel', 'materi.id_mapel = mapel.id_mapel');
-            $this->db->join('kelas', 'materi.id_kelas = kelas.id_kelas');
-            $this->db->join('jurusan', 'materi.id_jurusan = jurusan.id_jurusan');
-            $this->db->where('id_materi', $id);
-            $query = $this->db->get();
-
-            return $query->result_array();
-        }
     }
-
-
-//==============================================================================================================================
-
-
+    
+//=========================================================================================
+    
     public function getBankSoal($id, $kls, $jrs)
     {
         // code...

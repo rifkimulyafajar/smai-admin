@@ -18,6 +18,34 @@
         <!-- Small boxes (Stat box) -->
 
         <div class="row">
+          <div class="col-lg-4"></div>
+          <div class="col-lg-4">
+          <?php
+            if ($hitung == 0) { ?>
+
+            <h5 class="text-center text-danger">Belum Ada Soal Untuk Ujian Ini !!</h5>
+            <a href="<?= base_url('C_Guru/pilih_soal_ujian/'.$ujian['id_ujian'].'/'.$ujian['id_guru'].'/'
+                                  .$ujian['id_kelas'].'/'.$ujian['id_jurusan']); ?>" class="btn btn-block btn-info">
+              <i class="fa fa-copy"><sup> +</sup></i>
+                &nbsp;&nbsp; Tambah Soal Ujian
+            </a>
+          
+          <?php
+            } else { ?>
+
+            <h5 class="text-center">Terdapat <?= $hitung ?> Soal Untuk Ujian Ini</h5>
+            <a href="<?= base_url('C_Guru/pilih_soal_ujian/'.$ujian['id_ujian'].'/'.$ujian['id_guru'].'/'
+                                  .$ujian['id_kelas'].'/'.$ujian['id_jurusan']); ?>" class="btn btn-block btn-info">
+              <i class="fa fa-copy"><sup> +</sup></i>
+                &nbsp;&nbsp; Lihat Soal Ujian
+            </a>
+
+          <?php } ?>
+          </div>
+          <div class="col-lg-4"></div>
+        </div> <br>
+
+        <div class="row">
           <div class="col-lg-12">
             <!-- general form elements -->
             <div class="card card-info">
@@ -79,9 +107,9 @@
 
                   <div class="row">
                     <div class="form-group col-6">
-                      <label>Jumlah Soal</label>
-                      <input type="number" name="jumlah" class="form-control" placeholder="Anda memiliki total <?= $total ?> soal" min="0" max="<?= $total ?>" value="<?= $ujian['jumlah_soal'] ?>">
-                      <?= form_error('jumlah', '<small class="text-danger">', '</small>'); ?>
+                      <label>Waktu Mulai Ujian</label>
+                      <input type="text" name="waktu_mulai" class="form-control" id="picker" placeholder="Waktu Mulai Ujian" value="<?= $ujian['waktu_mulai'] ?>">
+                      <?= form_error('waktu_mulai', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="form-group col-6">
                       <label>Durasi Ujian</label>
@@ -103,9 +131,9 @@
                       </select>
                     </div>
                     <div class="form-group col-6">
-                      <label>Waktu Mulai Ujian</label>
-                      <input type="text" name="waktu_mulai" class="form-control" id="picker" placeholder="Waktu Mulai Ujian" value="<?= $ujian['waktu_mulai'] ?>">
-                      <?= form_error('waktu_mulai', '<small class="text-danger">', '</small>'); ?>
+                      <label>Token</label>
+                      <input type="text" value="<?= $ujian['token'] ?>" class="form-control" disabled>
+                      <input type="hidden" name="token" value="<?= $ujian['token'] ?>">
                     </div>
                   </div>
 
@@ -113,18 +141,13 @@
                     <div class="form-group col-6">
                       <label>Status Ujian</label> <br>
                       <div class="icheck-primary d-inline">
-                        <input type="radio" id="radioPrimary1" name="status" value="Y" <?php if ($ujian['status'] == 'Y'): ?> checked <?php endif ?>>
+                        <input type="radio" id="radioPrimary1" name="status" value="Y" <?php if ($ujian['aktif'] == 'Y'): ?> checked <?php endif ?>>
                         <label for="radioPrimary1">Aktif</label>
                       </div> &nbsp; &nbsp; &nbsp;
                       <div class="icheck-primary d-inline">
-                        <input type="radio" id="radioPrimary2" name="status" value="N" <?php if ($ujian['status'] == 'N'): ?> checked <?php endif ?>>
+                        <input type="radio" id="radioPrimary2" name="status" value="N" <?php if ($ujian['aktif'] == 'N'): ?> checked <?php endif ?>>
                         <label for="radioPrimary2">Tidak Aktif</label>
                       </div>
-                    </div>
-                    <div class="form-group col-6">
-                      <label>Token</label>
-                      <input type="text" value="<?= $ujian['token'] ?>" class="form-control" disabled>
-                      <input type="hidden" name="token" value="<?= $ujian['token'] ?>">
                     </div>
                   </div>
 

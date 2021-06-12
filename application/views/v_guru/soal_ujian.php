@@ -19,17 +19,12 @@
 
         <div class="row">
           <div class="col-4">
-            <a href="<?= base_url('C_Guru/pilih_soal_ujian'); ?>" class="btn btn-block btn-info btn-lg">
-              <i class="fa fa-scroll"><sup>+</sup></i>
-                &nbsp;&nbsp; Pilih Soal Ujian
-            </a>
-          </div>
-          <div class="col-4">
             <a href="<?= base_url('C_Guru/buat_ujian'); ?>" class="btn btn-block btn-info btn-lg">
-              <i class="fa fa-copy"><sup>+</sup></i>
+              <i class="fa fa-copy"><sup> +</sup></i>
                 &nbsp;&nbsp; Buat Ujian
             </a>
           </div>
+          <div class="col-4"></div>
           <div class="col-4"></div>
         </div> <br>
 
@@ -45,7 +40,6 @@
                   <tr>
                     <th>Mata Pelajaran</th>
                     <th>Kelas</th>
-                    <th>Jumlah Soal</th>
                     <th>Durasi</th>
                     <th>Jenis</th>
                     <th>Waktu Mulai</th>
@@ -63,13 +57,12 @@
                     <tr>
                       <td><?= $u['mapel'] ?></td>
                       <td><?= $u['kelas'] ?> - <?= $u['jurusan'] ?></td>
-                      <td><?= $u['jumlah_soal'] ?></td>
                       <td><?= $u['durasi'] ?> menit</td>
                       <td><?= $u['jenis'] ?></td>
                       <td><?= $u['waktu_mulai'] ?></td>
                       <td><?= $u['token'] ?></td>
                       <td>
-                        <?php if ($u['status'] == 'Y') { ?>
+                        <?php if ($u['aktif'] == 'Y') { ?>
                           Aktif
                         <?php } else { ?>
                           Tidak Aktif
@@ -115,7 +108,6 @@
                   <tr>
                     <th>Mata Pelajaran</th>
                     <th>Kelas</th>
-                    <th>Jumlah Soal</th>
                     <th>Durasi</th>
                     <th>Jenis</th>
                     <th>Waktu Mulai</th>

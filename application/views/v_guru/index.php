@@ -35,7 +35,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>53</h3>
+                <h3><?= $ujian ?></h3>
                 <p>Total Ujian</p>
               </div>
               <div class="icon">

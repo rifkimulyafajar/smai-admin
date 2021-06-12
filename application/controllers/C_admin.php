@@ -22,6 +22,7 @@ class C_Admin extends CI_Controller {
 			$data['siswa'] = $this->Model_Admin->hitungSiswa();
 			$data['materi'] = $this->Model_Admin->hitungMateri();
 			$data['soal'] = $this->Model_Admin->hitungBankSoal();
+			$data['ujian'] = $this->Model_Admin->hitungUjian();
 
 			$this->load->view('v_admin/header', $data);
 			$this->load->view('v_admin/index', $data);
@@ -283,14 +284,14 @@ class C_Admin extends CI_Controller {
 			$data['ujian'] = $this->Model_Admin->getUjianById($id);
 			$data['kelas'] = $this->Model_Admin->getAllKelas();
 			$data['jurusan'] = $this->Model_Admin->getAllJurusan();
+			$data['hitung'] = $this->Model_Admin->hitungSoalUjian($id);
 
-			$this->form_validation->set_rules('jumlah', 'Jumlah Soal', 'required');
 			$this->form_validation->set_rules('durasi', 'Durasi', 'required');
 			$this->form_validation->set_rules('waktu_mulai', 'Waktu', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
 				$this->load->view('v_admin/header', $data);
-				$this->load->view('v_admin/soal_ujian_edit' , $data);
+				$this->load->view('v_admin/ujian_edit' , $data);
 				$this->load->view('v_admin/footer');
 			} else {
 				$this->Model_Admin->editUjian();
@@ -300,13 +301,22 @@ class C_Admin extends CI_Controller {
 		}
 	}
 
-	public function pilih_soal_ujian()
+	public function tambahSoalUjian($id, $guru, $kelas, $jurusan)
+	{
+		// code...
+		$this->Model_Admin->tambahSoalUjian();
+		echo "<script>alert('Soal Berhasil Dibuat');</script>";
+		redirect('C_Admin/pilih_soal_ujian/'.$id.'/'.$guru.'/'.$kelas.'/'.$jurusan.'', 'refresh');
+	}
+
+	public function pilih_soal_ujian($id, $guru, $kelas, $jurusan)
 	{
 		# code...
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Buat Soal Ujian';
-			$data['soal'] = $this->Model_Admin->getSoalUjian();
+			$data['soal'] = $this->Model_Admin->getSoalUjian($guru, $kelas, $jurusan);
+			$data['ujian'] = $this->Model_Admin->getUjianById($id);
 
 			$this->load->view('v_admin/header', $data);
 			$this->load->view('v_admin/soal_ujian_pilih', $data);
@@ -334,23 +344,44 @@ class C_Admin extends CI_Controller {
 		}
 	}
 
-	public function pilih_soal()
+	public function pilih_soal($id_ujian, $guru, $kls, $jrs)
 	{
 		// code...
-		$id = $this->input->post('pilih');
-		
-		for ($i=0 ; $i<count($id) ; $i++) { 
-			$result = $this->db->set('status', 'Ujian')->where('id_soal', $id[$i])->update('bank_soal');
-			
-		}
+		$action = $this->input->post('action');
+		if ($action == 'simpan') {
 
-		if ($result) {
-			echo "<script>alert('berhasil');</script>";
-			redirect('C_Admin/tambah_soal_ujian', 'refresh');
+			$id = $this->input->post('pilih');
+		
+			for ($i=0 ; $i<count($id) ; $i++) { 
+				
+				$result = $this->db->set('status', 'Ujian')->set('id_ujian', $id_ujian)->where('id_soal', $id[$i])->update('bank_soal');
+			}
+
+			if ($result) {
+				echo "<script>alert('berhasil');</script>";
+				redirect('C_Admin/pilih_soal_ujian/'.$id_ujian.'/'.$guru.'/'.$kls.'/'.$jrs.'' , 'refresh');
+			}
+			else {
+				echo "<script>alert('gagal');</script>";
+				redirect('C_Admin/pilih_soal_ujian/'.$id_ujian.'/'.$guru.'/'.$kls.'/'.$jrs.'' , 'refresh');
+			}
 		}
-		else {
-			echo "<script>alert('gagal');</script>";
-			redirect('C_Admin/pilih_soal_ujian', 'refresh');
+		elseif ($action == 'hapus') {
+			$id = $this->input->post('pilih');
+		
+			for ($i=0 ; $i<count($id) ; $i++) {
+
+				$result = $this->db->set('status', 'Latihan')->set('id_ujian', null)->where('id_soal', $id[$i])->update('bank_soal');
+			}
+
+			if ($result) {
+				echo "<script>alert('berhasil');</script>";
+				redirect('C_Admin/pilih_soal_ujian/'.$id_ujian.'/'.$guru.'/'.$kls.'/'.$jrs.'' , 'refresh');
+			}
+			else {
+				echo "<script>alert('gagal');</script>";
+				redirect('C_Admin/pilih_soal_ujian/'.$id_ujian.'/'.$guru.'/'.$kls.'/'.$jrs.'' , 'refresh');
+			}
 		}
 	}
 

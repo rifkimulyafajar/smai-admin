@@ -24,12 +24,7 @@
                 &nbsp;&nbsp; Buat Ujian
             </button>
           </div>
-          <div class="col-lg-4">
-            <a href="<?= base_url('C_Admin/pilih_soal_ujian'); ?>" class="btn btn-block btn-success btn-lg">
-              <i class="fa fa-copy"><sup> +</sup></i>
-                &nbsp;&nbsp; Pilih Soal Ujian
-            </a>
-          </div>
+          <div class="col-lg-4"></div>
           <div class="col-lg-4"></div>
         </div> <br>
 
@@ -85,7 +80,6 @@
                     <th>Nama Guru</th>
                     <th>Mata Pelajaran</th>
                     <th>Kelas</th>
-                    <th>Jumlah Soal</th>
                     <th>Durasi</th>
                     <th>Jenis</th>
                     <th>Waktu Mulai</th>
@@ -104,13 +98,12 @@
                       <td><?= $u['nama'] ?></td>
                       <td><?= $u['mapel'] ?></td>
                       <td><?= $u['kelas'] ?> - <?= $u['jurusan'] ?></td>
-                      <td><?= $u['jumlah_soal'] ?></td>
                       <td><?= $u['durasi'] ?> menit</td>
                       <td><?= $u['jenis'] ?></td>
                       <td><?= $u['waktu_mulai'] ?></td>
                       <td><?= $u['token'] ?></td>
                       <td>
-                        <?php if ($u['status'] == 'Y') { ?>
+                        <?php if ($u['aktif'] == 'Y') { ?>
                           Aktif
                         <?php } else { ?>
                           Tidak Aktif
@@ -157,7 +150,6 @@
                     <th>Nama Guru</th>
                     <th>Mata Pelajaran</th>
                     <th>Kelas</th>
-                    <th>Jumlah Soal</th>
                     <th>Durasi</th>
                     <th>Jenis</th>
                     <th>Waktu Mulai</th>

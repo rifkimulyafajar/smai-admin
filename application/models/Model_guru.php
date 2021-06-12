@@ -222,8 +222,8 @@ class Model_Guru extends CI_Model {
     public function hitungSoalById($id)
     {
         # code...
-        $this->db->where('id_guru', $id);
-        $this->db->from("bank_soal");
+        $this->db->where('id_ujian', $id);
+        $this->db->from('bank_soal');
         return $this->db->count_all_results();
     }
 
@@ -243,9 +243,9 @@ class Model_Guru extends CI_Model {
         return $query->result_array();
     }
 
-    public function totalSoalUjian($id)
+    public function getSoalUjian($id, $kelas, $jurusan)
     {
-        // code...
+        # code...
         $this->db->select('*');
         $this->db->from('bank_soal');
         $this->db->join('guru', 'bank_soal.id_guru = guru.id_guru');
@@ -254,9 +254,11 @@ class Model_Guru extends CI_Model {
         $this->db->join('jurusan', 'bank_soal.id_jurusan = jurusan.id_jurusan', 'left');
         $this->db->join('kategori', 'bank_soal.id_kategori = kategori.id_kategori', 'left');
         $this->db->where('guru.id_guru', $id);
-        $this->db->where('status', 'Ujian');
+        $this->db->where('kelas.id_kelas', $kelas);
+        $this->db->where('jurusan.id_jurusan', $jurusan);
+        $query = $this->db->get();
 
-        return $this->db->count_all_results();
+        return $query->result_array();
     }
 
     public function getSoalById($id)
@@ -361,6 +363,7 @@ class Model_Guru extends CI_Model {
 
         $this->id_soal = $post["id_soal"];
         $this->id_guru = $post["id_guru"];
+        $this->id_kategori = $post["id_kategori"];
         $this->id_kelas = $post["id_kelas"];
         $this->id_jurusan = $post["id_jurusan"];
         $this->status = $post["status"];
@@ -521,6 +524,22 @@ class Model_Guru extends CI_Model {
 
 
 
+    public function hitungUjian($id)
+    {
+        // code...
+        $this->db->where('id_guru', $id);
+        $this->db->from("ujian");
+        return $this->db->count_all_results();
+    }
+
+    public function hitungSoalUjian($id)
+    {
+        // code...
+        $this->db->where('id_ujian', $id);
+        $this->db->from('bank_soal');
+        return $this->db->count_all_results();
+    }
+
     public function getUjianGuru($id)
     {
         // code...
@@ -551,6 +570,42 @@ class Model_Guru extends CI_Model {
         return $query->row_array();
     }
 
+    public function tambahSoalUjian()
+    {
+        // code...
+        if ($this->input->post('id_kategori') == '') {
+            $kat = null;
+        }else {
+            $kat = $post["id_kategori"];
+        }
+        $this->id_soal = uniqid();
+        $data = [
+            "id_guru" => $this->input->post('id_guru', true),
+            "id_mapel" => $this->input->post('id_mapel', true),
+            "id_kategori" => $kat,
+            "id_kelas" => $this->input->post('id_kelas', true),
+            "id_jurusan" => $this->input->post('id_jurusan', true),
+            "id_ujian" => $this->input->post('id_ujian', true),
+            "status" => $this->input->post('status', true),
+            "soal" => $this->input->post('soal', true),
+            "file_soal" => $this->file_soal(),
+            "pilihan_a" => $this->input->post('pilihan_a', true),
+            "file_a" => $this->file_a(),
+            "pilihan_b" => $this->input->post('pilihan_b', true),
+            "file_b" => $this->file_b(),
+            "pilihan_c" => $this->input->post('pilihan_c', true),
+            "file_c" => $this->file_c(),
+            "pilihan_d" => $this->input->post('pilihan_d', true),
+            "file_d" => $this->file_d(),
+            "pilihan_e" => $this->input->post('pilihan_e', true),
+            "file_e" => $this->file_e(),
+            "kunci" => $this->input->post('kunci', true),
+            "tanggal" => $this->input->post('tanggal', true)
+        ];
+
+        $this->db->insert('bank_soal', $data);
+    }
+
     public function tambahUjian()
     {
         // code...
@@ -569,7 +624,6 @@ class Model_Guru extends CI_Model {
             "id_mapel" => $this->input->post('id_mapel', true),
             "id_kelas" => $this->input->post('kelas', true),
             "id_jurusan" => $this->input->post('jurusan', true),
-            "jumlah_soal" => $this->input->post('jumlah', true),
             "durasi" => $this->input->post('durasi', true),
             "jenis" => $this->input->post('jenis', true),
             "waktu_mulai" => $this->input->post('waktu_mulai', true),
@@ -599,13 +653,12 @@ class Model_Guru extends CI_Model {
         $this->id_mapel = $post["id_mapel"];
         $this->id_kelas = $post["id_kelas"];
         $this->id_jurusan = $post["id_jurusan"];
-        $this->jumlah_soal = $post["jumlah"];
         $this->durasi = $post["durasi"];
         $this->jenis = $post["jenis"];
         $this->waktu_mulai = $post["waktu_mulai"];
         $this->waktu_selesai = $z;
         $this->token = $post["token"];
-        $this->status = $post["status"];
+        $this->aktif = $post["status"];
 
         $this->db->update('ujian', $this, array('id_ujian' => $post["id_ujian"]));
     }

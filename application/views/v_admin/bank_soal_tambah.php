@@ -79,7 +79,6 @@
                       <label>Status Soal</label>
                       <select class="form-control" name="status">
                         <option value="Latihan">Latihan</option>
-                        <option value="Ujian">Ujian</option>
                       </select>
                     </div>
                   </div>

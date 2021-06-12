@@ -20,6 +20,7 @@ class C_Guru extends CI_Controller {
 			$data['title'] = 'Guru - Dashboard';
 			$data['materi'] = $this->Model_Guru->hitungMateri($_SESSION['id_guru']);
 			$data['soal'] = $this->Model_Guru->hitungSoalById($_SESSION['id_guru']);
+			$data['ujian'] = $this->Model_Guru->hitungUjian($_SESSION['id_guru']);
 
 			$this->load->view('v_guru/header', $data);
 			$this->load->view('v_guru/index', $data);
@@ -61,7 +62,6 @@ class C_Guru extends CI_Controller {
 			$data['guru'] = $this->Model_Guru->getGuru($_SESSION['id_guru']);
 			$data['kelas'] = $this->Model_Guru->getAllKelas();
 			$data['jurusan'] = $this->Model_Guru->getAllJurusan();
-			$data['total'] = $this->Model_Guru->totalSoalUjian($_SESSION['id_guru']);
 
 			$this->form_validation->set_rules('durasi', 'Durasi', 'required');
 			$this->form_validation->set_rules('waktu_mulai', 'Waktu', 'required');
@@ -109,7 +109,7 @@ class C_Guru extends CI_Controller {
 			$data['guru'] = $this->Model_Guru->getGuru($_SESSION['id_guru']);
 			$data['kelas'] = $this->Model_Guru->getAllKelas();
 			$data['jurusan'] = $this->Model_Guru->getAllJurusan();
-			$data['total'] = $this->Model_Guru->totalSoalUjian($_SESSION['id_guru']);
+			$data['hitung'] = $this->Model_Guru->hitungSoalUjian($id);
 
 			$this->form_validation->set_rules('jumlah', 'Jumlah Soal', 'required');
 			$this->form_validation->set_rules('durasi', 'Durasi', 'required');
@@ -127,14 +127,24 @@ class C_Guru extends CI_Controller {
 		}
 	}
 
-	public function pilih_soal_ujian()
+	public function tambahSoalUjian($id, $guru, $kelas, $jurusan)
+	{
+		// code...
+		$this->Model_Guru->tambahSoalUjian();
+		echo "<script>alert('Soal Berhasil Dibuat');</script>";
+		redirect('C_Guru/pilih_soal_ujian/'.$id.'/'.$guru.'/'.$kelas.'/'.$jurusan.'', 'refresh');
+	}
+
+	public function pilih_soal_ujian($id, $guru, $kelas, $jurusan)
 	{
 		# code...
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Pilih Soal Ujian';
-			$data['soal'] = $this->Model_Guru->getSoal($_SESSION['id_guru']);
-			$data['total'] = $this->Model_Guru->totalSoalUjian($_SESSION['id_guru']);
+			$data['soal'] = $this->Model_Guru->getSoalUjian($guru, $kelas, $jurusan);
+			$data['ujian'] = $this->Model_Guru->getUjianById($id);
+			$data['total'] = $this->Model_Guru->hitungSoalById($id);
+			$data['kat'] = $this->Model_Guru->getKategori($guru);
 
 			$this->load->view('v_guru/header', $data);
 			$this->load->view('v_guru/soal_ujian_pilih', $data);
@@ -145,23 +155,44 @@ class C_Guru extends CI_Controller {
 		}
 	}
 
-	public function pilih_soal()
+	public function pilih_soal($id_ujian, $guru, $kls, $jrs)
 	{
 		// code...
-		$id = $this->input->post('pilih');
-		
-		for ($i=0 ; $i<count($id) ; $i++) { 
-			$result = $this->db->set('status', 'Ujian')->where('id_soal', $id[$i])->update('bank_soal');
-			
-		}
+		$action = $this->input->post('action');
+		if ($action == 'simpan') {
 
-		if ($result) {
-			echo "<script>alert('berhasil');</script>";
-			redirect('C_Guru/soal_ujian', 'refresh');
+			$id = $this->input->post('pilih');
+		
+			for ($i=0 ; $i<count($id) ; $i++) { 
+				
+				$result = $this->db->set('status', 'Ujian')->set('id_ujian', $id_ujian)->where('id_soal', $id[$i])->update('bank_soal');
+			}
+
+			if ($result) {
+				echo "<script>alert('berhasil');</script>";
+				redirect('C_Guru/pilih_soal_ujian/'.$id_ujian.'/'.$guru.'/'.$kls.'/'.$jrs.'' , 'refresh');
+			}
+			else {
+				echo "<script>alert('gagal');</script>";
+				redirect('C_Guru/pilih_soal_ujian/'.$id_ujian.'/'.$guru.'/'.$kls.'/'.$jrs.'' , 'refresh');
+			}
 		}
-		else {
-			echo "<script>alert('gagal');</script>";
-			redirect('C_Guru/pilih_soal_ujian', 'refresh');
+		elseif ($action == 'hapus') {
+			$id = $this->input->post('pilih');
+		
+			for ($i=0 ; $i<count($id) ; $i++) {
+
+				$result = $this->db->set('status', 'Latihan')->set('id_ujian', null)->where('id_soal', $id[$i])->update('bank_soal');
+			}
+
+			if ($result) {
+				echo "<script>alert('berhasil');</script>";
+				redirect('C_Guru/pilih_soal_ujian/'.$id_ujian.'/'.$guru.'/'.$kls.'/'.$jrs.'' , 'refresh');
+			}
+			else {
+				echo "<script>alert('gagal');</script>";
+				redirect('C_Guru/pilih_soal_ujian/'.$id_ujian.'/'.$guru.'/'.$kls.'/'.$jrs.'' , 'refresh');
+			}
 		}
 	}
 

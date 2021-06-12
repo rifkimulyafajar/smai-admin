@@ -20,7 +20,9 @@ class Siswa extends REST_Controller {
 	public function login_post()
 	{
 		$username = $this->post('username');
-        $password = $this->post('password');
+        $pass = htmlspecialchars($this->input->post('password'));
+		$password = password_verify($pass, 'password');
+
         if (!empty($username) && !empty($password)) {
             $user = $this->Model_Siswa->login($username, $password);
             if ($user) {

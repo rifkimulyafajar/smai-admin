@@ -4,116 +4,6 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Model_Admin extends CI_Model {
 
-//=============================================RestServer============================================================
-
-    public function getGuru($id = null)
-    {
-        # code...
-        if ($id === null) {
-            # code...
-            return $this->db->get('guru')->result_array();
-        } 
-        else {
-            return $this->db->get_where('guru', ['id_guru' => $id])->result_array();
-        }
-
-    }
-
-    public function inputGuru($data)
-    {
-        # code...
-        $this->db->insert('guru', $data);
-        return $this->db->affected_rows();
-    }
-
-    public function deleteGuru($id)
-    {
-        # code...
-        $this->db->delete('guru', ['id_guru' => $id]);
-        return $this->db->affected_rows();
-    }
-
-    public function updateGuru($data, $id)
-    {
-        # code...
-        $this->db->update('guru', $data, ['id_guru' => $id]);
-        return $this->db->affected_rows();
-    }
-
-//=================================================================
-
-    public function getSiswa($id = null)
-    {
-        # code...
-        if ($id === null) {
-            # code...
-            return $this->db->get('siswa')->result_array();
-        } 
-        else {
-            return $this->db->get_where('siswa', ['id_siswa' => $id])->result_array();
-        }
-
-    }
-
-    public function inputSiswa($data)
-    {
-        # code...
-        $this->db->insert('siswa', $data);
-        return $this->db->affected_rows();
-    }
-
-    public function deleteSiswa($id)
-    {
-        # code...
-        $this->db->delete('siswa', ['id_siswa' => $id]);
-        return $this->db->affected_rows();
-    }
-
-    public function updateSiswa($data, $id)
-    {
-        # code...
-        $this->db->update('siswa', $data, ['id_siswa' => $id]);
-        return $this->db->affected_rows();
-    }
-
-//=================================================================
-
-    public function getMateri($id = null)
-    {
-        # code...
-        if ($id === null) {
-            # code...
-            return $this->db->get('materi')->result_array();
-        } 
-        else {
-            return $this->db->get_where('materi', ['id_materi' => $id])->result_array();
-        }
-
-    }
-
-    public function inputMateri($data)
-    {
-        # code...
-        $this->db->insert('materi', $data);
-        return $this->db->affected_rows();
-    }
-
-    public function deleteMateri($id)
-    {
-        # code...
-        $this->db->delete('materi', ['id_materi' => $id]);
-        return $this->db->affected_rows();
-    }
-
-    public function updateMateri($data, $id)
-    {
-        # code...
-        $this->db->update('materi', $data, ['id_materi' => $id]);
-        return $this->db->affected_rows();
-    }
-
-//=============================================RestServer============================================================
-
     public function hitungGuru()
     {
         # code...
@@ -138,6 +28,12 @@ class Model_Admin extends CI_Model {
     {
         # code...
         return $this->db->count_all('materi');
+    }
+
+    public function hitungUjian()
+    {
+        // code...
+        return $this->db->count_all('ujian');
     }
 
     public function getAllKelas()
@@ -463,21 +359,6 @@ class Model_Admin extends CI_Model {
         return $query->result_array();
     }
 
-    public function getSoalUjian()
-    {
-        // code...
-        $this->db->select('*');
-        $this->db->from('bank_soal');
-        $this->db->join('guru', 'bank_soal.id_guru = guru.id_guru');
-        $this->db->join('kelas', 'bank_soal.id_kelas = kelas.id_kelas', 'left');
-        $this->db->join('jurusan', 'bank_soal.id_jurusan = jurusan.id_jurusan', 'left');
-        $this->db->join('mapel', 'bank_soal.id_mapel = mapel.id_mapel');
-        $this->db->join('kategori', 'bank_soal.id_kategori = kategori.id_kategori', 'left');
-        $query = $this->db->get();
-
-        return $query->result_array();
-    }
-
     public function getSoalById($id)
     {
         # code...
@@ -694,6 +575,24 @@ class Model_Admin extends CI_Model {
 
 //============================================================================================================
 
+    
+
+    public function getSoalUjian($guru, $kelas, $jurusan)
+    {
+        // code...
+        $this->db->select('*');
+        $this->db->from('bank_soal');
+        $this->db->join('guru', 'bank_soal.id_guru = guru.id_guru');
+        $this->db->join('kelas', 'bank_soal.id_kelas = kelas.id_kelas');
+        $this->db->join('jurusan', 'bank_soal.id_jurusan = jurusan.id_jurusan');
+        $this->db->join('kategori', 'bank_soal.id_kategori = kategori.id_kategori', 'left');
+        $this->db->where('bank_soal.id_guru', $guru);
+        $this->db->where('bank_soal.id_kelas', $kelas);
+        $this->db->where('bank_soal.id_jurusan', $jurusan);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
 
     public function getUjian()
     {
@@ -722,6 +621,44 @@ class Model_Admin extends CI_Model {
         $query = $this->db->get();
 
         return $query->row_array();
+    }
+
+    public function hitungSoalUjian($id)
+    {
+        // code...
+        $this->db->where('id_ujian', $id);
+        $this->db->from('bank_soal');
+        return $this->db->count_all_results();
+    }
+
+    public function tambahSoalUjian()
+    {
+        // code...
+        $this->id_soal = uniqid();
+        $data = [
+            "id_guru" => $this->input->post('id_guru', true),
+            "id_mapel" => $this->input->post('id_mapel', true),
+            "id_kelas" => $this->input->post('id_kelas', true),
+            "id_jurusan" => $this->input->post('id_jurusan', true),
+            "id_ujian" => $this->input->post('id_ujian', true),
+            "status" => $this->input->post('status', true),
+            "soal" => $this->input->post('soal', true),
+            "file_soal" => $this->file_soal(),
+            "pilihan_a" => $this->input->post('pilihan_a', true),
+            "file_a" => $this->file_a(),
+            "pilihan_b" => $this->input->post('pilihan_b', true),
+            "file_b" => $this->file_b(),
+            "pilihan_c" => $this->input->post('pilihan_c', true),
+            "file_c" => $this->file_c(),
+            "pilihan_d" => $this->input->post('pilihan_d', true),
+            "file_d" => $this->file_d(),
+            "pilihan_e" => $this->input->post('pilihan_e', true),
+            "file_e" => $this->file_e(),
+            "kunci" => $this->input->post('kunci', true),
+            "tanggal" => $this->input->post('tanggal', true)
+        ];
+
+        $this->db->insert('bank_soal', $data);
     }
 
     public function buatUjian($id)
@@ -783,13 +720,12 @@ class Model_Admin extends CI_Model {
         $this->id_mapel = $post["id_mapel"];
         $this->id_kelas = $post["id_kelas"];
         $this->id_jurusan = $post["id_jurusan"];
-        $this->jumlah_soal = $post["jumlah"];
         $this->durasi = $post["durasi"];
         $this->jenis = $post["jenis"];
         $this->waktu_mulai = $post["waktu_mulai"];
         $this->waktu_selesai = $z;
         $this->token = $post["token"];
-        $this->status = $post["status"];
+        $this->aktif = $post["status"];
 
         $this->db->update('ujian', $this, array('id_ujian' => $post["id_ujian"]));
     }

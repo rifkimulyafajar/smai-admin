@@ -79,7 +79,7 @@
                     </div>
                     <div class="form-group col-6">
                       <label>Durasi Ujian</label>
-                      <input type="number" name="durasi" class="form-control" placeholder="Durasi Ujian - Menit" min="0">
+                      <input type="number" name="durasi" class="form-control" placeholder="Durasi Ujian - Menit" min="1">
                       <?= form_error('durasi', '<small class="text-danger">', '</small>'); ?>
                     </div>
                   </div>

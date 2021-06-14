@@ -577,6 +577,24 @@ class Model_Admin extends CI_Model {
 
     
 
+    public function getSoalLatihan($guru, $kelas, $jurusan)
+    {
+        // code...
+        $this->db->select('*');
+        $this->db->from('bank_soal');
+        $this->db->join('guru', 'bank_soal.id_guru = guru.id_guru');
+        $this->db->join('kelas', 'bank_soal.id_kelas = kelas.id_kelas');
+        $this->db->join('jurusan', 'bank_soal.id_jurusan = jurusan.id_jurusan');
+        $this->db->join('kategori', 'bank_soal.id_kategori = kategori.id_kategori', 'left');
+        $this->db->where('bank_soal.id_guru', $guru);
+        $this->db->where('bank_soal.id_kelas', $kelas);
+        $this->db->where('bank_soal.id_jurusan', $jurusan);
+        $this->db->where('bank_soal.status', 'Latihan');
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
     public function getSoalUjian($guru, $kelas, $jurusan)
     {
         // code...
@@ -589,6 +607,7 @@ class Model_Admin extends CI_Model {
         $this->db->where('bank_soal.id_guru', $guru);
         $this->db->where('bank_soal.id_kelas', $kelas);
         $this->db->where('bank_soal.id_jurusan', $jurusan);
+        $this->db->where('bank_soal.status', 'Ujian');
         $query = $this->db->get();
 
         return $query->result_array();

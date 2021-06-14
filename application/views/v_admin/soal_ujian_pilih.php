@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-8">
-            <h1 class="m-0">Buat Soal Untuk Ujian</h1>
+            <h1 class="m-0">Soal Ujian</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -17,7 +17,7 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
 
-        <?php if (empty($soal)) { ?>
+        <?php if (empty($soal_u)) { ?>
 
         <div class="row">
           <div class="col-4">
@@ -38,33 +38,14 @@
         </div>
         <br>
 
-        <?php } else { ?>
-
-        <div class="row">
-          <div class="col-4">
-            <a href="<?= base_url('C_Admin/edit_ujian/').$ujian['id_ujian']; ?>" class="btn btn-info">
-              <i class="fa fa-arrow-circle-left"></i>
-              &nbsp;&nbsp; Halaman Sebelumnya
-            </a>
-          </div>
-          <div class="col-4">
-            <button class="btn btn-block btn-success" data-toggle="modal" data-target="#tambah">
-              <i class="fa fa-copy"><sup> +</sup></i>
-                &nbsp;&nbsp; Tambah Soal Baru
-            </button>
-          </div>
-          <div class="col-4"></div>
-        </div>
-        <br>
-
         <div class="row">
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <h3>Daftar Soal yang Telah Dibuat</h3>
+                <h3>Daftar Soal yang Telah Dibuat di Bank Soal</h3>
               </div>
               <div class="card-body">
-                <?= form_open_multipart('C_Admin/pilih_soal/'.$ujian['id_ujian'].'/'.$ujian['id_guru'].'/'
+                <?= form_open('C_Admin/pilih_soal_tambah/'.$ujian['id_ujian'].'/'.$ujian['id_guru'].'/'
                                   .$ujian['id_kelas'].'/'.$ujian['id_jurusan']); ?>
                 <table class="table table-bordered table-striped">
                   <thead>
@@ -80,9 +61,9 @@
                     <?php
                     $i = 1;
 
-                    if (count($soal)) { 
+                    if (count($soal_l)) { 
                     
-                    foreach ($soal as $s) { ?>
+                    foreach ($soal_l as $s) { ?>
 
                     <tr>
                       <td class="text-center">
@@ -107,18 +88,164 @@
                 </table>
                 <br>
                 <div class="row">
-                  <div class="col-3"></div>
-                  <div class="col-3">
-                    <button class="btn btn-block bg-success" type="submit" name="action" value="simpan">
+                  <div class="col-4"></div>
+                  <div class="col-4">
+                    <button class="btn btn-block bg-success" type="submit">
                       <i class="fas fa-check-circle"></i>&nbsp;&nbsp; Jadikan Sebagai Soal Ujian
                     </button>
                   </div>
-                  <div class="col-3">
-                    <button class="btn btn-block bg-danger" type="submit" name="action" value="hapus">
+                  <div class="col-4"></div>
+                </div>
+                <?= form_close(); ?>
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
+        </div>
+        <!-- /.row -->
+
+        <?php } else { ?>
+
+        <div class="row">
+          <div class="col-4">
+            <a href="<?= base_url('C_Admin/edit_ujian/').$ujian['id_ujian']; ?>" class="btn btn-info">
+              <i class="fa fa-arrow-circle-left"></i>
+              &nbsp;&nbsp; Halaman Sebelumnya
+            </a>
+          </div>
+          <div class="col-4">
+            <button class="btn btn-block btn-success" data-toggle="modal" data-target="#tambah">
+              <i class="fa fa-copy"><sup> +</sup></i>
+                &nbsp;&nbsp; Tambah Soal Baru
+            </button>
+          </div>
+          <div class="col-4"></div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h3>Daftar Soal Ujian</h3>
+              </div>
+              <div class="card-body">
+                <?= form_open('C_Admin/pilih_soal_hapus/'.$ujian['id_ujian'].'/'.$ujian['id_guru'].'/'
+                                  .$ujian['id_kelas'].'/'.$ujian['id_jurusan']); ?>
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th class="text-center"> + </th>
+                      <th>Status</th>
+                      <th>Kategori Soal</th>
+                      <th>Soal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <?php
+                    $i = 1;
+
+                    if (count($soal_u)) { 
+                    
+                    foreach ($soal_u as $s) { ?>
+
+                    <tr>
+                      <td class="text-center">
+                        <input type="checkbox" name="pilih[]" value="<?= $s['id_soal'] ?>">
+                      </td>
+                      <td><?= $s['status'] ?></td>
+                      <td><?= $s['kategori'] ?></td>
+                      <td><?= $s['soal'] ?></td>
+                    </tr>
+
+                    <?php $i++; } } ?>
+
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th class="text-center"> + </th>
+                      <th>Status</th>
+                      <th>Kategori Soal</th>
+                      <th>Soal</th>
+                    </tr>
+                  </tfoot>
+                </table>
+                <br>
+                <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4">
+                    <button class="btn btn-block bg-danger" type="submit">
                       <i class="fas fa-times-circle"></i>&nbsp;&nbsp; Hapus Dari Soal Ujian
                     </button>
                   </div>
-                  <div class="col-3"></div>
+                  <div class="col-4"></div>
+                </div>
+                <?= form_close(); ?>
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
+        </div> <br>
+        <!-- /.row -->
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h3>Daftar Soal yang Telah Dibuat di Bank Soal</h3>
+              </div>
+              <div class="card-body">
+                <?= form_open('C_Admin/pilih_soal_tambah/'.$ujian['id_ujian'].'/'.$ujian['id_guru'].'/'
+                                  .$ujian['id_kelas'].'/'.$ujian['id_jurusan']); ?>
+                <table class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th class="text-center"> + </th>
+                      <th>Status</th>
+                      <th>Kategori Soal</th>
+                      <th>Soal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <?php
+                    $i = 1;
+
+                    if (count($soal_l)) { 
+                    
+                    foreach ($soal_l as $s) { ?>
+
+                    <tr>
+                      <td class="text-center">
+                        <input type="checkbox" name="pilih[]" value="<?= $s['id_soal'] ?>">
+                      </td>
+                      <td><?= $s['status'] ?></td>
+                      <td><?= $s['kategori'] ?></td>
+                      <td><?= $s['soal'] ?></td>
+                    </tr>
+
+                    <?php $i++; } } ?>
+
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th class="text-center"> + </th>
+                      <th>Status</th>
+                      <th>Kategori Soal</th>
+                      <th>Soal</th>
+                    </tr>
+                  </tfoot>
+                </table>
+                <br>
+                <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4">
+                    <button class="btn btn-block bg-success" type="submit">
+                      <i class="fas fa-check-circle"></i>&nbsp;&nbsp; Jadikan Sebagai Soal Ujian
+                    </button>
+                  </div>
+                  <div class="col-4"></div>
                 </div>
                 <?= form_close(); ?>
               </div>

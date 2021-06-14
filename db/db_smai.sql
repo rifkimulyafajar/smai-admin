@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Jun 2021 pada 18.24
+-- Waktu pembuatan: 13 Jun 2021 pada 08.44
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -31,9 +31,10 @@ CREATE TABLE `bank_soal` (
   `id_soal` int(11) NOT NULL,
   `id_guru` int(11) NOT NULL,
   `id_mapel` int(11) NOT NULL,
-  `id_kategori` int(11) NOT NULL,
+  `id_kategori` int(11) DEFAULT NULL,
   `id_kelas` int(11) NOT NULL,
   `id_jurusan` int(11) NOT NULL,
+  `id_ujian` int(11) DEFAULT NULL,
   `status` enum('Latihan','Ujian') NOT NULL,
   `soal` longtext NOT NULL,
   `file_soal` varchar(250) DEFAULT NULL,
@@ -55,18 +56,23 @@ CREATE TABLE `bank_soal` (
 -- Dumping data untuk tabel `bank_soal`
 --
 
-INSERT INTO `bank_soal` (`id_soal`, `id_guru`, `id_mapel`, `id_kategori`, `id_kelas`, `id_jurusan`, `status`, `soal`, `file_soal`, `pilihan_a`, `file_a`, `pilihan_b`, `file_b`, `pilihan_c`, `file_c`, `pilihan_d`, `file_d`, `pilihan_e`, `file_e`, `kunci`, `tanggal`) VALUES
-(1, 23, 1, 0, 2, 5, 'Ujian', '<p>siapa?</p>\r\n', NULL, 'saya', NULL, 'kamu', NULL, 'dia', NULL, 'mereka', NULL, 'kami', NULL, 'B', '2021-05-20 22:38:57'),
-(2, 24, 7, 0, 1, 6, 'Ujian', '<p>dimana?</p>\r\n', '', 'atas', '', 'bawah', '', 'kanan', '', 'kiri', '', 'belakang', '', 'D', '2021-05-20 22:55:00'),
-(3, 30, 3, 0, 1, 3, 'Ujian', '<p>two?</p>\r\n', '', '', '1.png', '', '2.png', '', '3.png', '', '4.png', '', '5.png', 'B', '2021-05-21 09:42:00'),
-(8, 29, 2, 1, 3, 1, 'Latihan', '<p>ha?</p>\r\n', 'user.jpg', 'saya', '', 'kamu', '', 'kanan', '', 'mereka', '', 'belakang', '', 'E', '2021-05-24 09:38:53'),
-(9, 30, 3, 0, 3, 3, 'Ujian', '<p>Cc</p>\r\n', '', '1', '', '2', '', '1', '', 'mereka', '', 'kami', '', 'B', '2021-05-25 13:18:49'),
-(12, 36, 2, 0, 3, 1, 'Ujian', '<p>AAAAaaaa</p>\r\n', '', 'A', '', 'B', '', 'C', '', '', '', '', '', 'A', '2021-05-26 22:09:45'),
-(16, 23, 1, 0, 1, 2, 'Ujian', '<p>a</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', '2021-05-28 08:41:19'),
-(22, 29, 2, 0, 1, 5, 'Latihan', '<p>T</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', '2021-05-28 21:48:46'),
-(23, 24, 7, 0, 2, 4, 'Ujian', '<p>P</p>\r\n', '', '', '', '', '', '', '', '', '', '', '', 'A', '2021-05-29 22:27:47'),
-(30, 20, 1, 0, 1, 1, 'Ujian', '<p>1</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'B', '2021-05-31 10:37:54'),
-(32, 23, 1, 11, 1, 1, 'Ujian', '<p>?</p>\r\n', '', '', '', '', '', '', '', '', '', '', '', 'B', '2021-06-04 15:26:39');
+INSERT INTO `bank_soal` (`id_soal`, `id_guru`, `id_mapel`, `id_kategori`, `id_kelas`, `id_jurusan`, `id_ujian`, `status`, `soal`, `file_soal`, `pilihan_a`, `file_a`, `pilihan_b`, `file_b`, `pilihan_c`, `file_c`, `pilihan_d`, `file_d`, `pilihan_e`, `file_e`, `kunci`, `tanggal`) VALUES
+(2, 24, 7, NULL, 1, 6, NULL, 'Ujian', '<p>dimana?</p>\r\n', '', 'atas', '', 'bawah', '', 'kanan', '', 'kiri', '', 'belakang', '', 'D', '2021-05-20 22:55:00'),
+(3, 30, 3, NULL, 1, 3, NULL, 'Ujian', '<p>two?</p>\r\n', '', '', '1.png', '', '2.png', '', '3.png', '', '4.png', '', '5.png', 'B', '2021-05-21 09:42:00'),
+(8, 29, 2, 1, 3, 1, NULL, 'Latihan', '<p>ha?</p>\r\n', 'user.jpg', 'saya', '', 'kamu', '', 'kanan', '', 'mereka', '', 'belakang', '', 'E', '2021-05-24 09:38:53'),
+(9, 30, 3, NULL, 3, 3, 14, 'Ujian', '<p>Cc</p>\r\n', '', '1', '', '2', '', '1', '', 'mereka', '', 'kami', '', 'B', '2021-05-25 13:18:49'),
+(12, 36, 2, NULL, 3, 1, NULL, 'Ujian', '<p>AAAAaaaa</p>\r\n', '', 'A', '', 'B', '', 'C', '', '', '', '', '', 'A', '2021-05-26 22:09:45'),
+(16, 23, 1, NULL, 3, 4, 13, 'Ujian', '<p>a</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', '2021-05-28 08:41:19'),
+(22, 29, 2, 2, 1, 5, NULL, 'Latihan', '<p>T</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', '2021-05-28 21:48:46'),
+(23, 24, 7, NULL, 2, 4, NULL, 'Ujian', '<p>P</p>\r\n', '', '', '', '', '', '', '', '', '', '', '', 'A', '2021-05-29 22:27:47'),
+(30, 20, 1, NULL, 1, 1, NULL, 'Ujian', '<p>1</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'B', '2021-05-31 10:37:54'),
+(32, 23, 1, 11, 1, 1, 15, 'Ujian', '<p>?</p>\r\n', '', '', '', '', '', '', '', '', '', '', '', 'B', '2021-06-04 15:26:39'),
+(33, 23, 1, 11, 1, 1, 15, 'Ujian', '<p>?</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', '2021-06-11 16:38:22'),
+(34, 30, 3, NULL, 3, 3, 14, 'Ujian', '<p>??</p>\r\n', NULL, 'A', NULL, 'B', NULL, 'C', NULL, 'D', NULL, 'E', NULL, 'E', '2021-06-13 01:01:21'),
+(35, 30, 3, NULL, 3, 3, NULL, 'Latihan', '<p>11</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', '2021-06-13 01:13:40'),
+(36, 23, 1, 11, 3, 4, NULL, 'Latihan', '<p>b</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', '2021-06-13 03:51:08'),
+(37, 24, 7, NULL, 1, 1, 34, 'Ujian', '<p>z</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', '2021-06-13 04:18:08'),
+(43, 24, 7, NULL, 1, 1, 34, 'Ujian', '<p>ZZ</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'B', '2021-06-13 04:41:49');
 
 -- --------------------------------------------------------
 
@@ -156,10 +162,12 @@ CREATE TABLE `kategori` (
 
 INSERT INTO `kategori` (`id_kategori`, `kategori`, `id_guru`) VALUES
 (1, 'Penjumlahan', 29),
-(2, 'Persamaan Variabel', 29),
+(2, 'Aljabar', 29),
 (7, 'Mudah', 25),
 (8, 'Susah', 25),
-(11, 'Sinonim', 23);
+(11, 'Sinonim', 23),
+(12, 'Listening', 30),
+(14, 'Antonim', 23);
 
 -- --------------------------------------------------------
 
@@ -263,12 +271,12 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`id_siswa`, `nis`, `nama`, `id_kelas`, `id_jurusan`, `username`, `password`) VALUES
-(1, '123', 'Aaa', 1, 6, '123', '$2y$10$/BMqInrIMa8P.4DO9aaGAuKKSGYILt3Tj5PU9wXhLgD'),
+(1, '123', 'Aaa', 1, 6, '123', '$2y$10$hfIum0XfOxQZSS0p.f7UcOJ/czk4UD4H9ndTHVPuCa/'),
 (2, '321', 'Bbb', 2, 2, '321', '$2y$10$MKQKEJakPk7/pF1rpLrKt.8P/Jlhi0rwWnmvdYhuJI3'),
 (4, '333', 'Ddd', 3, 4, '333', '$2y$10$Qve/K334V8DulKdyd63jh.8r1bu9t1VgJU8vNU06Htk'),
 (5, '555', 'Zzz', 2, 4, '555', '$2y$10$GkxzXT9kV64dq.rduEo1mOLNRXzJqj1XBbxwRuJ7zs/'),
 (6, '222', 'abcd', 3, 3, '222', '$2y$10$Sb7TUWVxgNUau8myfZ6S4OkDJyFGFJPZsDfa4f/CkA1'),
-(7, '444', 'abcd', 3, 6, '444', '$2y$10$N0h/3hceS3HKTj5wNWRpMOIeLWKzxe6ORzxRmKch.GR');
+(7, '444', 'xyz', 3, 6, '444', '$2y$10$IWwzi81/OjhiqgAWzbowGesB0V.zPF1RMAzw8WA38vB');
 
 -- --------------------------------------------------------
 
@@ -282,22 +290,23 @@ CREATE TABLE `ujian` (
   `id_mapel` int(11) NOT NULL,
   `id_kelas` int(11) NOT NULL,
   `id_jurusan` int(11) NOT NULL,
-  `jumlah_soal` int(11) NOT NULL,
   `durasi` int(11) NOT NULL,
   `jenis` enum('acak','urut') NOT NULL,
   `waktu_mulai` datetime NOT NULL,
   `waktu_selesai` datetime NOT NULL,
   `token` varchar(5) NOT NULL,
-  `status` enum('Y','N') NOT NULL
+  `aktif` enum('Y','N') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `ujian`
 --
 
-INSERT INTO `ujian` (`id_ujian`, `id_guru`, `id_mapel`, `id_kelas`, `id_jurusan`, `jumlah_soal`, `durasi`, `jenis`, `waktu_mulai`, `waktu_selesai`, `token`, `status`) VALUES
-(13, 23, 1, 3, 4, 3, 90, 'urut', '2021-06-08 13:00:00', '2021-06-08 14:30:00', 'D4KEM', 'N'),
-(14, 30, 3, 3, 3, 2, 45, 'acak', '2021-06-08 07:00:00', '2021-06-08 07:45:00', 'XH108', 'Y');
+INSERT INTO `ujian` (`id_ujian`, `id_guru`, `id_mapel`, `id_kelas`, `id_jurusan`, `durasi`, `jenis`, `waktu_mulai`, `waktu_selesai`, `token`, `aktif`) VALUES
+(13, 23, 1, 3, 4, 90, 'urut', '2021-06-08 13:00:00', '2021-06-08 14:30:00', 'D4KEM', 'N'),
+(14, 30, 3, 3, 3, 45, 'acak', '2021-06-08 07:00:00', '2021-06-08 07:45:00', 'XH108', 'Y'),
+(15, 23, 1, 1, 1, 10, 'acak', '2021-06-11 19:00:13', '2021-06-11 19:10:13', '2MSB2', 'Y'),
+(34, 24, 7, 1, 1, 45, 'acak', '2021-06-12 08:00:00', '2021-06-12 08:45:00', '0JIX4', 'Y');
 
 -- --------------------------------------------------------
 
@@ -325,11 +334,12 @@ CREATE TABLE `ujian_hasil` (
 --
 ALTER TABLE `bank_soal`
   ADD PRIMARY KEY (`id_soal`),
-  ADD KEY `input_banksoal_ibfk_2` (`id_kategori`),
-  ADD KEY `input_banksoal_ibfk_1` (`id_guru`),
-  ADD KEY `id_mapel` (`id_mapel`),
   ADD KEY `id_kelas` (`id_kelas`),
-  ADD KEY `id_jurusan` (`id_jurusan`);
+  ADD KEY `id_jurusan` (`id_jurusan`),
+  ADD KEY `id_kategori` (`id_kategori`) USING BTREE,
+  ADD KEY `id_guru` (`id_guru`) USING BTREE,
+  ADD KEY `id_mapel` (`id_mapel`) USING BTREE,
+  ADD KEY `id_ujian` (`id_ujian`);
 
 --
 -- Indeks untuk tabel `guru`
@@ -407,7 +417,7 @@ ALTER TABLE `ujian_hasil`
 -- AUTO_INCREMENT untuk tabel `bank_soal`
 --
 ALTER TABLE `bank_soal`
-  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT untuk tabel `guru`
@@ -425,7 +435,7 @@ ALTER TABLE `jurusan`
 -- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `kelas`
@@ -455,7 +465,7 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT untuk tabel `ujian`
 --
 ALTER TABLE `ujian`
-  MODIFY `id_ujian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_ujian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT untuk tabel `ujian_hasil`
@@ -472,10 +482,11 @@ ALTER TABLE `ujian_hasil`
 --
 ALTER TABLE `bank_soal`
   ADD CONSTRAINT `bank_soal_ibfk_1` FOREIGN KEY (`id_guru`) REFERENCES `guru` (`id_guru`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `bank_soal_ibfk_2` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `bank_soal_ibfk_3` FOREIGN KEY (`id_mapel`) REFERENCES `mapel` (`id_mapel`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `bank_soal_ibfk_4` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `bank_soal_ibfk_5` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `bank_soal_ibfk_5` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `bank_soal_ibfk_6` FOREIGN KEY (`id_mapel`) REFERENCES `mapel` (`id_mapel`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `id_kategori` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `id_ujian` FOREIGN KEY (`id_ujian`) REFERENCES `ujian` (`id_ujian`);
 
 --
 -- Ketidakleluasaan untuk tabel `guru`
@@ -509,10 +520,10 @@ ALTER TABLE `siswa`
 -- Ketidakleluasaan untuk tabel `ujian`
 --
 ALTER TABLE `ujian`
-  ADD CONSTRAINT `ujian_ibfk_1` FOREIGN KEY (`id_guru`) REFERENCES `guru` (`id_guru`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `ujian_ibfk_2` FOREIGN KEY (`id_mapel`) REFERENCES `mapel` (`id_mapel`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `ujian_ibfk_3` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `ujian_ibfk_4` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`);
+  ADD CONSTRAINT `id_guru` FOREIGN KEY (`id_guru`) REFERENCES `guru` (`id_guru`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `id_jurusan` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `id_kelas` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `id_mapel` FOREIGN KEY (`id_mapel`) REFERENCES `mapel` (`id_mapel`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `ujian_hasil`

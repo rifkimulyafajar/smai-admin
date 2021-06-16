@@ -398,6 +398,7 @@ class Model_Admin extends CI_Model {
             "pilihan_e" => $this->input->post('pilihan_e', true),
             "file_e" => $this->file_e(),
             "kunci" => $this->input->post('kunci', true),
+            "nilai" => $this->input->post('nilai', true),
             "tanggal" => $this->input->post('tanggal', true)
         ];
 
@@ -464,6 +465,7 @@ class Model_Admin extends CI_Model {
         }
 
         $this->kunci = $post["kunci"];
+        $this->nilai = $post["nilai"];
         $this->tanggal = $post["tanggal"];
 
         $this->db->update('bank_soal', $this, array('id_soal' => $post["id_soal"]));

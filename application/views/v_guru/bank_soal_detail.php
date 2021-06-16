@@ -48,8 +48,11 @@
                 </div>
 
                 <div class="row form-group">
-                  <div class="col-12">
+                  <div class="col-6">
                     <label>Status Soal : </label> &nbsp; <?= $soal['status'] ?>
+                  </div>
+                  <div class="col-6">
+                    <label>Nilai Soal : </label> &nbsp; <?= $soal['nilai'] ?>
                   </div>
                 </div>
 

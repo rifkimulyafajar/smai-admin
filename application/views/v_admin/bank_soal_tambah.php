@@ -152,18 +152,20 @@
                   </div>
 
                   <div class="row">
-                    <div class="form-group col-4"></div>
-                    <div class="form-group col-4">
+                    <div class="form-group col-6">
                       <label>Pilih Kunci Jawaban</label>
-                    <select class="form-control" name="kunci">
-                      <option value="A">A</option>
-                      <option value="B">B</option>
-                      <option value="C">C</option>
-                      <option value="D">D</option>
-                      <option value="E">E</option>
-                    </select>
+                      <select class="form-control" name="kunci">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="E">E</option>
+                      </select>
                     </div>
-                    <div class="form-group col-4"></div>
+                    <div class="form-group col-6">
+                      <label>Nilai Soal</label>
+                      <input type="number" name="nilai" min="1" class="form-control">
+                    </div>
                   </div>
 
                   <?php

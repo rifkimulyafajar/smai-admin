@@ -19,7 +19,7 @@ class C_Guru extends CI_Controller {
 			# code...
 			$data['title'] = 'Guru - Dashboard';
 			$data['materi'] = $this->Model_Guru->hitungMateri($_SESSION['id_guru']);
-			$data['soal'] = $this->Model_Guru->hitungSoalById($_SESSION['id_guru']);
+			$data['soal'] = $this->Model_Guru->hitungSoal($_SESSION['id_guru']);
 			$data['ujian'] = $this->Model_Guru->hitungUjian($_SESSION['id_guru']);
 
 			$this->load->view('v_guru/header', $data);

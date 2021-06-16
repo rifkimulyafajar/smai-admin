@@ -130,25 +130,31 @@
                     </div>
 
                     <br>
-                    <div class="form-group">
-                      <label>Pilih Kunci Jawaban</label>
-                      <select class="form-control" name="kunci">
-                        <option <?php if ($soal['kunci'] === "A"): ?>
-                          selected
-                        <?php endif ?> value="A">A</option>
-                        <option <?php if ($soal['kunci'] === "B"): ?>
-                          selected
-                        <?php endif ?> value="B">B</option>
-                        <option <?php if ($soal['kunci'] === "C"): ?>
-                          selected
-                        <?php endif ?> value="C">C</option>
-                        <option <?php if ($soal['kunci'] === "D"): ?>
-                          selected
-                        <?php endif ?> value="D">D</option>
-                        <option <?php if ($soal['kunci'] === "E"): ?>
-                          selected
-                        <?php endif ?> value="E">E</option>
-                      </select>
+                    <div class="row">
+                      <div class="form-group col-6">
+                        <label>Pilih Kunci Jawaban</label>
+                        <select class="form-control" name="kunci">
+                          <option <?php if ($soal['kunci'] === "A"): ?>
+                            selected
+                          <?php endif ?> value="A">A</option>
+                          <option <?php if ($soal['kunci'] === "B"): ?>
+                            selected
+                          <?php endif ?> value="B">B</option>
+                          <option <?php if ($soal['kunci'] === "C"): ?>
+                            selected
+                          <?php endif ?> value="C">C</option>
+                          <option <?php if ($soal['kunci'] === "D"): ?>
+                            selected
+                          <?php endif ?> value="D">D</option>
+                          <option <?php if ($soal['kunci'] === "E"): ?>
+                            selected
+                          <?php endif ?> value="E">E</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-6">
+                        <label>Nilai Soal</label>
+                        <input type="number" name="nilai" min="1" class="form-control" value="<?= $soal['nilai'] ?>">
+                      </div>
                     </div>
 
                     <input type="hidden" name="tanggal" value="<?= $soal['tanggal'] ?>">

@@ -158,7 +158,7 @@
 
                     <br>
                     <div class="row">
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label>Pilih Kunci Jawaban</label>
                         <select class="form-control" name="kunci">
                           <option <?php if ($soal['kunci'] === "A"): ?>

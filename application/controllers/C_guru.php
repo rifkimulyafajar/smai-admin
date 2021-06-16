@@ -141,7 +141,8 @@ class C_Guru extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Pilih Soal Ujian';
-			$data['soal'] = $this->Model_Guru->getSoalUjian($guru, $kelas, $jurusan);
+			$data['soal_u'] = $this->Model_Guru->getSoalUjian($guru, $kelas, $jurusan);
+			$data['soal_l'] = $this->Model_Guru->getSoalLatihan($guru, $kelas, $jurusan);
 			$data['ujian'] = $this->Model_Guru->getUjianById($id);
 			$data['total'] = $this->Model_Guru->hitungSoalById($id);
 			$data['kat'] = $this->Model_Guru->getKategori($guru);
@@ -155,44 +156,43 @@ class C_Guru extends CI_Controller {
 		}
 	}
 
-	public function pilih_soal($id_ujian, $guru, $kls, $jrs)
+	public function pilih_soal_tambah($id_ujian, $guru, $kls, $jrs)
 	{
 		// code...
-		$action = $this->input->post('action');
-		if ($action == 'simpan') {
-
-			$id = $this->input->post('pilih');
+		$id = $this->input->post('pilih');
 		
-			for ($i=0 ; $i<count($id) ; $i++) { 
+		for ($i=0 ; $i<count($id) ; $i++) { 
 				
-				$result = $this->db->set('status', 'Ujian')->set('id_ujian', $id_ujian)->where('id_soal', $id[$i])->update('bank_soal');
-			}
-
-			if ($result) {
-				echo "<script>alert('berhasil');</script>";
-				redirect('C_Guru/pilih_soal_ujian/'.$id_ujian.'/'.$guru.'/'.$kls.'/'.$jrs.'' , 'refresh');
-			}
-			else {
-				echo "<script>alert('gagal');</script>";
-				redirect('C_Guru/pilih_soal_ujian/'.$id_ujian.'/'.$guru.'/'.$kls.'/'.$jrs.'' , 'refresh');
-			}
+			$result = $this->db->set('status', 'Ujian')->set('id_ujian', $id_ujian)->where('id_soal', $id[$i])->update('bank_soal');
 		}
-		elseif ($action == 'hapus') {
-			$id = $this->input->post('pilih');
+
+		if ($result) {
+			echo "<script>alert('berhasil');</script>";
+			redirect('C_Guru/pilih_soal_ujian/'.$id_ujian.'/'.$guru.'/'.$kls.'/'.$jrs.'' , 'refresh');
+		}
+		else {
+			echo "<script>alert('gagal');</script>";
+			redirect('C_Guru/pilih_soal_ujian/'.$id_ujian.'/'.$guru.'/'.$kls.'/'.$jrs.'' , 'refresh');
+		}
+	}
+
+	public function pilih_soal_hapus($id_ujian, $guru, $kls, $jrs)
+	{
+		// code...
+		$id = $this->input->post('pilih');
 		
-			for ($i=0 ; $i<count($id) ; $i++) {
+		for ($i=0 ; $i<count($id) ; $i++) {
 
-				$result = $this->db->set('status', 'Latihan')->set('id_ujian', null)->where('id_soal', $id[$i])->update('bank_soal');
-			}
+			$result = $this->db->set('status', 'Latihan')->set('id_ujian', null)->where('id_soal', $id[$i])->update('bank_soal');
+		}
 
-			if ($result) {
-				echo "<script>alert('berhasil');</script>";
-				redirect('C_Guru/pilih_soal_ujian/'.$id_ujian.'/'.$guru.'/'.$kls.'/'.$jrs.'' , 'refresh');
-			}
-			else {
-				echo "<script>alert('gagal');</script>";
-				redirect('C_Guru/pilih_soal_ujian/'.$id_ujian.'/'.$guru.'/'.$kls.'/'.$jrs.'' , 'refresh');
-			}
+		if ($result) {
+			echo "<script>alert('berhasil');</script>";
+			redirect('C_Guru/pilih_soal_ujian/'.$id_ujian.'/'.$guru.'/'.$kls.'/'.$jrs.'' , 'refresh');
+		}
+		else {
+			echo "<script>alert('gagal');</script>";
+			redirect('C_Guru/pilih_soal_ujian/'.$id_ujian.'/'.$guru.'/'.$kls.'/'.$jrs.'' , 'refresh');
 		}
 	}
 

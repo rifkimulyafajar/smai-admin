@@ -54,6 +54,7 @@
                       <th>Status</th>
                       <th>Kategori Soal</th>
                       <th>Soal</th>
+                      <th>Nilai</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -72,6 +73,7 @@
                       <td><?= $s['status'] ?></td>
                       <td><?= $s['kategori'] ?></td>
                       <td><?= $s['soal'] ?></td>
+                      <td><?= $s['nilai'] ?></td>
                     </tr>
 
                     <?php $i++; } } ?>
@@ -83,6 +85,7 @@
                       <th>Status</th>
                       <th>Kategori Soal</th>
                       <th>Soal</th>
+                      <th>Nilai</th>
                     </tr>
                   </tfoot>
                 </table>
@@ -139,6 +142,7 @@
                       <th>Status</th>
                       <th>Kategori Soal</th>
                       <th>Soal</th>
+                      <th>Nilai</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -157,6 +161,7 @@
                       <td><?= $s['status'] ?></td>
                       <td><?= $s['kategori'] ?></td>
                       <td><?= $s['soal'] ?></td>
+                      <td><?= $s['nilai'] ?></td>
                     </tr>
 
                     <?php $i++; } } ?>
@@ -168,6 +173,7 @@
                       <th>Status</th>
                       <th>Kategori Soal</th>
                       <th>Soal</th>
+                      <th>Nilai</th>
                     </tr>
                   </tfoot>
                 </table>
@@ -205,6 +211,7 @@
                       <th>Status</th>
                       <th>Kategori Soal</th>
                       <th>Soal</th>
+                      <th>Nilai</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -223,6 +230,7 @@
                       <td><?= $s['status'] ?></td>
                       <td><?= $s['kategori'] ?></td>
                       <td><?= $s['soal'] ?></td>
+                      <td><?= $s['nilai'] ?></td>
                     </tr>
 
                     <?php $i++; } } ?>
@@ -234,6 +242,7 @@
                       <th>Status</th>
                       <th>Kategori Soal</th>
                       <th>Soal</th>
+                      <th>Nilai</th>
                     </tr>
                   </tfoot>
                 </table>
@@ -374,8 +383,7 @@
               </div>
 
               <div class="row">
-                <div class="form-group col-4"></div>
-                <div class="form-group col-4">
+                <div class="form-group col-6">
                   <label>Pilih Kunci Jawaban</label>
                   <select class="form-control" name="kunci">
                     <option value="A">A</option>
@@ -385,7 +393,10 @@
                     <option value="E">E</option>
                   </select>
                   </div>
-                <div class="form-group col-4"></div>
+                <div class="form-group col-6">
+                  <label>Nilai Soal</label>
+                  <input type="number" name="nilai" min="1" class="form-control">
+                </div>
               </div>
 
               <?php

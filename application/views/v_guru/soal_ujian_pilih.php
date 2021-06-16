@@ -17,7 +17,7 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
 
-        <?php if (empty($soal)) { ?>
+        <?php if (empty($soal_u)) { ?>
 
         <div class="row">
           <div class="col-4">
@@ -37,6 +37,75 @@
           <div class="col-4"></div>
         </div>
         <br>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h3>Daftar Soal yang Telah Dibuat di Bank Soal</h3>
+              </div>
+              <div class="card-body">
+                <?= form_open('C_Guru/pilih_soal_tambah/'.$ujian['id_ujian'].'/'.$ujian['id_guru'].'/'
+                                  .$ujian['id_kelas'].'/'.$ujian['id_jurusan']); ?>
+                <table class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th class="text-center"> + </th>
+                      <th>Status</th>
+                      <th>Kategori Soal</th>
+                      <th>Soal</th>
+                      <th>Nilai</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <?php
+                    $i = 1;
+
+                    if (count($soal_l)) { 
+                    
+                    foreach ($soal_l as $s) { ?>
+
+                    <tr>
+                      <td class="text-center">
+                        <input type="checkbox" name="pilih[]" value="<?= $s['id_soal'] ?>">
+                      </td>
+                      <td><?= $s['status'] ?></td>
+                      <td><?= $s['kategori'] ?></td>
+                      <td><?= $s['soal'] ?></td>
+                      <td><?= $s['nilai'] ?></td>
+                    </tr>
+
+                    <?php $i++; } } ?>
+
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th class="text-center"> + </th>
+                      <th>Status</th>
+                      <th>Kategori Soal</th>
+                      <th>Soal</th>
+                      <th>Nilai</th>
+                    </tr>
+                  </tfoot>
+                </table>
+                <br>
+                <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4">
+                    <button class="btn btn-block bg-success" type="submit">
+                      <i class="fas fa-check-circle"></i>&nbsp;&nbsp; Jadikan Sebagai Soal Ujian
+                    </button>
+                  </div>
+                  <div class="col-4"></div>
+                </div>
+                <?= form_close(); ?>
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
+        </div>
+        <!-- /.row -->
 
         <?php } else { ?>
 
@@ -61,10 +130,10 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <h3>Daftar Soal yang Telah Dibuat</h3>
+                <h3>Daftar Soal Ujian</h3>
               </div>
               <div class="card-body">
-                <?= form_open_multipart('C_Guru/pilih_soal/'.$ujian['id_ujian'].'/'.$ujian['id_guru'].'/'
+                <?= form_open_multipart('C_Guru/pilih_soal_hapus/'.$ujian['id_ujian'].'/'.$ujian['id_guru'].'/'
                                   .$ujian['id_kelas'].'/'.$ujian['id_jurusan']); ?>
                 <table class="table table-bordered table-striped">
                   <thead>
@@ -73,6 +142,7 @@
                       <th>Status</th>
                       <th>Kategori Soal</th>
                       <th>Soal</th>
+                      <th>Nilai</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -80,9 +150,9 @@
                     <?php
                     $i = 1;
 
-                    if (count($soal)) { 
+                    if (count($soal_u)) { 
                     
-                    foreach ($soal as $s) { ?>
+                    foreach ($soal_u as $s) { ?>
 
                     <tr>
                       <td class="text-center">
@@ -91,6 +161,7 @@
                       <td><?= $s['status'] ?></td>
                       <td><?= $s['kategori'] ?></td>
                       <td><?= $s['soal'] ?></td>
+                      <td><?= $s['nilai'] ?></td>
                     </tr>
 
                     <?php $i++; } } ?>
@@ -102,23 +173,88 @@
                       <th>Status</th>
                       <th>Kategori Soal</th>
                       <th>Soal</th>
+                      <th>Nilai</th>
                     </tr>
                   </tfoot>
                 </table>
                 <br>
                 <div class="row">
-                  <div class="col-3"></div>
-                  <div class="col-3">
-                    <button class="btn btn-block bg-success" type="submit" name="action" value="simpan">
-                      <i class="fas fa-check-circle"></i>&nbsp;&nbsp; Jadikan Sebagai Soal Ujian
-                    </button>
-                  </div>
-                  <div class="col-3">
+                  <div class="col-4"></div>
+                  <div class="col-4">
                     <button class="btn btn-block bg-danger" type="submit" name="action" value="hapus">
                       <i class="fas fa-times-circle"></i>&nbsp;&nbsp; Hapus Dari Soal Ujian
                     </button>
                   </div>
-                  <div class="col-3"></div>
+                  <div class="col-4"></div>
+                </div>
+                <?= form_close(); ?>
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
+        </div> <br>
+        <!-- /.row -->
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h3>Daftar Soal yang Telah Dibuat di Bank Soal</h3>
+              </div>
+              <div class="card-body">
+                <?= form_open('C_Guru/pilih_soal_tambah/'.$ujian['id_ujian'].'/'.$ujian['id_guru'].'/'
+                                  .$ujian['id_kelas'].'/'.$ujian['id_jurusan']); ?>
+                <table class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th class="text-center"> + </th>
+                      <th>Status</th>
+                      <th>Kategori Soal</th>
+                      <th>Soal</th>
+                      <th>Nilai</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <?php
+                    $i = 1;
+
+                    if (count($soal_l)) { 
+                    
+                    foreach ($soal_l as $s) { ?>
+
+                    <tr>
+                      <td class="text-center">
+                        <input type="checkbox" name="pilih[]" value="<?= $s['id_soal'] ?>">
+                      </td>
+                      <td><?= $s['status'] ?></td>
+                      <td><?= $s['kategori'] ?></td>
+                      <td><?= $s['soal'] ?></td>
+                      <td><?= $s['nilai'] ?></td>
+                    </tr>
+
+                    <?php $i++; } } ?>
+
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th class="text-center"> + </th>
+                      <th>Status</th>
+                      <th>Kategori Soal</th>
+                      <th>Soal</th>
+                      <th>Nilai</th>
+                    </tr>
+                  </tfoot>
+                </table>
+                <br>
+                <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4">
+                    <button class="btn btn-block bg-success" type="submit">
+                      <i class="fas fa-check-circle"></i>&nbsp;&nbsp; Jadikan Sebagai Soal Ujian
+                    </button>
+                  </div>
+                  <div class="col-4"></div>
                 </div>
                 <?= form_close(); ?>
               </div>
@@ -262,8 +398,7 @@
               </div>
 
               <div class="row">
-                <div class="form-group col-4"></div>
-                <div class="form-group col-4">
+                <div class="form-group col-6">
                   <label>Pilih Kunci Jawaban</label>
                   <select class="form-control" name="kunci">
                     <option value="A">A</option>
@@ -273,7 +408,10 @@
                     <option value="E">E</option>
                   </select>
                   </div>
-                <div class="form-group col-4"></div>
+                <div class="form-group col-6">
+                  <label>Nilai Soal</label>
+                  <input type="number" name="nilai" min="1" class="form-control">
+                </div>
               </div>
 
               <?php

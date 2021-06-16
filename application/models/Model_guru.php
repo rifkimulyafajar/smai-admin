@@ -264,6 +264,26 @@ class Model_Guru extends CI_Model {
         $this->db->where('guru.id_guru', $id);
         $this->db->where('kelas.id_kelas', $kelas);
         $this->db->where('jurusan.id_jurusan', $jurusan);
+        $this->db->where('bank_soal.status', 'Ujian');
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
+    public function getSoalLatihan($id, $kelas, $jurusan)
+    {
+        // code...
+        $this->db->select('*');
+        $this->db->from('bank_soal');
+        $this->db->join('guru', 'bank_soal.id_guru = guru.id_guru');
+        $this->db->join('mapel', 'bank_soal.id_mapel = mapel.id_mapel');
+        $this->db->join('kelas', 'bank_soal.id_kelas = kelas.id_kelas', 'left');
+        $this->db->join('jurusan', 'bank_soal.id_jurusan = jurusan.id_jurusan', 'left');
+        $this->db->join('kategori', 'bank_soal.id_kategori = kategori.id_kategori', 'left');
+        $this->db->where('guru.id_guru', $id);
+        $this->db->where('kelas.id_kelas', $kelas);
+        $this->db->where('jurusan.id_jurusan', $jurusan);
+        $this->db->where('bank_soal.status', 'Latihan');
         $query = $this->db->get();
 
         return $query->result_array();
@@ -610,6 +630,7 @@ class Model_Guru extends CI_Model {
             "pilihan_e" => $this->input->post('pilihan_e', true),
             "file_e" => $this->file_e(),
             "kunci" => $this->input->post('kunci', true),
+            "nilai" => $this->input->post('nilai', true),
             "tanggal" => $this->input->post('tanggal', true)
         ];
 

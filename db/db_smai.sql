@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Jun 2021 pada 08.44
+-- Waktu pembuatan: 23 Jun 2021 pada 21.25
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -35,7 +35,7 @@ CREATE TABLE `bank_soal` (
   `id_kelas` int(11) NOT NULL,
   `id_jurusan` int(11) NOT NULL,
   `id_ujian` int(11) DEFAULT NULL,
-  `status` enum('Latihan','Ujian') NOT NULL,
+  `status` enum('Latihan','Ujian') DEFAULT NULL,
   `soal` longtext NOT NULL,
   `file_soal` varchar(250) DEFAULT NULL,
   `pilihan_a` longtext NOT NULL,
@@ -49,6 +49,7 @@ CREATE TABLE `bank_soal` (
   `pilihan_e` longtext NOT NULL,
   `file_e` varchar(250) DEFAULT NULL,
   `kunci` varchar(250) NOT NULL,
+  `nilai` int(11) NOT NULL,
   `tanggal` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -56,23 +57,31 @@ CREATE TABLE `bank_soal` (
 -- Dumping data untuk tabel `bank_soal`
 --
 
-INSERT INTO `bank_soal` (`id_soal`, `id_guru`, `id_mapel`, `id_kategori`, `id_kelas`, `id_jurusan`, `id_ujian`, `status`, `soal`, `file_soal`, `pilihan_a`, `file_a`, `pilihan_b`, `file_b`, `pilihan_c`, `file_c`, `pilihan_d`, `file_d`, `pilihan_e`, `file_e`, `kunci`, `tanggal`) VALUES
-(2, 24, 7, NULL, 1, 6, NULL, 'Ujian', '<p>dimana?</p>\r\n', '', 'atas', '', 'bawah', '', 'kanan', '', 'kiri', '', 'belakang', '', 'D', '2021-05-20 22:55:00'),
-(3, 30, 3, NULL, 1, 3, NULL, 'Ujian', '<p>two?</p>\r\n', '', '', '1.png', '', '2.png', '', '3.png', '', '4.png', '', '5.png', 'B', '2021-05-21 09:42:00'),
-(8, 29, 2, 1, 3, 1, NULL, 'Latihan', '<p>ha?</p>\r\n', 'user.jpg', 'saya', '', 'kamu', '', 'kanan', '', 'mereka', '', 'belakang', '', 'E', '2021-05-24 09:38:53'),
-(9, 30, 3, NULL, 3, 3, 14, 'Ujian', '<p>Cc</p>\r\n', '', '1', '', '2', '', '1', '', 'mereka', '', 'kami', '', 'B', '2021-05-25 13:18:49'),
-(12, 36, 2, NULL, 3, 1, NULL, 'Ujian', '<p>AAAAaaaa</p>\r\n', '', 'A', '', 'B', '', 'C', '', '', '', '', '', 'A', '2021-05-26 22:09:45'),
-(16, 23, 1, NULL, 3, 4, 13, 'Ujian', '<p>a</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', '2021-05-28 08:41:19'),
-(22, 29, 2, 2, 1, 5, NULL, 'Latihan', '<p>T</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', '2021-05-28 21:48:46'),
-(23, 24, 7, NULL, 2, 4, NULL, 'Ujian', '<p>P</p>\r\n', '', '', '', '', '', '', '', '', '', '', '', 'A', '2021-05-29 22:27:47'),
-(30, 20, 1, NULL, 1, 1, NULL, 'Ujian', '<p>1</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'B', '2021-05-31 10:37:54'),
-(32, 23, 1, 11, 1, 1, 15, 'Ujian', '<p>?</p>\r\n', '', '', '', '', '', '', '', '', '', '', '', 'B', '2021-06-04 15:26:39'),
-(33, 23, 1, 11, 1, 1, 15, 'Ujian', '<p>?</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', '2021-06-11 16:38:22'),
-(34, 30, 3, NULL, 3, 3, 14, 'Ujian', '<p>??</p>\r\n', NULL, 'A', NULL, 'B', NULL, 'C', NULL, 'D', NULL, 'E', NULL, 'E', '2021-06-13 01:01:21'),
-(35, 30, 3, NULL, 3, 3, NULL, 'Latihan', '<p>11</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', '2021-06-13 01:13:40'),
-(36, 23, 1, 11, 3, 4, NULL, 'Latihan', '<p>b</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', '2021-06-13 03:51:08'),
-(37, 24, 7, NULL, 1, 1, 34, 'Ujian', '<p>z</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', '2021-06-13 04:18:08'),
-(43, 24, 7, NULL, 1, 1, 34, 'Ujian', '<p>ZZ</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'B', '2021-06-13 04:41:49');
+INSERT INTO `bank_soal` (`id_soal`, `id_guru`, `id_mapel`, `id_kategori`, `id_kelas`, `id_jurusan`, `id_ujian`, `status`, `soal`, `file_soal`, `pilihan_a`, `file_a`, `pilihan_b`, `file_b`, `pilihan_c`, `file_c`, `pilihan_d`, `file_d`, `pilihan_e`, `file_e`, `kunci`, `nilai`, `tanggal`) VALUES
+(2, 24, 7, NULL, 1, 6, NULL, 'Ujian', '<p>dimana?</p>\r\n', '', 'atas', '', 'bawah', '', 'kanan', '', 'kiri', '', 'belakang', '', 'kiri', 2, '2021-05-20 22:55:00'),
+(3, 30, 3, NULL, 1, 3, NULL, 'Ujian', '<p>two?</p>\r\n', '', '', '1.png', '', '2.png', '', '3.png', '', '4.png', '', '5.png', '2.png', 3, '2021-05-21 09:42:00'),
+(8, 29, 2, 1, 3, 1, NULL, 'Latihan', '<p>ha?</p>\r\n', 'user.jpg', 'saya', '', 'kamu', '', 'kanan', '', 'mereka', '', 'belakang', '', 'kamu', 2, '2021-05-24 09:38:53'),
+(9, 30, 3, NULL, 3, 3, 14, 'Ujian', '<p>Cc</p>\r\n', '', '1', '', '2', '', '1', '', 'mereka', '', 'kami', '', 'B', 2, '2021-05-25 13:18:49'),
+(12, 36, 2, NULL, 3, 1, NULL, 'Ujian', '<p>AAAAaaaa</p>\r\n', '', 'A', '', 'B', '', 'C', '', '', '', '', '', 'A', 4, '2021-05-26 22:09:45'),
+(16, 23, 1, NULL, 3, 4, 13, 'Ujian', '<p>a</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', 5, '2021-05-28 08:41:19'),
+(22, 29, 2, 2, 1, 5, NULL, 'Latihan', '<p>T</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', 4, '2021-05-28 21:48:46'),
+(23, 24, 7, NULL, 2, 4, NULL, 'Ujian', '<p>P</p>\r\n', '', '', '', '', '', '', '', '', '', '', '', 'A', 2, '2021-05-29 22:27:47'),
+(30, 20, 1, NULL, 1, 1, NULL, 'Ujian', '<p>1</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'B', 3, '2021-05-31 10:37:54'),
+(32, 23, 1, 11, 1, 1, 15, 'Ujian', '<p>?</p>\r\n', '', '', '', '', '', '', '', '', '', '', '', 'B', 3, '2021-06-04 15:26:39'),
+(33, 23, 1, 11, 1, 1, 15, 'Ujian', '<p>?</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', 2, '2021-06-11 16:38:22'),
+(34, 30, 3, NULL, 3, 3, 14, 'Ujian', '<p>??</p>\r\n', NULL, 'A', NULL, 'B', NULL, 'C', NULL, 'D', NULL, 'E', NULL, 'E', 2, '2021-06-13 01:01:21'),
+(35, 30, 3, NULL, 3, 3, NULL, 'Latihan', '<p>11</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', 4, '2021-06-13 01:13:40'),
+(36, 23, 1, 11, 3, 4, 13, 'Ujian', '<p>b</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', 4, '2021-06-13 03:51:08'),
+(37, 24, 7, NULL, 1, 1, 34, 'Ujian', '<p>z</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', 2, '2021-06-13 04:18:08'),
+(43, 24, 7, NULL, 1, 1, 34, 'Ujian', '<p>ZZ</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'B', 2, '2021-06-13 04:41:49'),
+(44, 23, 1, 11, 3, 4, NULL, 'Latihan', '<p>?</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', 2, '2021-06-16 23:26:46'),
+(45, 23, 1, 14, 1, 1, NULL, '', '<p>BB</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', 3, '2021-06-22 17:23:55'),
+(54, 20, 1, NULL, 1, 1, NULL, '', '<p>XXXXXXx</p>\r\n', NULL, '', 'Android_Mobile_–_1.png', '', NULL, '', NULL, '', NULL, '', NULL, 'Android_Mobile_–_1.png', 1, '2021-06-23 20:40:20'),
+(61, 50, 11, NULL, 3, 6, NULL, 'Latihan', '<p>Mayoritas agama mengajarkan pembinaan rasa kasih sayang, tolong-menolong dengan keikhlasan, hidup rukun, ikut meringankan beban bagi yang lemah, dan membina hubungan dengan sesama manusia secara harmonis. Hal tersebut menunjukan agama memiliki fungsi...</p>\r\n', '', 'Fungsi pengendalian diri', '', 'Fungsi perlindungan', '', 'Fungsi pendidikan', '', 'Fungsi sosial', '', 'Fungsi fasilitasi', '', 'Fungsi sosial', 1, '2021-06-23 23:00:24'),
+(62, 50, 11, NULL, 3, 6, NULL, 'Latihan', '<p>Contoh tradisi lisan dari suku Betawi yang masih dikenal sampai saat ini adalah ….</p>\r\n', '', 'Pencak Silat', '', 'Musik Tanjidor', '', 'Tradisi Palang Pintu', '', 'Rumah Kebaya', '', 'Kerak Telor', '', 'Tradisi Palang Pintu', 3, '2021-06-23 23:28:16'),
+(63, 50, 11, NULL, 3, 6, 35, 'Ujian', '<p>Perhatikan illustrasi berikut :<br>\r\nUpacara tradisional pada masyarakat Jawa Tengah seperti digerakkan kekuatan spiritual mereka saling bahu membahu membuat sejumlah ritual dan tradisi yang hakekatnya memohon keselamatan pada Tuhan Yang Maha Esa, seperti upacara Larung dengan menghanyutkan sesaji ke laut yang berupa hasil bumi. Dari ilustrasi tersebut dapat disimpulkan bahwa tradisi larung merupakan bentuk....</p>\r\n', NULL, 'pujian-pujian yang dipersembahkan untuk roh leluhur', NULL, 'tradisi penghormatan pada pengauasa pantai', NULL, 'rasa syukur masyarakat akan hasil bumi yang mereka hasilkan', NULL, 'keyakinan yang terdapat pada masyarakat', NULL, 'kepercayaan tradisional masyarakat setempat', NULL, 'rasa syukur masyarakat akan hasil bumi yang mereka hasilkan', 2, '2021-06-24 01:18:36'),
+(64, 50, 11, NULL, 3, 6, NULL, NULL, '<p>Kampung Naga merupakan suatu kampung yang mewarisi budaya leluhur. Di mana masyarakatnya terikat pada aturan yang telah ditetapkan untuk mensosialisasikan nilai-nilai, norma-norma yang berlaku yang diwariskan ke generasi berikutnya. Sarana pewarisan budaya ini adalah ....</p>\r\n', '', 'Lembaga pendidikan', '', 'Lembaga hukum', '', 'Lembaga adat', '', 'Lembaga agama', '', 'Lembaga ekonomi', '', 'Lembaga adat', 4, '2021-06-24 02:05:04'),
+(65, 50, 11, NULL, 3, 6, 35, 'Ujian', '<p>Seorang pengamen ingin meniru penampilan penyanyi terkenal dengan cara berdandan dan berpenampilan, serta bernyanyi seperti penyanyi terkenal tersebut. Hal ini merupakan salah satu faktor pendorong dinamika budaya yang disebut ....</p>\r\n', '', 'identifikasi', '', 'motivasi', '', 'simpati', '', 'sugesti', '', 'imitasi', '', 'imitasi', 3, '2021-06-24 02:11:09');
 
 -- --------------------------------------------------------
 
@@ -272,11 +281,11 @@ CREATE TABLE `siswa` (
 
 INSERT INTO `siswa` (`id_siswa`, `nis`, `nama`, `id_kelas`, `id_jurusan`, `username`, `password`) VALUES
 (1, '123', 'Aaa', 1, 6, '123', '$2y$10$hfIum0XfOxQZSS0p.f7UcOJ/czk4UD4H9ndTHVPuCa/'),
-(2, '321', 'Bbb', 2, 2, '321', '$2y$10$MKQKEJakPk7/pF1rpLrKt.8P/Jlhi0rwWnmvdYhuJI3'),
-(4, '333', 'Ddd', 3, 4, '333', '$2y$10$Qve/K334V8DulKdyd63jh.8r1bu9t1VgJU8vNU06Htk'),
-(5, '555', 'Zzz', 2, 4, '555', '$2y$10$GkxzXT9kV64dq.rduEo1mOLNRXzJqj1XBbxwRuJ7zs/'),
-(6, '222', 'abcd', 3, 3, '222', '$2y$10$Sb7TUWVxgNUau8myfZ6S4OkDJyFGFJPZsDfa4f/CkA1'),
-(7, '444', 'xyz', 3, 6, '444', '$2y$10$IWwzi81/OjhiqgAWzbowGesB0V.zPF1RMAzw8WA38vB');
+(2, '321', 'Bbb', 2, 2, '321', '321'),
+(4, '333', 'Ddd', 3, 4, '333', '333'),
+(5, '555', 'Zzz', 2, 4, '555', '555'),
+(6, '222', 'abcd', 3, 3, '222', '222'),
+(7, '444', 'xyz', 3, 6, '444', '444');
 
 -- --------------------------------------------------------
 
@@ -294,19 +303,19 @@ CREATE TABLE `ujian` (
   `jenis` enum('acak','urut') NOT NULL,
   `waktu_mulai` datetime NOT NULL,
   `waktu_selesai` datetime NOT NULL,
-  `token` varchar(5) NOT NULL,
-  `aktif` enum('Y','N') NOT NULL
+  `token` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `ujian`
 --
 
-INSERT INTO `ujian` (`id_ujian`, `id_guru`, `id_mapel`, `id_kelas`, `id_jurusan`, `durasi`, `jenis`, `waktu_mulai`, `waktu_selesai`, `token`, `aktif`) VALUES
-(13, 23, 1, 3, 4, 90, 'urut', '2021-06-08 13:00:00', '2021-06-08 14:30:00', 'D4KEM', 'N'),
-(14, 30, 3, 3, 3, 45, 'acak', '2021-06-08 07:00:00', '2021-06-08 07:45:00', 'XH108', 'Y'),
-(15, 23, 1, 1, 1, 10, 'acak', '2021-06-11 19:00:13', '2021-06-11 19:10:13', '2MSB2', 'Y'),
-(34, 24, 7, 1, 1, 45, 'acak', '2021-06-12 08:00:00', '2021-06-12 08:45:00', '0JIX4', 'Y');
+INSERT INTO `ujian` (`id_ujian`, `id_guru`, `id_mapel`, `id_kelas`, `id_jurusan`, `durasi`, `jenis`, `waktu_mulai`, `waktu_selesai`, `token`) VALUES
+(13, 23, 1, 3, 4, 90, 'urut', '2021-06-08 13:00:00', '2021-06-08 14:30:00', 'D4KEM'),
+(14, 30, 3, 3, 3, 45, 'acak', '2021-06-08 07:00:00', '2021-06-08 07:45:00', 'XH108'),
+(15, 23, 1, 1, 1, 10, 'acak', '2021-06-11 19:00:13', '2021-06-11 19:10:13', '2MSB2'),
+(34, 24, 7, 1, 1, 45, 'acak', '2021-06-12 08:00:00', '2021-06-12 08:45:00', '0JIX4'),
+(35, 50, 11, 3, 6, 30, 'acak', '2021-06-25 08:00:00', '2021-06-25 08:30:00', 'Z5AB9');
 
 -- --------------------------------------------------------
 
@@ -417,7 +426,7 @@ ALTER TABLE `ujian_hasil`
 -- AUTO_INCREMENT untuk tabel `bank_soal`
 --
 ALTER TABLE `bank_soal`
-  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT untuk tabel `guru`
@@ -465,7 +474,7 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT untuk tabel `ujian`
 --
 ALTER TABLE `ujian`
-  MODIFY `id_ujian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_ujian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT untuk tabel `ujian_hasil`
@@ -486,7 +495,7 @@ ALTER TABLE `bank_soal`
   ADD CONSTRAINT `bank_soal_ibfk_5` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `bank_soal_ibfk_6` FOREIGN KEY (`id_mapel`) REFERENCES `mapel` (`id_mapel`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `id_kategori` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `id_ujian` FOREIGN KEY (`id_ujian`) REFERENCES `ujian` (`id_ujian`);
+  ADD CONSTRAINT `id_ujian` FOREIGN KEY (`id_ujian`) REFERENCES `ujian` (`id_ujian`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `guru`

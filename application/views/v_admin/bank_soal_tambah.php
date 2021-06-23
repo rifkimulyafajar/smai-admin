@@ -75,11 +75,18 @@
                   </div>
 
                   <div class="row">
-                    <div class="form-group col-12">
+                    <div class="form-group col-6">
                       <label>Status Soal</label>
                       <select class="form-control" name="status">
+                        <option></option>
                         <option value="Latihan">Latihan</option>
+                        <option value="Ujian">Ujian</option>
                       </select>
+                    </div>
+                    <div class="form-group col-6">
+                      <label>Nilai Soal</label>
+                      <input type="number" name="nilai" min="1" class="form-control" value="1">
+                      <?= form_error('nilai', '<small class="text-danger">', '</small>'); ?>
                     </div>
                   </div>
 
@@ -97,74 +104,112 @@
 
                   <br><br>
                   <div class="row">
-                    <div class="form-group col-8">
+                    <div class="form-group col-6">
                       <label>Jawaban A</label>
-                      <input type="text" name="pilihan_a" class="form-control" placeholder="Isi disini .....">
+                      <input type="text" name="pilihan_a" class="form-control" placeholder="Isi disini ....." value="<?= set_value('pilihan_a') ?>">
+                      <?= form_error('pilihan_a', '<small class="text-danger">', '</small>'); ?>
                     </div>
-                    <div class="form-group col-4">
-                      <label>Tambah Gambar Jawaban A (opsional)</label>
+                    <div class="form-group col-3">
+                      <label>Gambar Jawaban A (opsional)</label>
                       <input type="file" name="file_a" class="form-control">
+                      <?= form_error('file_a', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                    <div class="form-group clearfix col-3 text-center">
+                      <label>Kunci Jawaban A</label> <br>
+                      <div class="icheck-success d-inline">
+                        <input type="checkbox" name="kunci_a" id="kunci_a">
+                        <label for="kunci_a"></label>
+                      </div>
+                      <br>
+                      <?= form_error('kunci_a', '<small class="text-danger">', '</small>'); ?>
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="form-group col-8">
+                    <div class="form-group col-6">
                       <label>Jawaban B</label>
-                      <input type="text" name="pilihan_b" class="form-control" placeholder="Isi disini .....">
+                      <input type="text" name="pilihan_b" class="form-control" placeholder="Isi disini ....." value="<?= set_value('pilihan_b') ?>">
+                      <?= form_error('pilihan_b', '<small class="text-danger">', '</small>'); ?>
                     </div>
-                    <div class="form-group col-4">
-                      <label>Tambah Gambar Jawaban B (opsional)</label>
+                    <div class="form-group col-3">
+                      <label>Gambar Jawaban B (opsional)</label>
                       <input type="file" name="file_b" class="form-control">
+                      <?= form_error('file_b', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                    <div class="form-group clearfix col-3 text-center">
+                      <label>Kunci Jawaban B</label> <br>
+                      <div class="icheck-success d-inline">
+                        <input type="checkbox" name="kunci_b" id="kunci_b">
+                        <label for="kunci_b"></label>
+                      </div>
+                      <br>
+                      <?= form_error('kunci_b', '<small class="text-danger">', '</small>'); ?>
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="form-group col-8">
+                    <div class="form-group col-6">
                       <label>Jawaban C</label>
-                      <input type="text" name="pilihan_c" class="form-control" placeholder="Isi disini .....">
+                      <input type="text" name="pilihan_c" class="form-control" placeholder="Isi disini ....." value="<?= set_value('pilihan_c') ?>">
+                      <?= form_error('pilihan_c', '<small class="text-danger">', '</small>'); ?>
                     </div>
-                    <div class="form-group col-4">
-                      <label>Tambah Gambar Jawaban C (opsional)</label>
+                    <div class="form-group col-3">
+                      <label>Gambar Jawaban C (opsional)</label>
                       <input type="file" name="file_c" class="form-control">
+                      <?= form_error('file_c', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                    <div class="form-group clearfix col-3 text-center">
+                      <label>Kunci Jawaban C</label> <br>
+                      <div class="icheck-success d-inline">
+                        <input type="checkbox" name="kunci_c" id="kunci_c">
+                        <label for="kunci_c"></label>
+                      </div>
+                      <br>
+                      <?= form_error('kunci_c', '<small class="text-danger">', '</small>'); ?>
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="form-group col-8">
+                    <div class="form-group col-6">
                       <label>Jawaban D</label>
-                      <input type="text" name="pilihan_d" class="form-control" placeholder="Isi disini .....">
+                      <input type="text" name="pilihan_d" class="form-control" placeholder="Isi disini ....." value="<?= set_value('pilihan_d') ?>">
+                      <?= form_error('pilihan_d', '<small class="text-danger">', '</small>'); ?>
                     </div>
-                    <div class="form-group col-4">
-                      <label>Tambah Gambar Jawaban D (opsional)</label>
+                    <div class="form-group col-3">
+                      <label>Gambar Jawaban D (opsional)</label>
                       <input type="file" name="file_d" class="form-control">
+                      <?= form_error('file_d', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                    <div class="form-group clearfix col-3 text-center">
+                      <label>Kunci Jawaban D</label> <br>
+                      <div class="icheck-success d-inline">
+                        <input type="checkbox" name="kunci_d" id="kunci_d">
+                        <label for="kunci_d"></label>
+                      </div>
+                      <br>
+                      <?= form_error('kunci_d', '<small class="text-danger">', '</small>'); ?>
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="form-group col-8">
+                    <div class="form-group col-6">
                       <label>Jawaban E</label>
-                      <input type="text" name="pilihan_e" class="form-control" placeholder="Isi disini .....">
+                      <input type="text" name="pilihan_e" class="form-control" placeholder="Isi disini ....." value="<?= set_value('pilihan_e') ?>">
+                      <?= form_error('pilihan_e', '<small class="text-danger">', '</small>'); ?>
                     </div>
-                    <div class="form-group col-4">
-                      <label>Tambah Gambar Jawaban E (opsional)</label>
+                    <div class="form-group col-3">
+                      <label>Gambar Jawaban E (opsional)</label>
                       <input type="file" name="file_e" class="form-control">
+                      <?= form_error('file_e', '<small class="text-danger">', '</small>'); ?>
                     </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="form-group col-6">
-                      <label>Pilih Kunci Jawaban</label>
-                      <select class="form-control" name="kunci">
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="E">E</option>
-                      </select>
-                    </div>
-                    <div class="form-group col-6">
-                      <label>Nilai Soal</label>
-                      <input type="number" name="nilai" min="1" class="form-control">
+                    <div class="form-group clearfix col-3 text-center">
+                      <label>Kunci Jawaban E</label> <br>
+                      <div class="icheck-success d-inline">
+                        <input type="checkbox" name="kunci_e" id="kunci_e">
+                        <label for="kunci_e"></label>
+                      </div>
+                      <br>
+                      <?= form_error('kunci_e', '<small class="text-danger">', '</small>'); ?>
                     </div>
                   </div>
 
@@ -177,15 +222,15 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer text-center">
-                   <div class="row">
-                     <div class="col-4"></div>
-                     <div class="col-4">
+                  <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col-4">
                       <button class="btn btn-block bg-success">
                         <i class="fas fa-check"></i>&nbsp;&nbsp; Simpan Soal
                       </button>
-                     </div>
-                     <div class="col-4"></div>
-                   </div>
+                    </div>
+                    <div class="col-4"></div>
+                  </div>
                 </div>
                 
               </form>

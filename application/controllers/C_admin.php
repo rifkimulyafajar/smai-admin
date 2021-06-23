@@ -303,8 +303,130 @@ class C_Admin extends CI_Controller {
 
 	public function tambahSoalUjian($id, $guru, $kelas, $jurusan)
 	{
-		// code...
-		$this->Model_Admin->tambahSoalUjian();
+		$a = $this->input->post('kunci_a'); $b = $this->input->post('kunci_b'); $c = $this->input->post('kunci_c');
+		$d = $this->input->post('kunci_d'); $e = $this->input->post('kunci_e');
+		$ids = $this->id_soal = uniqid();
+			
+		if ($a == 'on' && $b == '' && $c == '' && $d == '' && $e == '') {
+			if ($this->input->post('pilihan_a') != null) {
+				$kunci = $this->input->post('pilihan_a');
+				$this->form_validation->run() == TRUE;
+				$this->Model_Admin->tambahSoalUjian($kunci);
+				echo "<script>alert('Soal Berhasil Dibuat');</script>";
+				redirect('C_Admin/pilih_soal_ujian/'.$id.'/'.$guru.'/'.$kelas.'/'.$jurusan.'', 'refresh');
+			} elseif ($this->Model_Admin->file_a($ids) != null) {
+				$kunci = $this->Model_Admin->file_a($ids);
+				$this->form_validation->run() == TRUE;
+				$this->Model_Admin->tambahSoalUjian($kunci);
+				echo "<script>alert('Soal Berhasil Dibuat');</script>";
+				redirect('C_Admin/pilih_soal_ujian/'.$id.'/'.$guru.'/'.$kelas.'/'.$jurusan.'', 'refresh');
+			} else {
+				$this->form_validation->set_rules('pilihan_a', 'Jawaban A', 'required', [ 'required' => 'Isi salah satu!!' ]);
+				$this->form_validation->set_rules('file_a', 'Jawaban A', 'required', [ 'required' => 'Isi salah satu!!' ]);
+				$this->form_validation->run() == FALSE;
+			}
+		} elseif ($a == '' && $b == 'on' && $c == '' && $d == '' && $e == '') {
+			if ($this->input->post('pilihan_b') != null) {
+				$kunci = $this->input->post('pilihan_b');
+				$this->form_validation->run() == TRUE;
+				$this->Model_Admin->tambahSoalUjian($kunci);
+				echo "<script>alert('Soal Berhasil Dibuat');</script>";
+				redirect('C_Admin/pilih_soal_ujian/'.$id.'/'.$guru.'/'.$kelas.'/'.$jurusan.'', 'refresh');
+			} elseif ($this->Model_Admin->file_b($ids) != null) {
+				$kunci = $this->Model_Admin->file_b($ids);
+				$this->form_validation->run() == TRUE;
+				$this->Model_Admin->tambahSoalUjian($kunci);
+				echo "<script>alert('Soal Berhasil Dibuat');</script>";
+				redirect('C_Admin/pilih_soal_ujian/'.$id.'/'.$guru.'/'.$kelas.'/'.$jurusan.'', 'refresh');
+			} else {
+				$this->form_validation->set_rules('pilihan_b', 'Jawaban B', 'required', [ 'required' => 'Isi salah satu!!' ]);
+				$this->form_validation->set_rules('file_b', 'Jawaban B', 'required', [ 'required' => 'Isi salah satu!!' ]);
+				$this->form_validation->run() == FALSE;
+			}
+		} elseif($a == '' && $b == '' && $c == 'on' && $d == '' && $e == '') {
+			if ($this->input->post('pilihan_c') != null) {
+				$kunci = $this->input->post('pilihan_c');
+				$this->form_validation->run() == TRUE;
+				$this->Model_Admin->tambahSoalUjian($kunci);
+				echo "<script>alert('Soal Berhasil Dibuat');</script>";
+				redirect('C_Admin/pilih_soal_ujian/'.$id.'/'.$guru.'/'.$kelas.'/'.$jurusan.'', 'refresh');
+			} elseif ($this->Model_Admin->file_c($ids) != null) {
+				$kunci = $this->Model_Admin->file_c($ids);
+				$this->form_validation->run() == TRUE;
+				$this->Model_Admin->tambahSoalUjian($kunci);
+				echo "<script>alert('Soal Berhasil Dibuat');</script>";
+				redirect('C_Admin/pilih_soal_ujian/'.$id.'/'.$guru.'/'.$kelas.'/'.$jurusan.'', 'refresh');
+			} else {
+				$this->form_validation->set_rules('pilihan_c', 'Jawaban C', 'required', [ 'required' => 'Isi salah satu!!' ]);
+				$this->form_validation->set_rules('file_c', 'Jawaban C', 'required', [ 'required' => 'Isi salah satu!!' ]);
+				$this->form_validation->run() == FALSE;
+			}
+		} elseif($a == '' && $b == '' && $c == '' && $d == 'on' && $e == '') {
+			if ($this->input->post('pilihan_d') != null) {
+				$kunci = $this->input->post('pilihan_d');
+				$this->form_validation->run() == TRUE;
+				$this->Model_Admin->tambahSoalUjian($kunci);
+				echo "<script>alert('Soal Berhasil Dibuat');</script>";
+				redirect('C_Admin/pilih_soal_ujian/'.$id.'/'.$guru.'/'.$kelas.'/'.$jurusan.'', 'refresh');
+			} elseif ($this->Model_Admin->file_d($ids) != null) {
+				$kunci = $this->Model_Admin->file_d($ids);
+				$this->form_validation->run() == TRUE;
+				$this->Model_Admin->tambahSoalUjian($kunci);
+				echo "<script>alert('Soal Berhasil Dibuat');</script>";
+				redirect('C_Admin/pilih_soal_ujian/'.$id.'/'.$guru.'/'.$kelas.'/'.$jurusan.'', 'refresh');
+			} else {
+				$this->form_validation->set_rules('pilihan_d', 'Jawaban D', 'required', [ 'required' => 'Isi salah satu!!' ]);
+				$this->form_validation->set_rules('file_d', 'Jawaban D', 'required', [ 'required' => 'Isi salah satu!!' ]);
+				$this->form_validation->run() == FALSE;
+			}
+		} elseif($a == '' && $b == '' && $c == '' && $d == '' && $e == 'on') {
+			if ($this->input->post('pilihan_e') != null) {
+				$kunci = $this->input->post('pilihan_e');
+				$this->form_validation->run() == TRUE;
+				$this->Model_Admin->tambahSoalUjian($kunci);
+				echo "<script>alert('Soal Berhasil Dibuat');</script>";
+				redirect('C_Admin/pilih_soal_ujian/'.$id.'/'.$guru.'/'.$kelas.'/'.$jurusan.'', 'refresh');
+			} elseif ($this->Model_Admin->file_e($ids) != null) {
+				$kunci = $this->Model_Admin->file_e($ids);
+				$this->form_validation->run() == TRUE;
+				$this->Model_Admin->tambahSoalUjian($kunci);
+				echo "<script>alert('Soal Berhasil Dibuat');</script>";
+				redirect('C_Admin/pilih_soal_ujian/'.$id.'/'.$guru.'/'.$kelas.'/'.$jurusan.'', 'refresh');
+			} else {
+				$this->form_validation->set_rules('pilihan_e', 'Jawaban E', 'required', [ 'required' => 'Isi salah satu!!' ]);
+				$this->form_validation->set_rules('file_e', 'Jawaban E', 'required', [ 'required' => 'Isi salah satu!!' ]);
+				$this->form_validation->run() == FALSE;
+			}
+		} else {
+			$this->form_validation->set_rules('kunci_a', 'Kunci', 'required', 'min_length[5]',
+				[
+					'required' => 'Pilih salah satu!!',
+					'min_length' => 'Pilih salah satu!!'
+				]);
+			$this->form_validation->set_rules('kunci_b', 'Kunci', 'required', 'min_length[5]',
+				[
+					'required' => 'Pilih salah satu!!',
+					'min_length' => 'Pilih salah satu!!'
+				]);
+			$this->form_validation->set_rules('kunci_c', 'Kunci', 'required', 'min_length[5]',
+				[
+					'required' => 'Pilih salah satu!!',
+					'min_length' => 'Pilih salah satu!!'
+				]);
+			$this->form_validation->set_rules('kunci_d', 'Kunci', 'required', 'min_length[5]',
+				[
+					'required' => 'Pilih salah satu!!',
+					'min_length' => 'Pilih salah satu!!'
+				]);
+			$this->form_validation->set_rules('kunci_e', 'Kunci', 'required', 'min_length[5]',
+				[
+					'required' => 'Pilih salah satu!!',
+					'min_length' => 'Pilih salah satu!!'
+				]);
+			$this->form_validation->run() == FALSE;
+		}
+
+		$this->Model_Admin->tambahSoalUjian($kunci);
 		echo "<script>alert('Soal Berhasil Dibuat');</script>";
 		redirect('C_Admin/pilih_soal_ujian/'.$id.'/'.$guru.'/'.$kelas.'/'.$jurusan.'', 'refresh');
 	}
@@ -373,7 +495,7 @@ class C_Admin extends CI_Controller {
 		
 		for ($i=0 ; $i<count($id) ; $i++) {
 
-			$result = $this->db->set('status', 'Latihan')->set('id_ujian', null)->where('id_soal', $id[$i])->update('bank_soal');
+			$result = $this->db->set('status', null)->set('id_ujian', null)->where('id_soal', $id[$i])->update('bank_soal');
 		}
 
 		if ($result) {
@@ -440,13 +562,137 @@ class C_Admin extends CI_Controller {
 			$this->form_validation->set_rules('soal', 'Soal', 'required');
 			$this->form_validation->set_rules('kunci', 'Kunci', 'required');
 			$this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
+			$this->form_validation->set_rules('nilai', 'Nilai Soal', 'required');
+
+			$a = $this->input->post('kunci_a'); $b = $this->input->post('kunci_b'); $c = $this->input->post('kunci_c');
+			$d = $this->input->post('kunci_d'); $e = $this->input->post('kunci_e');
+			$id = $this->id_soal = uniqid();
+			
+			if ($a == 'on' && $b == '' && $c == '' && $d == '' && $e == '') {
+				if ($this->input->post('pilihan_a') != null) {
+					$kunci = $this->input->post('pilihan_a');
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->tambahSoal($kunci);
+					echo "<script>alert('Soal Berhasil Dibuat');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} elseif ($this->Model_Admin->file_a($id) != null) {
+					$kunci = $this->Model_Admin->file_a($id);
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->tambahSoal($kunci);
+					echo "<script>alert('Soal Berhasil Dibuat');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} else {
+					$this->form_validation->set_rules('pilihan_a', 'Jawaban A', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->set_rules('file_a', 'Jawaban A', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->run() == FALSE;
+				}
+			} elseif ($a == '' && $b == 'on' && $c == '' && $d == '' && $e == '') {
+				if ($this->input->post('pilihan_b') != null) {
+					$kunci = $this->input->post('pilihan_b');
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->tambahSoal($kunci);
+					echo "<script>alert('Soal Berhasil Dibuat');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} elseif ($this->Model_Admin->file_b($id) != null) {
+					$kunci = $this->Model_Admin->file_b($id);
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->tambahSoal($kunci);
+					echo "<script>alert('Soal Berhasil Dibuat');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} else {
+					$this->form_validation->set_rules('pilihan_b', 'Jawaban B', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->set_rules('file_b', 'Jawaban B', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->run() == FALSE;
+				}
+			} elseif($a == '' && $b == '' && $c == 'on' && $d == '' && $e == '') {
+				if ($this->input->post('pilihan_c') != null) {
+					$kunci = $this->input->post('pilihan_c');
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->tambahSoal($kunci);
+					echo "<script>alert('Soal Berhasil Dibuat');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} elseif ($this->Model_Admin->file_c($id) != null) {
+					$kunci = $this->Model_Admin->file_c($id);
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->tambahSoal($kunci);
+					echo "<script>alert('Soal Berhasil Dibuat');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} else {
+					$this->form_validation->set_rules('pilihan_c', 'Jawaban C', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->set_rules('file_c', 'Jawaban C', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->run() == FALSE;
+				}
+			} elseif($a == '' && $b == '' && $c == '' && $d == 'on' && $e == '') {
+				if ($this->input->post('pilihan_d') != null) {
+					$kunci = $this->input->post('pilihan_d');
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->tambahSoal($kunci);
+					echo "<script>alert('Soal Berhasil Dibuat');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} elseif ($this->Model_Admin->file_d($id) != null) {
+					$kunci = $this->Model_Admin->file_d($id);
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->tambahSoal($kunci);
+					echo "<script>alert('Soal Berhasil Dibuat');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} else {
+					$this->form_validation->set_rules('pilihan_d', 'Jawaban D', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->set_rules('file_d', 'Jawaban D', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->run() == FALSE;
+				}
+			} elseif($a == '' && $b == '' && $c == '' && $d == '' && $e == 'on') {
+				if ($this->input->post('pilihan_e') != null) {
+					$kunci = $this->input->post('pilihan_e');
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->tambahSoal($kunci);
+					echo "<script>alert('Soal Berhasil Dibuat');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} elseif ($this->Model_Admin->file_e($id) != null) {
+					$kunci = $this->Model_Admin->file_e($id);
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->tambahSoal($kunci);
+					echo "<script>alert('Soal Berhasil Dibuat');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} else {
+					$this->form_validation->set_rules('pilihan_e', 'Jawaban E', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->set_rules('file_e', 'Jawaban E', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->run() == FALSE;
+				}
+			} else {
+				$this->form_validation->set_rules('kunci_a', 'Kunci', 'required', 'min_length[5]',
+					[
+						'required' => 'Pilih salah satu!!',
+						'min_length' => 'Pilih salah satu!!'
+					]);
+				$this->form_validation->set_rules('kunci_b', 'Kunci', 'required', 'min_length[5]',
+					[
+						'required' => 'Pilih salah satu!!',
+						'min_length' => 'Pilih salah satu!!'
+					]);
+				$this->form_validation->set_rules('kunci_c', 'Kunci', 'required', 'min_length[5]',
+					[
+						'required' => 'Pilih salah satu!!',
+						'min_length' => 'Pilih salah satu!!'
+					]);
+				$this->form_validation->set_rules('kunci_d', 'Kunci', 'required', 'min_length[5]',
+					[
+						'required' => 'Pilih salah satu!!',
+						'min_length' => 'Pilih salah satu!!'
+					]);
+				$this->form_validation->set_rules('kunci_e', 'Kunci', 'required', 'min_length[5]',
+					[
+						'required' => 'Pilih salah satu!!',
+						'min_length' => 'Pilih salah satu!!'
+					]);
+				$this->form_validation->run() == FALSE;
+			}
 
 			if ($this->form_validation->run() == FALSE) {
 				$this->load->view('v_admin/header', $data);
 				$this->load->view('v_admin/bank_soal_tambah' , $data);
 				$this->load->view('v_admin/footer');
 			} else {
-				$this->Model_Admin->tambahSoal();
+				$this->Model_Admin->tambahSoal($kunci);
 				echo "<script>alert('Soal Berhasil Dibuat');</script>";
 				redirect('C_Admin/bank_soal', 'refresh');
 			}
@@ -472,13 +718,167 @@ class C_Admin extends CI_Controller {
 			$this->form_validation->set_rules('kunci', 'Kunci', 'required');
 			$this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
 
+			$a = $this->input->post('kunci_a'); $b = $this->input->post('kunci_b'); $c = $this->input->post('kunci_c');
+			$d = $this->input->post('kunci_d'); $e = $this->input->post('kunci_e');
+			
+			if ($a == 'on' && $b == '' && $c == '' && $d == '' && $e == '') {
+				if ($this->input->post('pilihan_a') != null) {
+					$kunci = $this->input->post('pilihan_a');
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->editSoal($kunci);
+					echo "<script>alert('Soal Berhasil Diubah');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} elseif ($this->Model_Admin->file_a($id) != null) {
+					$this->id_soal = $post["id_soal"];
+					$kunci = $this->Model_Admin->file_a($id);
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->editSoal($kunci);
+					echo "<script>alert('Soal Berhasil Diubah');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} elseif ($this->input->post('a') != null) {
+					$kunci = $this->input->post('a');
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->editSoal($kunci);
+					echo "<script>alert('Soal Berhasil Diubah');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} else {
+					$this->form_validation->set_rules('pilihan_a', 'Jawaban A', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->set_rules('file_a', 'Jawaban A', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->run() == FALSE;
+				}
+			} elseif ($a == '' && $b == 'on' && $c == '' && $d == '' && $e == '') {
+				if ($this->input->post('pilihan_b') != null) {
+					$kunci = $this->input->post('pilihan_b');
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->editSoal($kunci);
+					echo "<script>alert('Soal Berhasil Diubah');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} elseif ($this->Model_Admin->file_b($id) != null) {
+					$this->id_soal = $post["id_soal"];
+					$kunci = $this->Model_Admin->file_b($id);
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->editSoal($kunci);
+					echo "<script>alert('Soal Berhasil Diubah');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} elseif ($this->input->post('b') != null) {
+					$kunci = $this->input->post('b');
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->editSoal($kunci);
+					echo "<script>alert('Soal Berhasil Diubah');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} else {
+					$this->form_validation->set_rules('pilihan_b', 'Jawaban B', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->set_rules('file_b', 'Jawaban B', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->run() == FALSE;
+				}
+			} elseif($a == '' && $b == '' && $c == 'on' && $d == '' && $e == '') {
+				if ($this->input->post('pilihan_c') != null) {
+					$kunci = $this->input->post('pilihan_c');
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->editSoal($kunci);
+					echo "<script>alert('Soal Berhasil Diubah');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} elseif ($this->Model_Admin->file_c($id) != null) {
+					$kunci = $this->Model_Admin->file_c($id);
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->editSoal($kunci);
+					echo "<script>alert('Soal Berhasil Diubah');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} elseif ($this->input->post('c') != null) {
+					$kunci = $this->input->post('c');
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->editSoal($kunci);
+					echo "<script>alert('Soal Berhasil Diubah');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} else {
+					$this->form_validation->set_rules('pilihan_c', 'Jawaban C', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->set_rules('file_c', 'Jawaban C', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->run() == FALSE;
+				}
+			} elseif($a == '' && $b == '' && $c == '' && $d == 'on' && $e == '') {
+				if ($this->input->post('pilihan_d') != null) {
+					$kunci = $this->input->post('pilihan_d');
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->editSoal($kunci);
+					echo "<script>alert('Soal Berhasil Diubah');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} elseif ($this->Model_Admin->file_d($id) != null) {
+					$kunci = $this->Model_Admin->file_d($id);
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->editSoal($kunci);
+					echo "<script>alert('Soal Berhasil Diubah');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} elseif ($this->input->post('d') != null) {
+					$kunci = $this->input->post('d');
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->editSoal($kunci);
+					echo "<script>alert('Soal Berhasil Diubah');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} else {
+					$this->form_validation->set_rules('pilihan_d', 'Jawaban D', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->set_rules('file_d', 'Jawaban D', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->run() == FALSE;
+				}
+			} elseif($a == '' && $b == '' && $c == '' && $d == '' && $e == 'on') {
+				if ($this->input->post('pilihan_e') != null) {
+					$kunci = $this->input->post('pilihan_e');
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->editSoal($kunci);
+					echo "<script>alert('Soal Berhasil Diubah');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} elseif ($this->Model_Admin->file_e($id) != null) {
+					$kunci = $this->Model_Admin->file_e($id);
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->editSoal($kunci);
+					echo "<script>alert('Soal Berhasil Diubah');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} elseif ($this->input->post('e') != null) {
+					$kunci = $this->input->post('e');
+					$this->form_validation->run() == TRUE;
+					$this->Model_Admin->editSoal($kunci);
+					echo "<script>alert('Soal Berhasil Diubah');</script>";
+					redirect('C_Admin/bank_soal', 'refresh');
+				} else {
+					$this->form_validation->set_rules('pilihan_e', 'Jawaban E', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->set_rules('file_e', 'Jawaban E', 'required', [ 'required' => 'Isi salah satu!!' ]);
+					$this->form_validation->run() == FALSE;
+				}
+			} else {
+				$this->form_validation->set_rules('kunci_a', 'Kunci', 'required', 'min_length[5]',
+					[
+						'required' => 'Pilih salah satu!!',
+						'min_length' => 'Pilih salah satu!!'
+					]);
+				$this->form_validation->set_rules('kunci_b', 'Kunci', 'required', 'min_length[5]',
+					[
+						'required' => 'Pilih salah satu!!',
+						'min_length' => 'Pilih salah satu!!'
+					]);
+				$this->form_validation->set_rules('kunci_c', 'Kunci', 'required', 'min_length[5]',
+					[
+						'required' => 'Pilih salah satu!!',
+						'min_length' => 'Pilih salah satu!!'
+					]);
+				$this->form_validation->set_rules('kunci_d', 'Kunci', 'required', 'min_length[5]',
+					[
+						'required' => 'Pilih salah satu!!',
+						'min_length' => 'Pilih salah satu!!'
+					]);
+				$this->form_validation->set_rules('kunci_e', 'Kunci', 'required', 'min_length[5]',
+					[
+						'required' => 'Pilih salah satu!!',
+						'min_length' => 'Pilih salah satu!!'
+					]);
+				$this->form_validation->run() == FALSE;
+			}
+
 			if ($this->form_validation->run() == FALSE) {
 				$this->load->view('v_admin/header', $data);
 				$this->load->view('v_admin/bank_soal_edit' , $data);
 				$this->load->view('v_admin/footer');
 			} else {
-				$this->Model_Admin->editSoal();
-				echo "<script>alert('Soal Berhasil Diedit');</script>";
+				$this->Model_Admin->editSoal($kunci);
+				echo "<script>alert('Soal Berhasil Diubah');</script>";
 				redirect('C_Admin/bank_soal', 'refresh');
 			}
 		}

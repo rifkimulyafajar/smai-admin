@@ -84,7 +84,6 @@
                     <th>Jenis</th>
                     <th>Waktu Mulai</th>
                     <th>Token</th>
-                    <th>Status</th>
                     <th></th>
                   </tr>
                   </thead>
@@ -102,13 +101,6 @@
                       <td><?= $u['jenis'] ?></td>
                       <td><?= $u['waktu_mulai'] ?></td>
                       <td><?= $u['token'] ?></td>
-                      <td>
-                        <?php if ($u['aktif'] == 'Y') { ?>
-                          Aktif
-                        <?php } else { ?>
-                          Tidak Aktif
-                        <?php } ?>
-                      </td>
                       <td>
                         <a href="<?= base_url('C_Admin/edit_ujian/').$u['id_ujian']; ?>" class="btn bg-warning">
                           <i class="fas fa-edit"></i>
@@ -154,7 +146,6 @@
                     <th>Jenis</th>
                     <th>Waktu Mulai</th>
                     <th>Token</th>
-                    <th>Status</th>
                     <th></th>
                   </tr>
                   </tfoot>

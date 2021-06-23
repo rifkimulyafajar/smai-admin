@@ -53,7 +53,7 @@
                   </div>
 
                   <div class="row">
-                    <div class="form-group col-12">
+                    <div class="form-group col-6">
                       <label>Status Soal</label>
                       <select class="form-control" name="status">
                         <option></option>
@@ -65,7 +65,12 @@
                         <?php endif ?> value="Ujian">Ujian</option>
                       </select>
                     </div>
-                  </div>
+                    <div class="form-group col-6">
+                      <label>Nilai Soal</label>
+                      <input type="number" name="nilai" min="1" class="form-control" value="<?= $soal['nilai'] ?>">
+                      <?= form_error('nilai', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                  </div> <br>
 
                   <div class="row form-group">
                     <div class="col-12">
@@ -76,88 +81,168 @@
                   </div>
 
                   <div class="row form-group">
-                    <div class="col-12">
-                      <label>File Soal :</label> &nbsp; <img src="<?= base_url('upload/soal/'). $soal['file_soal'] ?>">
+                    <div class="col-4">
+                      <?php if ($soal['file_soal'] != null) { ?>
+                        <label>Gambar Soal :</label> &nbsp; <img src="<?= base_url('upload/soal/'). $soal['file_soal'] ?>" width="100%" height="100%">
+                      <?php } else { ?>
+                        <label>Gambar Soal :</label> &nbsp; -
+                      <?php } ?>
+                      
+                    </div>
+                    <div class="col-2"></div>
+                    <div class="col-6">
+                      <label>Gambar Soal Baru (Opsional)</label>
                       <input type="hidden" name="fs" value="<?= $soal['file_soal'] ?>">
                       <input type="file" name="file_soal" class="form-control" value="<?= $soal['file_soal'] ?>">
                     </div>
-                  </div>
+                  </div> <br><br>
 
-                  <br>
-                    <div class="form-group">
+                  <div class="row">
+                    <div class="form-group col-6">
                       <label>Jawaban A</label>
                       <input type="text" name="pilihan_a" class="form-control" value="<?= $soal['pilihan_a'] ?>">
-                      <img src="<?= base_url('upload/soal/'). $soal['file_a'] ?>"> <br>
-                      Gambar Jawaban A (opsional)
+                      <?= form_error('pilihan_a', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                    <div class="form-group col-3">
+                      <label>Gambar Jawaban A (opsional)</label>
                       <input type="hidden" name="a" value="<?= $soal['file_a'] ?>">
                       <input type="file" name="file_a" class="form-control">
+                      <?= form_error('file_a', '<small class="text-danger">', '</small>'); ?>
                     </div>
+                    <div class="form-group clearfix col-3 text-center">
+                      <label>Kunci Jawaban A</label> <br>
+                      <div class="icheck-success d-inline">
+                        <input type="checkbox" name="kunci_a" id="kunci_a" <?php if ($soal['kunci'] == $soal['pilihan_a'] || 
+                                                                                    $soal['kunci'] == $soal['file_a']) { ?> checked <?php } ?> >
+                        <label for="kunci_a"></label>
+                      </div>
+                      <br>
+                      <?= form_error('kunci_a', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                    <div class="col-3">
+                      <?php if ($soal['file_a'] != null) { ?>
+                        <img src="<?= base_url('upload/soal/'). $soal['file_a'] ?>" width="100%" height="100%">
+                      <?php } ?>
+                    </div>
+                  </div> <br>
 
-                    <div class="form-group">
+                  <div class="row">
+                    <div class="form-group col-6">
                       <label>Jawaban B</label>
                       <input type="text" name="pilihan_b" class="form-control" value="<?= $soal['pilihan_b'] ?>">
-                      <img src="<?= base_url('upload/soal/'). $soal['file_b'] ?>"> <br>
-                      Gambar Jawaban B (opsional)
+                      <?= form_error('pilihan_b', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                    <div class="form-group col-3">
+                      <label>Gambar Jawaban B (opsional)</label>
                       <input type="hidden" name="b" value="<?= $soal['file_b'] ?>">
                       <input type="file" name="file_b" class="form-control">
+                      <?= form_error('file_b', '<small class="text-danger">', '</small>'); ?>
                     </div>
+                    <div class="form-group clearfix col-3 text-center">
+                      <label>Kunci Jawaban B</label> <br>
+                      <div class="icheck-success d-inline">
+                        <input type="checkbox" name="kunci_b" id="kunci_b" <?php if ($soal['kunci'] == $soal['pilihan_b'] || 
+                                                                                    $soal['kunci'] == $soal['file_b']) { ?> checked <?php } ?> >
+                        <label for="kunci_b"></label>
+                      </div>
+                      <br>
+                      <?= form_error('kunci_b', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                    <div class="col-3">
+                      <?php if ($soal['file_b'] != null) { ?>
+                        <img src="<?= base_url('upload/soal/'). $soal['file_b'] ?>" width="100%" height="100%">
+                      <?php } ?>
+                    </div>
+                  </div> <br>
 
-                    <div class="form-group">
+                  <div class="row">
+                    <div class="form-group col-6">
                       <label>Jawaban C</label>
                       <input type="text" name="pilihan_c" class="form-control" value="<?= $soal['pilihan_c'] ?>">
-                      <img src="<?= base_url('upload/soal/'). $soal['file_c'] ?>"> <br>
-                      Gambar Jawaban C (opsional)
+                      <?= form_error('pilihan_c', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                    <div class="form-group col-3">
+                      <label>Gambar Jawaban C (opsional)</label>
                       <input type="hidden" name="c" value="<?= $soal['file_c'] ?>">
                       <input type="file" name="file_c" class="form-control">
+                      <?= form_error('file_c', '<small class="text-danger">', '</small>'); ?>
                     </div>
+                    <div class="form-group clearfix col-3 text-center">
+                      <label>Kunci Jawaban C</label> <br>
+                      <div class="icheck-success d-inline">
+                        <input type="checkbox" name="kunci_c" id="kunci_c" <?php if ($soal['kunci'] == $soal['pilihan_c'] || 
+                                                                                    $soal['kunci'] == $soal['file_c']) { ?> checked <?php } ?> >
+                        <label for="kunci_c"></label>
+                      </div>
+                      <br>
+                      <?= form_error('kunci_c', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                    <div class="col-3">
+                      <?php if ($soal['file_c'] != null) { ?>
+                        <img src="<?= base_url('upload/soal/'). $soal['file_c'] ?>" width="100%" height="100%">
+                      <?php } ?>
+                    </div>
+                  </div> <br>
 
-                    <div class="form-group">
+                  <div class="row">
+                    <div class="form-group col-6">
                       <label>Jawaban D</label>
                       <input type="text" name="pilihan_d" class="form-control" value="<?= $soal['pilihan_d'] ?>">
-                      <img src="<?= base_url('upload/soal/'). $soal['file_d'] ?>"> <br>
-                      Gambar Jawaban D (opsional)
+                      <?= form_error('pilihan_d', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                    <div class="form-group col-3">
+                      <label>Gambar Jawaban D (opsional)</label>
                       <input type="hidden" name="d" value="<?= $soal['file_d'] ?>">
                       <input type="file" name="file_d" class="form-control">
+                      <?= form_error('file_d', '<small class="text-danger">', '</small>'); ?>
                     </div>
+                    <div class="form-group clearfix col-3 text-center">
+                      <label>Kunci Jawaban D</label> <br>
+                      <div class="icheck-success d-inline">
+                        <input type="checkbox" name="kunci_d" id="kunci_d" <?php if ($soal['kunci'] == $soal['pilihan_d'] || 
+                                                                                    $soal['kunci'] == $soal['file_d']) { ?> checked <?php } ?> >
+                        <label for="kunci_d"></label>
+                      </div>
+                      <br>
+                      <?= form_error('kunci_d', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                    <div class="col-3">
+                      <?php if ($soal['file_d'] != null) { ?>
+                        <img src="<?= base_url('upload/soal/'). $soal['file_d'] ?>" width="100%" height="100%">
+                      <?php } ?>
+                    </div>
+                  </div> <br>
 
-                    <div class="form-group">
+                  <div class="row">
+                    <div class="form-group col-6">
                       <label>Jawaban E</label>
                       <input type="text" name="pilihan_e" class="form-control" value="<?= $soal['pilihan_e'] ?>">
-                      <img src="<?= base_url('upload/soal/'). $soal['file_e'] ?>"> <br>
-                      Gambar Jawaban E (opsional)
+                      <?= form_error('pilihan_e', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                    <div class="form-group col-3">
+                      <label>Gambar Jawaban E (opsional)</label>
                       <input type="hidden" name="e" value="<?= $soal['file_e'] ?>">
                       <input type="file" name="file_e" class="form-control">
+                      <?= form_error('file_e', '<small class="text-danger">', '</small>'); ?>
                     </div>
-
-                    <br>
-                    <div class="row">
-                      <div class="form-group col-6">
-                        <label>Pilih Kunci Jawaban</label>
-                        <select class="form-control" name="kunci">
-                          <option <?php if ($soal['kunci'] === "A"): ?>
-                            selected
-                          <?php endif ?> value="A">A</option>
-                          <option <?php if ($soal['kunci'] === "B"): ?>
-                            selected
-                          <?php endif ?> value="B">B</option>
-                          <option <?php if ($soal['kunci'] === "C"): ?>
-                            selected
-                          <?php endif ?> value="C">C</option>
-                          <option <?php if ($soal['kunci'] === "D"): ?>
-                            selected
-                          <?php endif ?> value="D">D</option>
-                          <option <?php if ($soal['kunci'] === "E"): ?>
-                            selected
-                          <?php endif ?> value="E">E</option>
-                        </select>
+                    <div class="form-group clearfix col-3 text-center">
+                      <label>Kunci Jawaban E</label> <br>
+                      <div class="icheck-success d-inline">
+                        <input type="checkbox" name="kunci_e" id="kunci_e" <?php if ($soal['kunci'] == $soal['pilihan_e'] || 
+                                                                                    $soal['kunci'] == $soal['file_e']) { ?> checked <?php } ?> >
+                        <label for="kunci_e"></label>
                       </div>
-                      <div class="form-group col-6">
-                        <label>Nilai Soal</label>
-                        <input type="number" name="nilai" min="1" class="form-control" value="<?= $soal['nilai'] ?>">
-                      </div>
+                      <br>
+                      <?= form_error('kunci_e', '<small class="text-danger">', '</small>'); ?>
                     </div>
+                    <div class="col-3">
+                      <?php if ($soal['file_e'] != null) { ?>
+                        <img src="<?= base_url('upload/soal/'). $soal['file_e'] ?>" width="100%" height="100%">
+                      <?php } ?>
+                    </div>
+                  </div> <br>
 
-                    <input type="hidden" name="tanggal" value="<?= $soal['tanggal'] ?>">
+                  <input type="hidden" name="tanggal" value="<?= $soal['tanggal'] ?>">
 
                 </div>
                 <!-- /.card-body -->

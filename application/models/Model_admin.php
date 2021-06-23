@@ -374,7 +374,7 @@ class Model_Admin extends CI_Model {
         return $query->row_array();
     }
 
-    public function tambahSoal()
+    public function tambahSoal($kunci)
     {
         # code...
         $this->id_soal = uniqid();
@@ -388,16 +388,16 @@ class Model_Admin extends CI_Model {
             "soal" => $this->input->post('soal', true),
             "file_soal" => $this->file_soal(),
             "pilihan_a" => $this->input->post('pilihan_a', true),
-            "file_a" => $this->file_a(),
+            "file_a" => $this->file_a($this->id_soal),
             "pilihan_b" => $this->input->post('pilihan_b', true),
-            "file_b" => $this->file_b(),
+            "file_b" => $this->file_b($this->id_soal),
             "pilihan_c" => $this->input->post('pilihan_c', true),
-            "file_c" => $this->file_c(),
+            "file_c" => $this->file_c($this->id_soal),
             "pilihan_d" => $this->input->post('pilihan_d', true),
-            "file_d" => $this->file_d(),
+            "file_d" => $this->file_d($this->id_soal),
             "pilihan_e" => $this->input->post('pilihan_e', true),
-            "file_e" => $this->file_e(),
-            "kunci" => $this->input->post('kunci', true),
+            "file_e" => $this->file_e($this->id_soal),
+            "kunci" => $kunci,
             "nilai" => $this->input->post('nilai', true),
             "tanggal" => $this->input->post('tanggal', true)
         ];
@@ -405,7 +405,7 @@ class Model_Admin extends CI_Model {
         $this->db->insert('bank_soal', $data);
     }
 
-    public function editSoal()
+    public function editSoal($kunci)
     {
         # code...
         $post = $this->input->post();
@@ -431,28 +431,28 @@ class Model_Admin extends CI_Model {
 
         $this->pilihan_a = $post["pilihan_a"];
         if (!empty($_FILES["file_a"]["name"])) {
-            $this->file_a = $this->file_a();
+            $this->file_a = $this->file_a($this->id_soal);
         } else {
             $this->file_a = $post["a"];
         }
 
         $this->pilihan_b = $post["pilihan_b"];
         if (!empty($_FILES["file_b"]["name"])) {
-            $this->file_b = $this->file_b();
+            $this->file_b = $this->file_b($this->id_soal);
         } else {
             $this->file_b = $post["b"];
         }
 
         $this->pilihan_c = $post["pilihan_c"];
         if (!empty($_FILES["file_c"]["name"])) {
-            $this->file_c = $this->file_c();
+            $this->file_c = $this->file_c($this->id_soal);
         } else {
             $this->file_c = $post["c"];
         }
 
         $this->pilihan_d = $post["pilihan_d"];
         if (!empty($_FILES["file_d"]["name"])) {
-            $this->file_d = $this->file_d();
+            $this->file_d = $this->file_d($this->id_soal);
         } else {
             $this->file_d = $post["d"];
         }
@@ -464,7 +464,7 @@ class Model_Admin extends CI_Model {
             $this->file_e = $post["e"];
         }
 
-        $this->kunci = $post["kunci"];
+        $this->kunci = $kunci;
         $this->nilai = $post["nilai"];
         $this->tanggal = $post["tanggal"];
 
@@ -487,12 +487,12 @@ class Model_Admin extends CI_Model {
             return $this->upload->data("file_name");
         }
     }
-    public function file_a()
+    public function file_a($id)
     {
         # code...
         $config['upload_path'] = './upload/soal/';
         $config['allowed_types'] = 'jpg|jpeg|png';
-        $config['filename'] = $this->id_soal;
+        $config['filename'] = $id;
         $config['overwrite'] = true;
 
         $this->upload->initialize($config);
@@ -503,12 +503,12 @@ class Model_Admin extends CI_Model {
             return $this->upload->data("file_name");
         }
     }
-    public function file_b()
+    public function file_b($id)
     {
         # code...
         $config['upload_path'] = './upload/soal/';
         $config['allowed_types'] = 'jpg|jpeg|png';
-        $config['filename'] = $this->id_soal;
+        $config['filename'] = $id;
         $config['overwrite'] = true;
 
         $this->upload->initialize($config);
@@ -519,12 +519,12 @@ class Model_Admin extends CI_Model {
             return $this->upload->data("file_name");
         }
     }
-    public function file_c()
+    public function file_c($id)
     {
         # code...
         $config['upload_path'] = './upload/soal/';
         $config['allowed_types'] = 'jpg|jpeg|png';
-        $config['filename'] = $this->id_soal;
+        $config['filename'] = $id;
         $config['overwrite'] = true;
 
         $this->upload->initialize($config);
@@ -535,12 +535,12 @@ class Model_Admin extends CI_Model {
             return $this->upload->data("file_name");
         }
     }
-    public function file_d()
+    public function file_d($id)
     {
         # code...
         $config['upload_path'] = './upload/soal/';
         $config['allowed_types'] = 'jpg|jpeg|png';
-        $config['filename'] = $this->id_soal;
+        $config['filename'] = $id;
         $config['overwrite'] = true;
 
         $this->upload->initialize($config);
@@ -551,12 +551,12 @@ class Model_Admin extends CI_Model {
             return $this->upload->data("file_name");
         }
     }
-    public function file_e()
+    public function file_e($id)
     {
         # code...
         $config['upload_path'] = './upload/soal/';
         $config['allowed_types'] = 'jpg|jpeg|png';
-        $config['filename'] = $this->id_soal;
+        $config['filename'] = $id;
         $config['overwrite'] = true;
 
         $this->upload->initialize($config);
@@ -591,7 +591,7 @@ class Model_Admin extends CI_Model {
         $this->db->where('bank_soal.id_guru', $guru);
         $this->db->where('bank_soal.id_kelas', $kelas);
         $this->db->where('bank_soal.id_jurusan', $jurusan);
-        $this->db->where('bank_soal.status', 'Latihan');
+        $this->db->where('bank_soal.status', null);
         $query = $this->db->get();
 
         return $query->result_array();
@@ -652,7 +652,7 @@ class Model_Admin extends CI_Model {
         return $this->db->count_all_results();
     }
 
-    public function tambahSoalUjian()
+    public function tambahSoalUjian($kunci)
     {
         // code...
         $this->id_soal = uniqid();
@@ -666,16 +666,16 @@ class Model_Admin extends CI_Model {
             "soal" => $this->input->post('soal', true),
             "file_soal" => $this->file_soal(),
             "pilihan_a" => $this->input->post('pilihan_a', true),
-            "file_a" => $this->file_a(),
+            "file_a" => $this->file_a($this->id_soal),
             "pilihan_b" => $this->input->post('pilihan_b', true),
-            "file_b" => $this->file_b(),
+            "file_b" => $this->file_b($this->id_soal),
             "pilihan_c" => $this->input->post('pilihan_c', true),
-            "file_c" => $this->file_c(),
+            "file_c" => $this->file_c($this->id_soal),
             "pilihan_d" => $this->input->post('pilihan_d', true),
-            "file_d" => $this->file_d(),
+            "file_d" => $this->file_d($this->id_soal),
             "pilihan_e" => $this->input->post('pilihan_e', true),
-            "file_e" => $this->file_e(),
-            "kunci" => $this->input->post('kunci', true),
+            "file_e" => $this->file_e($this->id_soal),
+            "kunci" => $kunci,
             "nilai" => $this->input->post('nilai', true),
             "tanggal" => $this->input->post('tanggal', true)
         ];
@@ -747,7 +747,6 @@ class Model_Admin extends CI_Model {
         $this->waktu_mulai = $post["waktu_mulai"];
         $this->waktu_selesai = $z;
         $this->token = $post["token"];
-        $this->aktif = $post["status"];
 
         $this->db->update('ujian', $this, array('id_ujian' => $post["id_ujian"]));
     }

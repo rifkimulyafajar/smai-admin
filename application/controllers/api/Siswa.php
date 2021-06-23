@@ -157,4 +157,48 @@ class Siswa extends REST_Controller {
 		}
 	}
 	
+	public function siswa_put($id)
+	{
+		# code...
+// 		$id = $this->put('id_siswa');
+		$data = [
+		  //  'id_siswa' => $this->put('id_siswa'),
+	 		'nis' => $this->put('nis'),
+	 		'nama' => $this->put('nama'),
+	 		'username' => $this->put('username'),
+	 		'password' => $this->put('password')
+	 	];
+
+	 	if ($this->Model_Siswa->updateSiswa($data, $id) > 0) {
+	 		# code...
+	 		$this->response([
+                'status' => true,
+                'message' => 'data updated'
+            ], REST_Controller::HTTP_OK);
+		}
+	 	else {
+	 		$this->response([
+                'status' => false,
+                'message' => 'failed!'
+            ], REST_Controller::HTTP_BAD_REQUEST);
+	 	}
+	}
+
+	public function update_put() {
+        $id = $this->put('id_siswa');
+        $data = array(
+                    'id_siswa' => $this->put('id_siswa'),
+	 		        'nis' => $this->put('nis'),
+	 		        'nama' => $this->put('nama'),
+	 		        'username' => $this->put('username'),
+	 		        'password' => $this->put('password'));
+        $this->db->where('id_siswa', $id);
+        $update = $this->db->update('siswa', $data);
+        if ($update) {
+            $this->response($data, 200);
+        } else {
+            $this->response(array('status' => 'fail', 502));
+        }
+    }
+
 }

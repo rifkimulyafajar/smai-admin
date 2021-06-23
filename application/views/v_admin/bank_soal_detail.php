@@ -61,17 +61,17 @@
                   <div class="col-12">
                     <label>Soal :</label> &nbsp; <?= $soal['soal'] ?>
                   </div>
-                  <div class="col-12">
+                  <div class="col-4">
 
                     <?php
-                      if ($soal['file_soal'] === null) { ?>
+                      if ($soal['file_soal'] == null) { ?>
                         <label>File Soal :</label> &nbsp; -
                     <?php } else { ?>
-                        <label>File Soal :</label> &nbsp; <img src="<?= base_url('upload/soal/'). $soal['file_soal'] ?>">
+                        <label>File Soal :</label> &nbsp; <img src="<?= base_url('upload/soal/'). $soal['file_soal'] ?>" width="100%" height="100%">
                     <?php } ?>
 
                   </div>
-                </div>
+                </div> <br>
 
                 <label>Pilihan Jawaban :</label>
                 <table class="table table-bordered table-striped">
@@ -84,17 +84,47 @@
                       <th>E</th>
                     </tr>
                   </thead>
-                    <tbody class="text-center">
+                  <tbody class="text-center">
                       
-                      <tr>
-                        <td><?= $soal['pilihan_a'] ?> <br> <img src="<?= base_url('upload/soal/'). $soal['file_a'] ?>"></td>
-                        <td><?= $soal['pilihan_b'] ?> <br> <img src="<?= base_url('upload/soal/'). $soal['file_b'] ?>"></td>
-                        <td><?= $soal['pilihan_c'] ?> <br> <img src="<?= base_url('upload/soal/'). $soal['file_c'] ?>"></td>
-                        <td><?= $soal['pilihan_d'] ?> <br> <img src="<?= base_url('upload/soal/'). $soal['file_d'] ?>"></td>
-                        <td><?= $soal['pilihan_e'] ?> <br> <img src="<?= base_url('upload/soal/'). $soal['file_e'] ?>"></td>
-                      </tr>
+                    <tr>
+                      <td>
+                        <?php if ($soal['file_a'] != null) { ?>
+                          <?= $soal['pilihan_a'] ?> <br> <img src="<?= base_url('upload/soal/'). $soal['file_a'] ?>">
+                        <?php } else { ?>
+                          <?= $soal['pilihan_a'] ?>
+                        <?php } ?>
+                      </td>
+                      <td>
+                        <?php if ($soal['file_b'] != null) { ?>
+                          <?= $soal['pilihan_b'] ?> <br> <img src="<?= base_url('upload/soal/'). $soal['file_b'] ?>">
+                        <?php } else { ?>
+                          <?= $soal['pilihan_b'] ?>
+                        <?php } ?>
+                      </td>
+                      <td>
+                        <?php if ($soal['file_c'] != null) { ?>
+                          <?= $soal['pilihan_c'] ?> <br> <img src="<?= base_url('upload/soal/'). $soal['file_c'] ?>">
+                        <?php } else { ?>
+                          <?= $soal['pilihan_c'] ?>
+                        <?php } ?>
+                      </td>
+                      <td>
+                        <?php if ($soal['file_d'] != null) { ?>
+                          <?= $soal['pilihan_d'] ?> <br> <img src="<?= base_url('upload/soal/'). $soal['file_d'] ?>">
+                        <?php } else { ?>
+                          <?= $soal['pilihan_d'] ?>
+                        <?php } ?>
+                      </td>
+                      <td>
+                        <?php if ($soal['file_e'] != null) { ?>
+                          <?= $soal['pilihan_e'] ?> <br> <img src="<?= base_url('upload/soal/'). $soal['file_e'] ?>">
+                        <?php } else { ?>
+                          <?= $soal['pilihan_e'] ?>
+                        <?php } ?>
+                      </td>
+                    </tr>
 
-                    </tbody>
+                  </tbody>
                   <tfoot class="text-center">
                     <th>A</th>
                     <th>B</th>
@@ -106,7 +136,8 @@
 
                 <br>
                 <div class="row col-12">
-                  <label>Kunci Jawaban :</label> &nbsp; <?= $soal['kunci'] ?>
+                  <label>Kunci Jawaban :</label> &nbsp; <?= $soal['kunci'] ?> &nbsp;&nbsp;&nbsp;
+                  <img src="<?= base_url('upload/soal/'). $soal['kunci'] ?>">
                 </div>
 
               </div>

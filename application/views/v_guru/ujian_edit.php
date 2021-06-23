@@ -137,20 +137,6 @@
                     </div>
                   </div>
 
-                  <div class="row">
-                    <div class="form-group col-6">
-                      <label>Status Ujian</label> <br>
-                      <div class="icheck-primary d-inline">
-                        <input type="radio" id="radioPrimary1" name="status" value="Y" <?php if ($ujian['aktif'] == 'Y'): ?> checked <?php endif ?>>
-                        <label for="radioPrimary1">Aktif</label>
-                      </div> &nbsp; &nbsp; &nbsp;
-                      <div class="icheck-primary d-inline">
-                        <input type="radio" id="radioPrimary2" name="status" value="N" <?php if ($ujian['aktif'] == 'N'): ?> checked <?php endif ?>>
-                        <label for="radioPrimary2">Tidak Aktif</label>
-                      </div>
-                    </div>
-                  </div>
-
                 </div>
                 <!-- /.card-body -->
 

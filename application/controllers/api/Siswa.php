@@ -20,11 +20,11 @@ class Siswa extends REST_Controller {
 	public function login_post()
 	{
 		$username = $this->post('username');
-        $pass = htmlspecialchars($this->input->post('password'));
-		$password = password_verify($pass, 'password');
+        $pass = $this->post('password');
+		// $password = password_verify($pass, 'password');
 
-        if (!empty($username) && !empty($password)) {
-            $user = $this->Model_Siswa->login($username, $password);
+        if (!empty($username) && !empty($pass)) {
+            $user = $this->Model_Siswa->login($username, $pass);
             if ($user) {
                 $this->response([
                     'status' => true,
@@ -34,7 +34,7 @@ class Siswa extends REST_Controller {
             else{
                 $this->response([
                     'status' => false,
-                    'data' => 'user not found'
+                    'message' => 'user not found'
                 ], REST_Controller::HTTP_NOT_FOUND);
             }
         } 
@@ -44,64 +44,6 @@ class Siswa extends REST_Controller {
                 'message' => 'provide a data'
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
-	}
-	
-// ===================================================================
-
-	public function index_get()
-	{
-		# code...
-		$id = $this->get('id_siswa');
-
-		if ($id === null) {
-			# code...
-			$siswa = $this->Model_Siswa->getSiswa();
-		}
-		else {
-			$siswa = $this->Model_Siswa->getSiswa($id);
-		}
-
-
-		if ($siswa) {
-			# code...
-			$this->response([
-                    'status' => true,
-                    'message' => 'Success',
-                    'data' => $siswa
-                ], REST_Controller::HTTP_OK);
-		}
-		else {
-			$this->response([
-                    'status' => false,
-                    'message' => 'id not found!'
-                ], REST_Controller::HTTP_NOT_FOUND);
-		}
-	}
-
-	public function index_put()
-	{
-		# code...
-		$id = $this->put('id_siswa');
-		$data = [
-	 		'nis' => $this->put('nis'),
-	 		'nama' => $this->put('nama'),
-	 		'username' => $this->put('username'),
-	 		'password' => $this->put('password')
-	 	];
-
-	 	if ($this->Model_Siswa->updateSiswa($data, $id) > 0) {
-	 		# code...
-	 		$this->response([
-                'status' => true,
-                'message' => 'data updated'
-            ], REST_Controller::HTTP_OK);
-		}
-	 	else {
-	 		$this->response([
-                'status' => false,
-                'message' => 'failed!'
-            ], REST_Controller::HTTP_BAD_REQUEST);
-	 	}
 	}
 
 // ===================================================================
@@ -187,9 +129,6 @@ class Siswa extends REST_Controller {
 	public function update_put() {
         $id = $this->put('id_siswa');
         $data = array(
-                    'id_siswa' => $this->put('id_siswa'),
-	 		        'nis' => $this->put('nis'),
-	 		        'nama' => $this->put('nama'),
 	 		        'username' => $this->put('username'),
 	 		        'password' => $this->put('password'));
         $this->db->where('id_siswa', $id);
@@ -199,6 +138,32 @@ class Siswa extends REST_Controller {
         } else {
             $this->response(array('status' => 'fail', 502));
         }
+    }
+
+// ===================================================================
+
+    public function ujian_get()
+    {
+    	// code...
+    	$kls = $this->get('id_kelas');
+		$jrs = $this->get('id_jurusan');
+
+		$siswa = $this->Model_Siswa->getUjian($kls, $jrs);
+
+		if ($siswa) {
+			# code...
+			$this->response([
+                    'status' => true,
+                    'message' => 'Success',
+                    'data' => $siswa
+                ], REST_Controller::HTTP_OK);
+		}
+		else {
+			$this->response([
+                    'status' => false,
+                    'message' => 'ujian not found!'
+                ], REST_Controller::HTTP_NOT_FOUND);
+		}
     }
 
 }

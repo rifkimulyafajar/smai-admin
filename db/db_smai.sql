@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Jun 2021 pada 21.25
+-- Waktu pembuatan: 01 Jul 2021 pada 20.46
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -315,7 +315,8 @@ INSERT INTO `ujian` (`id_ujian`, `id_guru`, `id_mapel`, `id_kelas`, `id_jurusan`
 (14, 30, 3, 3, 3, 45, 'acak', '2021-06-08 07:00:00', '2021-06-08 07:45:00', 'XH108'),
 (15, 23, 1, 1, 1, 10, 'acak', '2021-06-11 19:00:13', '2021-06-11 19:10:13', '2MSB2'),
 (34, 24, 7, 1, 1, 45, 'acak', '2021-06-12 08:00:00', '2021-06-12 08:45:00', '0JIX4'),
-(35, 50, 11, 3, 6, 30, 'acak', '2021-06-25 08:00:00', '2021-06-25 08:30:00', 'Z5AB9');
+(35, 50, 11, 3, 6, 30, 'acak', '2021-06-25 08:00:00', '2021-06-25 08:30:00', 'Z5AB9'),
+(36, 23, 1, 3, 6, 1440, 'acak', '2021-06-28 15:00:00', '2021-06-29 15:00:00', 'BJXLT');
 
 -- --------------------------------------------------------
 
@@ -474,7 +475,7 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT untuk tabel `ujian`
 --
 ALTER TABLE `ujian`
-  MODIFY `id_ujian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id_ujian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT untuk tabel `ujian_hasil`

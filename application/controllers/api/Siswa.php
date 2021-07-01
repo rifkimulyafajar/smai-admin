@@ -166,4 +166,27 @@ class Siswa extends REST_Controller {
 		}
     }
 
+    public function soalujian_get()
+    {
+    	// code...
+    	$id = $this->get('id_ujian');
+
+		$siswa = $this->Model_Siswa->getSoalUjian($id);
+
+		if ($siswa) {
+			# code...
+			$this->response([
+                    'status' => true,
+                    'message' => 'Success',
+                    'data' => $siswa
+                ], REST_Controller::HTTP_OK);
+		}
+		else {
+			$this->response([
+                    'status' => false,
+                    'message' => 'ujian not found!'
+                ], REST_Controller::HTTP_NOT_FOUND);
+		}
+    }
+
 }

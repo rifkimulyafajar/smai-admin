@@ -131,4 +131,22 @@ class Model_Siswa extends CI_Model {
             return $query->result_array();
         }
     }
+
+    public function getSoalUjian($id)
+    {
+        // code...
+        if ($id != null) {
+            $this->db->select('*');
+            $this->db->from('bank_soal');
+            $this->db->join('guru', 'bank_soal.id_guru = guru.id_guru');
+            $this->db->join('mapel', 'bank_soal.id_mapel = mapel.id_mapel');
+            $this->db->join('kelas', 'bank_soal.id_kelas = kelas.id_kelas');
+            $this->db->join('jurusan', 'bank_soal.id_jurusan = jurusan.id_jurusan');
+            $this->db->join('ujian', 'bank_soal.id_ujian = ujian.id_ujian');
+            $this->db->where('ujian.id_ujian', $id);
+            $query = $this->db->get();
+
+            return $query->result_array();
+        }
+    }
 }

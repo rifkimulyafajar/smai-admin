@@ -108,7 +108,7 @@
                   <div class="row">
                     <div class="form-group col-6">
                       <label>Waktu Mulai Ujian</label>
-                      <input type="text" name="waktu_mulai" class="form-control" id="pickerr" placeholder="Waktu Mulai Ujian" value="<?= $ujian['waktu_mulai'] ?>">
+                      <input type="text" name="waktu_mulai" class="form-control" id="picker" placeholder="Waktu Mulai Ujian" value="<?= $ujian['waktu_mulai'] ?>">
                       <?= form_error('waktu_mulai', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="form-group col-6">

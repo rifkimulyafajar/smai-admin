@@ -21,10 +21,10 @@ class Siswa extends REST_Controller {
 	{
 		$username = $this->post('username');
         $pass = $this->post('password');
-		// $password = password_verify($pass, 'password');
+		$password = password_verify($pass, 'password');
 
         if (!empty($username) && !empty($pass)) {
-            $user = $this->Model_Siswa->login($username, $pass);
+            $user = $this->Model_Siswa->login($username, $password);
             if ($user) {
                 $this->response([
                     'status' => true,
@@ -105,8 +105,6 @@ class Siswa extends REST_Controller {
 // 		$id = $this->put('id_siswa');
 		$data = [
 		  //  'id_siswa' => $this->put('id_siswa'),
-	 		'nis' => $this->put('nis'),
-	 		'nama' => $this->put('nama'),
 	 		'username' => $this->put('username'),
 	 		'password' => $this->put('password')
 	 	];
@@ -185,6 +183,34 @@ class Siswa extends REST_Controller {
 			$this->response([
                     'status' => false,
                     'message' => 'ujian not found!'
+                ], REST_Controller::HTTP_NOT_FOUND);
+		}
+    }
+
+    public function ujian_post()
+    {
+    	// code...
+    	$this->id = uniqid();
+        $data = [
+            "id_ujian" => $this->input->post('id_ujian', true),
+            "id_siswa" => $this->input->post('id_siswa', true),
+            "jml_benar" => $this->input->post('jml_benar', true),
+            "nilai" => $this->input->post('nilai', true)
+        ];
+
+        $siswa = $this->db->insert('ujian_hasil', $data);
+
+    	if ($siswa) {
+			# code...
+			$this->response([
+                    'status' => true,
+                    'message' => 'Success'
+                ], REST_Controller::HTTP_OK);
+		}
+		else {
+			$this->response([
+                    'status' => false,
+                    'message' => 'fail!'
                 ], REST_Controller::HTTP_NOT_FOUND);
 		}
     }

@@ -132,6 +132,7 @@ class Model_Siswa extends CI_Model {
         }
     }
 
+    
     public function getSoalUjian($id)
     {
         // code...
@@ -149,4 +150,5 @@ class Model_Siswa extends CI_Model {
             return $query->result_array();
         }
     }
+
 }

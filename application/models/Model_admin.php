@@ -709,6 +709,7 @@ class Model_Admin extends CI_Model {
 
         $this->id_ujian = uniqid();
         $data = [
+            "judul_ujian" => $this->input->post('judul', true),
             "id_guru" => $this->input->post('id_guru', true),
             "id_mapel" => $this->input->post('id_mapel', true),
             "id_kelas" => $this->input->post('kelas', true),
@@ -737,6 +738,7 @@ class Model_Admin extends CI_Model {
 
         $post = $this->input->post();
 
+        $this->judul_ujian = $post["judul"];
         $this->id_ujian = $post["id_ujian"];
         $this->id_guru = $post["id_guru"];
         $this->id_mapel = $post["id_mapel"];

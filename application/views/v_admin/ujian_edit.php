@@ -57,6 +57,14 @@
               <form action="<?= base_url('C_Admin/edit_ujian/'.$ujian['id_ujian']) ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                 <div class="card-body">
 
+                  <div class="row">
+                    <div class="form-group col-12">
+                      <label>Judul Ujian</label>
+                      <input type="text" name="judul" class="form-control" value="<?= $ujian['judul_ujian'] ?>">
+                      <?= form_error('judul', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                  </div>
+
                   <input type="hidden" name="id_ujian" value="<?= $ujian['id_ujian'] ?>">
 
                   <div class="row">

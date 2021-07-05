@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Jul 2021 pada 20.46
+-- Waktu pembuatan: 05 Jul 2021 pada 05.39
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -66,7 +66,7 @@ INSERT INTO `bank_soal` (`id_soal`, `id_guru`, `id_mapel`, `id_kategori`, `id_ke
 (16, 23, 1, NULL, 3, 4, 13, 'Ujian', '<p>a</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', 5, '2021-05-28 08:41:19'),
 (22, 29, 2, 2, 1, 5, NULL, 'Latihan', '<p>T</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', 4, '2021-05-28 21:48:46'),
 (23, 24, 7, NULL, 2, 4, NULL, 'Ujian', '<p>P</p>\r\n', '', '', '', '', '', '', '', '', '', '', '', 'A', 2, '2021-05-29 22:27:47'),
-(30, 20, 1, NULL, 1, 1, NULL, 'Ujian', '<p>1</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'B', 3, '2021-05-31 10:37:54'),
+(30, 20, 1, NULL, 3, 6, 37, 'Ujian', '<p>1</p>\r\n', '', '3', '', '2', '', '5', '', '8', '', '1', '', '1', 3, '2021-05-31 10:37:54'),
 (32, 23, 1, 11, 1, 1, 15, 'Ujian', '<p>?</p>\r\n', '', '', '', '', '', '', '', '', '', '', '', 'B', 3, '2021-06-04 15:26:39'),
 (33, 23, 1, 11, 1, 1, 15, 'Ujian', '<p>?</p>\r\n', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'A', 2, '2021-06-11 16:38:22'),
 (34, 30, 3, NULL, 3, 3, 14, 'Ujian', '<p>??</p>\r\n', NULL, 'A', NULL, 'B', NULL, 'C', NULL, 'D', NULL, 'E', NULL, 'E', 2, '2021-06-13 01:01:21'),
@@ -81,7 +81,13 @@ INSERT INTO `bank_soal` (`id_soal`, `id_guru`, `id_mapel`, `id_kategori`, `id_ke
 (62, 50, 11, NULL, 3, 6, NULL, 'Latihan', '<p>Contoh tradisi lisan dari suku Betawi yang masih dikenal sampai saat ini adalah ….</p>\r\n', '', 'Pencak Silat', '', 'Musik Tanjidor', '', 'Tradisi Palang Pintu', '', 'Rumah Kebaya', '', 'Kerak Telor', '', 'Tradisi Palang Pintu', 3, '2021-06-23 23:28:16'),
 (63, 50, 11, NULL, 3, 6, 35, 'Ujian', '<p>Perhatikan illustrasi berikut :<br>\r\nUpacara tradisional pada masyarakat Jawa Tengah seperti digerakkan kekuatan spiritual mereka saling bahu membahu membuat sejumlah ritual dan tradisi yang hakekatnya memohon keselamatan pada Tuhan Yang Maha Esa, seperti upacara Larung dengan menghanyutkan sesaji ke laut yang berupa hasil bumi. Dari ilustrasi tersebut dapat disimpulkan bahwa tradisi larung merupakan bentuk....</p>\r\n', NULL, 'pujian-pujian yang dipersembahkan untuk roh leluhur', NULL, 'tradisi penghormatan pada pengauasa pantai', NULL, 'rasa syukur masyarakat akan hasil bumi yang mereka hasilkan', NULL, 'keyakinan yang terdapat pada masyarakat', NULL, 'kepercayaan tradisional masyarakat setempat', NULL, 'rasa syukur masyarakat akan hasil bumi yang mereka hasilkan', 2, '2021-06-24 01:18:36'),
 (64, 50, 11, NULL, 3, 6, NULL, NULL, '<p>Kampung Naga merupakan suatu kampung yang mewarisi budaya leluhur. Di mana masyarakatnya terikat pada aturan yang telah ditetapkan untuk mensosialisasikan nilai-nilai, norma-norma yang berlaku yang diwariskan ke generasi berikutnya. Sarana pewarisan budaya ini adalah ....</p>\r\n', '', 'Lembaga pendidikan', '', 'Lembaga hukum', '', 'Lembaga adat', '', 'Lembaga agama', '', 'Lembaga ekonomi', '', 'Lembaga adat', 4, '2021-06-24 02:05:04'),
-(65, 50, 11, NULL, 3, 6, 35, 'Ujian', '<p>Seorang pengamen ingin meniru penampilan penyanyi terkenal dengan cara berdandan dan berpenampilan, serta bernyanyi seperti penyanyi terkenal tersebut. Hal ini merupakan salah satu faktor pendorong dinamika budaya yang disebut ....</p>\r\n', '', 'identifikasi', '', 'motivasi', '', 'simpati', '', 'sugesti', '', 'imitasi', '', 'imitasi', 3, '2021-06-24 02:11:09');
+(65, 50, 11, NULL, 3, 6, 35, 'Ujian', '<p>Seorang pengamen ingin meniru penampilan penyanyi terkenal dengan cara berdandan dan berpenampilan, serta bernyanyi seperti penyanyi terkenal tersebut. Hal ini merupakan salah satu faktor pendorong dinamika budaya yang disebut ....</p>\r\n', '', 'identifikasi', '', 'motivasi', '', 'simpati', '', 'sugesti', '', 'imitasi', '', 'imitasi', 3, '2021-06-24 02:11:09'),
+(66, 23, 1, NULL, 3, 3, 38, 'Ujian', '<p>Soal satu</p>\r\n', NULL, 'A', NULL, 'B', NULL, 'C', NULL, 'D', NULL, 'E', NULL, 'B', 1, '2021-06-30 20:58:05'),
+(67, 23, 1, NULL, 3, 3, 38, 'Ujian', '<p>Soal 2</p>\r\n', NULL, 'A', NULL, 'B', NULL, 'C', NULL, 'D', NULL, 'E', NULL, 'B', 1, '2021-06-30 20:58:33'),
+(68, 50, 11, NULL, 3, 6, 35, 'Ujian', '<p>Iya tidak?</p>\r\n', NULL, 'Tidak', NULL, 'Iya', NULL, 'Mungkin', NULL, 'Tidak tahu', NULL, 'Bisa jadi', NULL, 'Iya', 2, '2021-07-02 13:46:31'),
+(69, 20, 1, NULL, 3, 6, 37, 'Ujian', '<p>2</p>\r\n', NULL, '5', NULL, '3', NULL, '2', NULL, '6', NULL, '8', NULL, '2', 2, '2021-07-02 15:10:51'),
+(70, 24, 7, NULL, 2, 2, 34, 'Ujian', '<p>soal satu</p>\r\n', NULL, 'A', NULL, 'B', NULL, 'C', NULL, 'D', NULL, 'E', NULL, 'B', 1, '2021-07-04 17:07:24'),
+(71, 24, 7, NULL, 2, 2, 34, 'Ujian', '<p>Soal dua</p>\r\n', NULL, 'A', NULL, 'B', NULL, 'C', NULL, 'D', NULL, 'E', NULL, 'C', 1, '2021-07-04 17:08:27');
 
 -- --------------------------------------------------------
 
@@ -272,7 +278,7 @@ CREATE TABLE `siswa` (
   `id_kelas` int(11) NOT NULL,
   `id_jurusan` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -281,11 +287,11 @@ CREATE TABLE `siswa` (
 
 INSERT INTO `siswa` (`id_siswa`, `nis`, `nama`, `id_kelas`, `id_jurusan`, `username`, `password`) VALUES
 (1, '123', 'Aaa', 1, 6, '123', '$2y$10$hfIum0XfOxQZSS0p.f7UcOJ/czk4UD4H9ndTHVPuCa/'),
-(2, '321', 'Bbb', 2, 2, '321', '321'),
-(4, '333', 'Ddd', 3, 4, '333', '333'),
-(5, '555', 'Zzz', 2, 4, '555', '555'),
-(6, '222', 'abcd', 3, 3, '222', '222'),
-(7, '444', 'xyz', 3, 6, '444', '444');
+(2, '321', 'Bbb', 2, 2, '321', '$2y$10$xJZEEwdOHLlPFpgqK/rvouuagGZAhBQJsoundEKzWAXSmGZcssMU.'),
+(4, '333', 'Ddd', 3, 4, '333', '$2y$10$6BWaL2S6/M.hZRiMBVRSBObveUxCdOkWCc42unFwCZs/7THLYhJsa'),
+(5, '555', 'Zzz', 2, 4, '555', '$2y$10$d2l8vTFLWhVicGs0LBGjTOAbpTkncnEU3NUvap01NH0N70MtZwMci'),
+(6, '222', 'abcd', 3, 3, '222', '$2y$10$ay/sL5Bvt3i07a28GB0DS.HhlqsW8UoLsuOI3fbGlEDR8WsrdIvka'),
+(7, '444', 'xyz', 3, 6, '444', '$2y$10$.n8dpA.0cXIQIinB5NIDMeLuhjdhLjQuSkvl9DF5V1hzZIDEqsDSm');
 
 -- --------------------------------------------------------
 
@@ -294,7 +300,8 @@ INSERT INTO `siswa` (`id_siswa`, `nis`, `nama`, `id_kelas`, `id_jurusan`, `usern
 --
 
 CREATE TABLE `ujian` (
-  `id_ujian` int(10) NOT NULL,
+  `id_ujian` int(11) NOT NULL,
+  `judul_ujian` varchar(100) NOT NULL,
   `id_guru` int(11) NOT NULL,
   `id_mapel` int(11) NOT NULL,
   `id_kelas` int(11) NOT NULL,
@@ -310,13 +317,15 @@ CREATE TABLE `ujian` (
 -- Dumping data untuk tabel `ujian`
 --
 
-INSERT INTO `ujian` (`id_ujian`, `id_guru`, `id_mapel`, `id_kelas`, `id_jurusan`, `durasi`, `jenis`, `waktu_mulai`, `waktu_selesai`, `token`) VALUES
-(13, 23, 1, 3, 4, 90, 'urut', '2021-06-08 13:00:00', '2021-06-08 14:30:00', 'D4KEM'),
-(14, 30, 3, 3, 3, 45, 'acak', '2021-06-08 07:00:00', '2021-06-08 07:45:00', 'XH108'),
-(15, 23, 1, 1, 1, 10, 'acak', '2021-06-11 19:00:13', '2021-06-11 19:10:13', '2MSB2'),
-(34, 24, 7, 1, 1, 45, 'acak', '2021-06-12 08:00:00', '2021-06-12 08:45:00', '0JIX4'),
-(35, 50, 11, 3, 6, 30, 'acak', '2021-06-25 08:00:00', '2021-06-25 08:30:00', 'Z5AB9'),
-(36, 23, 1, 3, 6, 1440, 'acak', '2021-06-28 15:00:00', '2021-06-29 15:00:00', 'BJXLT');
+INSERT INTO `ujian` (`id_ujian`, `judul_ujian`, `id_guru`, `id_mapel`, `id_kelas`, `id_jurusan`, `durasi`, `jenis`, `waktu_mulai`, `waktu_selesai`, `token`) VALUES
+(13, 'KUIS 1 - Bahasa Indonesia', 23, 1, 3, 4, 90, 'urut', '2021-06-08 13:00:00', '2021-06-08 14:30:00', 'D4KEM'),
+(14, 'Test', 30, 3, 3, 3, 45, 'acak', '2021-06-08 07:00:00', '2021-06-08 07:45:00', 'XH108'),
+(15, 'Test 1', 23, 1, 1, 1, 10, 'acak', '2021-06-11 19:00:13', '2021-06-11 19:10:13', '2MSB2'),
+(34, 'UTS - Biologi', 24, 7, 2, 2, 9000, 'acak', '2021-07-04 17:00:00', '2021-07-10 23:00:00', '0JIX4'),
+(35, 'KUIS - 1', 50, 11, 3, 6, 30, 'acak', '2021-06-25 08:00:00', '2021-06-25 08:30:00', 'Z5AB9'),
+(36, 'UAS - Bahasa Indonesia', 23, 1, 3, 6, 1440, 'acak', '2021-07-02 23:00:00', '2021-07-03 23:00:00', 'CQWQ1'),
+(37, 'UAS 2 - Bahasa Indonesia', 20, 1, 3, 6, 180, 'urut', '2021-07-02 23:55:05', '2021-07-03 02:55:05', 'YSWIK'),
+(38, 'UTS - B.indo', 23, 1, 3, 2, 90, 'acak', '2021-06-30 18:00:54', '2021-06-30 19:30:54', 'JFJXF');
 
 -- --------------------------------------------------------
 
@@ -328,12 +337,17 @@ CREATE TABLE `ujian_hasil` (
   `id` int(11) NOT NULL,
   `id_ujian` int(11) NOT NULL,
   `id_siswa` int(11) NOT NULL,
-  `list_soal` longtext NOT NULL,
-  `list_jawaban` longtext NOT NULL,
   `jml_benar` int(11) NOT NULL,
-  `nilai` int(11) NOT NULL,
-  `status` enum('N','Y') NOT NULL
+  `nilai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `ujian_hasil`
+--
+
+INSERT INTO `ujian_hasil` (`id`, `id_ujian`, `id_siswa`, `jml_benar`, `nilai`) VALUES
+(2, 36, 7, 2, 4),
+(5, 35, 2, 55, 200);
 
 --
 -- Indexes for dumped tables
@@ -427,7 +441,7 @@ ALTER TABLE `ujian_hasil`
 -- AUTO_INCREMENT untuk tabel `bank_soal`
 --
 ALTER TABLE `bank_soal`
-  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT untuk tabel `guru`
@@ -475,13 +489,13 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT untuk tabel `ujian`
 --
 ALTER TABLE `ujian`
-  MODIFY `id_ujian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT untuk tabel `ujian_hasil`
 --
 ALTER TABLE `ujian_hasil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -497,12 +511,6 @@ ALTER TABLE `bank_soal`
   ADD CONSTRAINT `bank_soal_ibfk_6` FOREIGN KEY (`id_mapel`) REFERENCES `mapel` (`id_mapel`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `id_kategori` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `id_ujian` FOREIGN KEY (`id_ujian`) REFERENCES `ujian` (`id_ujian`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ketidakleluasaan untuk tabel `guru`
---
-ALTER TABLE `guru`
-  ADD CONSTRAINT `guru_ibfk_1` FOREIGN KEY (`id_mapel`) REFERENCES `mapel` (`id_mapel`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `kategori`
@@ -539,8 +547,8 @@ ALTER TABLE `ujian`
 -- Ketidakleluasaan untuk tabel `ujian_hasil`
 --
 ALTER TABLE `ujian_hasil`
-  ADD CONSTRAINT `ujian_hasil_ibfk_2` FOREIGN KEY (`id_siswa`) REFERENCES `siswa` (`id_siswa`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `ujian_hasil_ibfk_3` FOREIGN KEY (`id_ujian`) REFERENCES `ujian` (`id_ujian`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `id_siswa` FOREIGN KEY (`id_siswa`) REFERENCES `siswa` (`id_siswa`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ujian_hasil_ibfk_1` FOREIGN KEY (`id_ujian`) REFERENCES `ujian` (`id_ujian`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

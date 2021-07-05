@@ -38,7 +38,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Mata Pelajaran</th>
+                    <th>Judul Ujian</th>
                     <th>Kelas</th>
                     <th>Durasi</th>
                     <th>Jenis</th>
@@ -54,7 +54,7 @@
                     foreach ($ujian as $u) { ?>
 
                     <tr>
-                      <td><?= $u['mapel'] ?></td>
+                      <td><?= $u['judul_ujian'] ?></td>
                       <td><?= $u['kelas'] ?> - <?= $u['jurusan'] ?></td>
                       <td><?= $u['durasi'] ?> menit</td>
                       <td><?= $u['jenis'] ?></td>
@@ -98,7 +98,7 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Mata Pelajaran</th>
+                    <th>Judul Ujian</th>
                     <th>Kelas</th>
                     <th>Durasi</th>
                     <th>Jenis</th>

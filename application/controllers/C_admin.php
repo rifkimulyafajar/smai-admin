@@ -257,6 +257,7 @@ class C_Admin extends CI_Controller {
 			$data['kelas'] = $this->Model_Admin->getAllKelas();
 			$data['jurusan'] = $this->Model_Admin->getAllJurusan();
 
+			$this->form_validation->set_rules('judul', 'Judul Ujian', 'required');
 			$this->form_validation->set_rules('durasi', 'Durasi', 'required');
 			$this->form_validation->set_rules('waktu_mulai', 'Waktu', 'required');
 
@@ -286,6 +287,7 @@ class C_Admin extends CI_Controller {
 			$data['jurusan'] = $this->Model_Admin->getAllJurusan();
 			$data['hitung'] = $this->Model_Admin->hitungSoalUjian($id);
 
+			$this->form_validation->set_rules('judul', 'Judul Ujian', 'required');
 			$this->form_validation->set_rules('durasi', 'Durasi', 'required');
 			$this->form_validation->set_rules('waktu_mulai', 'Waktu', 'required');
 
@@ -295,7 +297,7 @@ class C_Admin extends CI_Controller {
 				$this->load->view('v_admin/footer');
 			} else {
 				$this->Model_Admin->editUjian();
-				echo "<script>alert('Soal Berhasil Diupdate');</script>";
+				echo "<script>alert('Ujian Berhasil Diupdate');</script>";
 				redirect('C_Admin/soal_ujian', 'refresh');
 			}
 		}

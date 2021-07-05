@@ -98,15 +98,15 @@ class Siswa extends REST_Controller {
                 ], REST_Controller::HTTP_NOT_FOUND);
 		}
 	}
+
+// ===================================================================
 	
-	public function siswa_put($id)
+	public function siswa_post($id)
 	{
 		# code...
-// 		$id = $this->put('id_siswa');
 		$data = [
-		  //  'id_siswa' => $this->put('id_siswa'),
-	 		'username' => $this->put('username'),
-	 		'password' => $this->put('password')
+	 		'username' => $this->post('username'),
+	 		'password' => $this->post('password')
 	 	];
 
 	 	if ($this->Model_Siswa->updateSiswa($data, $id) > 0) {
@@ -123,20 +123,6 @@ class Siswa extends REST_Controller {
             ], REST_Controller::HTTP_BAD_REQUEST);
 	 	}
 	}
-
-	public function update_put() {
-        $id = $this->put('id_siswa');
-        $data = array(
-	 		        'username' => $this->put('username'),
-	 		        'password' => $this->put('password'));
-        $this->db->where('id_siswa', $id);
-        $update = $this->db->update('siswa', $data);
-        if ($update) {
-            $this->response($data, 200);
-        } else {
-            $this->response(array('status' => 'fail', 502));
-        }
-    }
 
 // ===================================================================
 
@@ -164,6 +150,8 @@ class Siswa extends REST_Controller {
 		}
     }
 
+// ===================================================================
+
     public function soalujian_get()
     {
     	// code...
@@ -186,6 +174,8 @@ class Siswa extends REST_Controller {
                 ], REST_Controller::HTTP_NOT_FOUND);
 		}
     }
+
+// ===================================================================
 
     public function ujian_post()
     {

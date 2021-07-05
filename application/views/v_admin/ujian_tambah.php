@@ -30,6 +30,14 @@
                 <div class="card-body">
 
                   <div class="row">
+                    <div class="form-group col-12">
+                      <label>Judul Ujian</label>
+                      <input type="text" name="judul" class="form-control" placeholder="Judul Ujian">
+                      <?= form_error('judul', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                  </div>
+
+                  <div class="row">
                     <div class="form-group col-6">
                       <label>Nama Guru</label>
                       <input type="text" name="" class="form-control" value="<?= $guru['nama'] ?>" disabled>

@@ -31,7 +31,7 @@
 
               <br>
 
-              <form action="<?= base_url('c_login/login_proses') ?>" method='post'>
+              <form action="<?= base_url('C_Login/login_proses') ?>" method='post'>
                 <div class="form-group">
                   <label for="username" class="sr-only">Username</label>
                   <input type="text" name="username" id="username" class="form-control" placeholder="Username">

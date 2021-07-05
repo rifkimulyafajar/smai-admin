@@ -63,6 +63,7 @@ class C_Guru extends CI_Controller {
 			$data['kelas'] = $this->Model_Guru->getAllKelas();
 			$data['jurusan'] = $this->Model_Guru->getAllJurusan();
 
+			$this->form_validation->set_rules('judul', 'Judul Ujian', 'required');
 			$this->form_validation->set_rules('durasi', 'Durasi', 'required');
 			$this->form_validation->set_rules('waktu_mulai', 'Waktu', 'required');
 
@@ -111,7 +112,7 @@ class C_Guru extends CI_Controller {
 			$data['jurusan'] = $this->Model_Guru->getAllJurusan();
 			$data['hitung'] = $this->Model_Guru->hitungSoalUjian($id);
 
-			$this->form_validation->set_rules('jumlah', 'Jumlah Soal', 'required');
+			$this->form_validation->set_rules('judul', 'Judul Ujian', 'required');
 			$this->form_validation->set_rules('durasi', 'Durasi', 'required');
 			$this->form_validation->set_rules('waktu_mulai', 'Waktu', 'required');
 

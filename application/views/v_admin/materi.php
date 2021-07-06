@@ -21,13 +21,13 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                   <a href="<?= base_url('C_Admin/tambah_materi') ?>" class="btn btn-block btn-danger btn-lg">
                     <i class="fa fa-paste"><sup> +</sup></i>
                     &nbsp;&nbsp; Tambah Materi
                   </a>
                 </div>
-                <div class="col-lg-9"></div>
+                <div class="col-lg-8"></div>
               </div>
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
@@ -40,7 +40,7 @@
                       <th>File 1</th>
                       <th>File 2</th>
                       <th>File 3</th>
-                      <th>Action</th>
+                      <th></th>
                     </tr>
                   </thead>
                     <tbody>
@@ -109,7 +109,7 @@
                     <th>File 1</th>
                     <th>File 2</th>
                     <th>File 3</th>
-                    <th>Action</th>
+                    <th></th>
                   </tfoot>
                 </table>
               </div>

@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Soal Ujian</h1>
+            <!-- <h1 class="m-0">Hasil Ujian</h1> -->
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -18,55 +18,41 @@
         <!-- Small boxes (Stat box) -->
 
         <div class="row">
-          <div class="col-4">
-            <a href="<?= base_url('C_Guru/buat_ujian'); ?>" class="btn btn-block btn-info btn-lg">
-              <i class="fa fa-copy"><sup> +</sup></i>
-                &nbsp;&nbsp; Buat Ujian
-            </a>
-          </div>
-          <div class="col-4"></div>
-          <div class="col-4"></div>
-        </div> <br>
-
-        <div class="row">
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <h3>Daftar Ujian yang Telah Dibuat</h3>
+                <h1 class="m-0">Hasil Ujian</h1>
               </div>
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
-                  <tr>
-                    <th>Judul Ujian</th>
-                    <th>Kelas</th>
-                    <th>Durasi</th>
-                    <th>Jenis</th>
-                    <th>Waktu Mulai</th>
-                    <th>Token</th>
-                    <th></th>
-                  </tr>
+                    <tr>
+                      <th>No.</th>
+                      <th>Judul Ujian</th>
+                      <th>Guru - Mata Pelajaran</th>
+                      <th>Kelas</th>
+                      <th>Action</th>
+                    </tr>
                   </thead>
                   <tbody>
 
                     <?php 
                     $no = 1;
                     foreach ($ujian as $u) { ?>
-
+                      
                     <tr>
+                      <td><?= $no++ ?></td>
                       <td><?= $u['judul_ujian'] ?></td>
-                      <td><?= $u['kelas'] ?> - <?= $u['jurusan'] ?></td>
-                      <td><?= $u['durasi'] ?> menit</td>
-                      <td><?= $u['jenis'] ?></td>
-                      <td><?= $u['waktu_mulai'] ?></td>
-                      <td><?= $u['token'] ?></td>
+                      <td><?= $u['nama'] ?>&nbsp; - &nbsp;<?= $u['mapel'] ?></td>
+                      <td><?= $u['kelas'] ?>&nbsp; - &nbsp;<?= $u['jurusan'] ?></td>
                       <td>
-                        <a href="<?= base_url('C_Guru/edit_ujian/').$u['id_ujian']; ?>" class="btn bg-warning">
-                          <i class="fas fa-edit"></i>
-                        </a> &nbsp;
-                        <button type="button" class="btn bg-danger" data-toggle="modal" data-target="#hapus-<?= $u['id_ujian'];?>">
-                          <i class="fas fa-trash"></i>
+                        <a href="<?= base_url('C_Admin/detail_hasil_ujian/').$u['id_ujian']; ?>" class="btn btn-app bg-info">
+                          <i class="fas fa-info-circle"></i> Detail
+                        </a>
+                        <button type="button" class="btn btn-app bg-danger" data-toggle="modal" data-target="#hapus-<?= $u['id_ujian'];?>">
+                          <i class="fas fa-trash"></i> Hapus
                         </button>
+
                       </td>
 
   <div class="modal fade" id="hapus-<?= $u['id_ujian'];?>">
@@ -82,7 +68,7 @@
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-          <a href="<?= base_url('C_Guru/hapus_ujian/').$u['id_ujian']; ?>" type="button" class="btn btn-danger">Sangat Yakin!</a>
+          <a href="<?= base_url('C_Admin/hapus_hasil_ujian/').$u['id_ujian']; ?>" type="button" class="btn btn-danger">Sangat Yakin!</a>
         </div>
       </div>
       <!-- /.modal-content -->
@@ -93,19 +79,15 @@
 
                     </tr>
 
-                    <?php } ?>
+                  <?php } ?>
 
                   </tbody>
                   <tfoot>
-                  <tr>
-                    <th>Judul Ujian</th>
-                    <th>Kelas</th>
-                    <th>Durasi</th>
-                    <th>Jenis</th>
-                    <th>Waktu Mulai</th>
-                    <th>Token</th>
-                    <th></th>
-                  </tr>
+                    <th>No.</th>
+                      <th>Judul Ujian</th>
+                      <th>Guru - Mata Pelajaran</th>
+                      <th>Kelas</th>
+                      <th>Action</th>
                   </tfoot>
                 </table>
               </div>
@@ -115,7 +97,6 @@
         </div>
 
       </div><!-- /.container-fluid -->
-      
     </section>
     <!-- /.content -->
   </div>

@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Soal Ujian</h1>
+            <h1 class="m-0">Daftar Ujian</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -77,8 +77,9 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
+                    <th>No.</th>
                     <th>Judul Ujian</th>
-                    <th>Guru - Mapel</th>
+                    <th>Guru - Mata Pelajaran</th>
                     <th>Kelas</th>
                     <th>Durasi</th>
                     <th>Jenis</th>
@@ -94,19 +95,20 @@
                     foreach ($ujian as $u) { ?>
 
                     <tr>
+                      <td><?= $no++ ?></td>
                       <td><?= $u['judul_ujian'] ?></td>
-                      <td><?= $u['nama'] ?> &nbsp; - &nbsp; <?= $u['mapel'] ?></td>
-                      <td><?= $u['kelas'] ?> &nbsp; - &nbsp; <?= $u['jurusan'] ?></td>
+                      <td><?= $u['nama'] ?>&nbsp; - &nbsp;<?= $u['mapel'] ?></td>
+                      <td><?= $u['kelas'] ?>&nbsp; - &nbsp;<?= $u['jurusan'] ?></td>
                       <td><?= $u['durasi'] ?> menit</td>
                       <td><?= $u['jenis'] ?></td>
                       <td><?= $u['waktu_mulai'] ?></td>
                       <td><?= $u['token'] ?></td>
                       <td>
-                        <a href="<?= base_url('C_Admin/edit_ujian/').$u['id_ujian']; ?>" class="btn bg-warning">
-                          <i class="fas fa-edit"></i>
-                        </a> <br><br>
-                        <button type="button" class="btn bg-danger" data-toggle="modal" data-target="#hapus-<?= $u['id_ujian'];?>">
-                          <i class="fas fa-trash"></i>
+                        <a href="<?= base_url('C_Admin/edit_ujian/').$u['id_ujian']; ?>" class="btn btn-app bg-warning">
+                          <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <button type="button" class="btn btn-app bg-danger" data-toggle="modal" data-target="#hapus-<?= $u['id_ujian'];?>">
+                          <i class="fas fa-trash"></i> Hapus
                         </button>
                       </td>
 
@@ -139,6 +141,7 @@
                   </tbody>
                   <tfoot>
                   <tr>
+                    <th>No.</th>
                     <th>Judul Ujian</th>
                     <th>Guru - Mapel</th>
                     <th>Kelas</th>

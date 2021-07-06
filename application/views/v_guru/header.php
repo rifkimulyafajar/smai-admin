@@ -89,7 +89,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="<?= base_url('C_Guru') ?>" class="brand-link">
       <img src="<?php echo base_url('asset/admin/dist/img/smaikepanjen.png'); ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">SMAI Kepanjen</span>
     </a>
@@ -111,6 +111,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?= base_url('C_Guru/materi') ?>" class="nav-link">
+              <i class="nav-icon fas fa-paste"></i>
+              <p>
+                Materi
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="<?= base_url('C_Guru/bank_soal') ?>" class="nav-link">
               <i class="nav-icon fas fa-scroll"></i>
               <p>
@@ -127,10 +135,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('C_Guru/materi') ?>" class="nav-link">
+            <a href="<?= base_url('C_Guru/hasil_ujian') ?>" class="nav-link">
               <i class="nav-icon fas fa-paste"></i>
               <p>
-                Materi
+                Hasil Ujian
               </p>
             </a>
           </li>

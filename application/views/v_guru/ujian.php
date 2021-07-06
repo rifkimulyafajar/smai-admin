@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Bank Soal</h1>
+            <h1 class="m-0">Daftar Ujian</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -18,32 +18,32 @@
         <!-- Small boxes (Stat box) -->
 
         <div class="row">
-          <div class="col-lg-4">
-            <a href="<?= base_url('C_Guru/tambah_bank_soal'); ?>" class="btn btn-block btn-success btn-lg">
-              <i class="fa fa-scroll"><sup>+</sup></i>
-                &nbsp;&nbsp; Buat Soal Baru
+          <div class="col-4">
+            <a href="<?= base_url('C_Guru/buat_ujian'); ?>" class="btn btn-block btn-info btn-lg">
+              <i class="fa fa-copy"><sup> +</sup></i>
+                &nbsp;&nbsp; Buat Ujian
             </a>
           </div>
-          <div class="col-lg-8"></div>
+          <div class="col-4"></div>
+          <div class="col-4"></div>
         </div> <br>
 
         <div class="row">
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <h3>Daftar Soal yang Telah Dibuat</h3>
+                <h3>Daftar Ujian yang Telah Dibuat</h3>
               </div>
               <div class="card-body">
-
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>No.</th>
-                    <th>Pengajar</th>
-                    <th>Mata Pelajaran</th>
+                    <th>Judul Ujian</th>
                     <th>Kelas</th>
-                    <th>Soal</th>
-                    <th>Status</th>
+                    <th>Durasi</th>
+                    <th>Jenis</th>
+                    <th>Waktu Mulai</th>
+                    <th>Token</th>
                     <th></th>
                   </tr>
                   </thead>
@@ -51,28 +51,25 @@
 
                     <?php 
                     $no = 1;
-                    foreach ($soal as $s) { ?>
+                    foreach ($ujian as $u) { ?>
 
                     <tr>
-                      <td><?= $no++ ?></td>
-                      <td><?= $s['nama'] ?></td>
-                      <td><?= $s['mapel'] ?></td>
-                      <td><?= $s['kelas'] ?> - <?= $s['jurusan'] ?></td>
-                      <td><?= $s['soal'] ?></td>
-                      <td><?= $s['status'] ?></td>
+                      <td><?= $u['judul_ujian'] ?></td>
+                      <td><?= $u['kelas'] ?> - <?= $u['jurusan'] ?></td>
+                      <td><?= $u['durasi'] ?> menit</td>
+                      <td><?= $u['jenis'] ?></td>
+                      <td><?= $u['waktu_mulai'] ?></td>
+                      <td><?= $u['token'] ?></td>
                       <td>
-                        <a href="<?= base_url('C_Guru/detail_soal/'.$s['id_soal']) ?>" class="btn btn-app bg-info">
-                          <i class="fas fa-info"></i> Detail
-                        </a>
-                        <a href="<?= base_url('C_Guru/edit_soal/'). $s['id_soal'] ?>" class="btn btn-app bg-success">
+                        <a href="<?= base_url('C_Guru/edit_ujian/').$u['id_ujian']; ?>" class="btn btn-app bg-warning">
                           <i class="fas fa-edit"></i> Edit
                         </a>
-                        <button type="button" class="btn btn-app bg-danger" data-toggle="modal" data-target="#hapus-<?= $s['id_soal'];?>">
+                        <button type="button" class="btn btn-app bg-danger" data-toggle="modal" data-target="#hapus-<?= $u['id_ujian'];?>">
                           <i class="fas fa-trash"></i> Hapus
                         </button>
                       </td>
 
-  <div class="modal fade" id="hapus-<?= $s['id_soal'];?>">
+  <div class="modal fade" id="hapus-<?= $u['id_ujian'];?>">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -85,7 +82,7 @@
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-          <a href="<?= base_url('C_Guru/hapus_soal/').$s['id_soal']; ?>" type="button" class="btn btn-danger">Sangat Yakin!</a>
+          <a href="<?= base_url('C_Guru/hapus_ujian/').$u['id_ujian']; ?>" type="button" class="btn btn-danger">Sangat Yakin!</a>
         </div>
       </div>
       <!-- /.modal-content -->
@@ -101,12 +98,12 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>No.</th>
-                    <th>Pengajar</th>
-                    <th>Mata Pelajaran</th>
+                    <th>Judul Ujian</th>
                     <th>Kelas</th>
-                    <td>Soal</td>
-                    <th>Status</th>
+                    <th>Durasi</th>
+                    <th>Jenis</th>
+                    <th>Waktu Mulai</th>
+                    <th>Token</th>
                     <th></th>
                   </tr>
                   </tfoot>
@@ -118,6 +115,7 @@
         </div>
 
       </div><!-- /.container-fluid -->
+      
     </section>
     <!-- /.content -->
   </div>

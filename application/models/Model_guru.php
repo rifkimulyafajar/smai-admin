@@ -714,4 +714,56 @@ class Model_Guru extends CI_Model {
         // code...
         return $this->db->delete('ujian', array("id_ujian" => $id));
     }
+
+    public function hitungHasilUjian($id)
+    {
+        // code...
+        $this->db->select('ujian.id_ujian');
+        $this->db->from('ujian_hasil');
+        $this->db->join('ujian', 'ujian_hasil.id_ujian = ujian.id_ujian');
+        $this->db->where('ujian.id_guru', $id);
+        $this->db->group_by('ujian.id_ujian');
+        return $this->db->count_all_results();
+    }
+
+    public function getHasilUjian($id)
+    {
+        // code...
+        $this->db->select('*');
+        $this->db->from('ujian_hasil');
+        $this->db->join('ujian', 'ujian_hasil.id_ujian = ujian.id_ujian');
+        $this->db->join('guru', 'ujian.id_guru = guru.id_guru');
+        $this->db->join('mapel', 'ujian.id_mapel = mapel.id_mapel');
+        $this->db->join('kelas', 'ujian.id_kelas = kelas.id_kelas');
+        $this->db->join('jurusan', 'ujian.id_jurusan = jurusan.id_jurusan');
+        $this->db->where('guru.id_guru', $id);
+        $this->db->group_by('ujian_hasil.id_ujian');
+        $this->db->order_by('ujian_hasil.id_ujian');
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
+    public function judul_ujian($id)
+    {
+        // code...
+        return $this->db->get_where('ujian', array('id_ujian' => $id))->row_array();
+    }
+
+    public function getDetailHasilUjian($id)
+    {
+        // code...
+        $this->db->select('*');
+        $this->db->from('ujian_hasil');
+        $this->db->join('ujian', 'ujian_hasil.id_ujian = ujian.id_ujian');
+        $this->db->join('siswa', 'ujian_hasil.id_siswa = siswa.id_siswa');
+        $this->db->join('mapel', 'ujian.id_mapel = mapel.id_mapel');
+        $this->db->join('kelas', 'ujian.id_kelas = kelas.id_kelas');
+        $this->db->join('jurusan', 'ujian.id_jurusan = jurusan.id_jurusan');
+        $this->db->where('ujian.id_ujian', $id);
+        $this->db->order_by('ujian_hasil.nilai', 'DESC');
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
 }

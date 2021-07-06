@@ -18,13 +18,13 @@
         <!-- Small boxes (Stat box) -->
 
         <div class="row">
-          <div class="col-lg-3">
+          <div class="col-lg-4">
             <a href="<?= base_url('C_Admin/tambah_bank_soal'); ?>" class="btn btn-block btn-warning btn-lg">
               <i class="fa fa-scroll"><sup>+</sup></i>
                 &nbsp;&nbsp; Buat Soal Baru
             </a>
           </div>
-          <div class="col-lg-9"></div>
+          <div class="col-lg-8"></div>
         </div> <br>
 
         <div class="row">
@@ -43,7 +43,7 @@
                     <th>Kelas</th>
                     <th>Soal</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th></th>
                   </tr>
                   </thead>
                   <tbody>
@@ -60,14 +60,14 @@
                       <td><?= $s['soal'] ?></td>
                       <td><?= $s['status'] ?></td>
                       <td>
-                        <a href="<?= base_url('C_Admin/detail_soal/'.$s['id_soal']) ?>" class="btn bg-info">
-                          <i class="fas fa-info"></i>
-                        </a> &nbsp;
-                        <a href="<?= base_url('C_Admin/edit_soal/'). $s['id_soal'] ?>" class="btn bg-success">
-                          <i class="fas fa-edit"></i>
-                        </a> &nbsp;
-                        <button type="button" class="btn bg-danger" data-toggle="modal" data-target="#hapus-<?= $s['id_soal'];?>">
-                          <i class="fas fa-trash"></i>
+                        <a href="<?= base_url('C_Admin/detail_soal/'.$s['id_soal']) ?>" class="btn btn-app bg-info">
+                          <i class="fas fa-info-circle"></i> Detail
+                        </a>
+                        <a href="<?= base_url('C_Admin/edit_soal/'). $s['id_soal'] ?>" class="btn btn-app bg-success">
+                          <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <button type="button" class="btn btn-app bg-danger" data-toggle="modal" data-target="#hapus-<?= $s['id_soal'];?>">
+                          <i class="fas fa-trash"></i> Hapus
                         </button>
                       </td>
 
@@ -106,7 +106,7 @@
                     <th>Kelas</th>
                     <th>Soal</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th></th>
                   </tr>
                   </tfoot>
                 </table>

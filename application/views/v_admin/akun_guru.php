@@ -21,13 +21,13 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                   <a href="<?= base_url('C_Admin/tambah_guru') ?>" class="btn btn-block btn-info btn-lg">
                     <i class="fa fa-user"><sup>+</sup></i>
                     &nbsp;&nbsp;Tambah Akun Guru
                   </a>
                 </div>
-                <div class="col-lg-9"></div>
+                <div class="col-lg-8"></div>
               </div>
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
@@ -37,7 +37,7 @@
                       <th>NIP Guru</th>
                       <th>Nama Guru</th>
                       <th>Mata Pelajaran</th>
-                      <th>Action</th>
+                      <th></th>
                     </tr>
                   </thead>
                     <tbody>
@@ -53,11 +53,11 @@
                         <td><?= $g['mapel'] ?></td>
                         
                         <td class="text-center">
-                          <a href="<?= base_url('C_Admin/edit_guru/').$g['id_guru']; ?>" class="btn bg-success">
-                            <i class="fas fa-edit"></i>
-                          </a> &nbsp;
-                          <button type="button" class="btn bg-danger" data-toggle="modal" data-target="#hapus-<?= $g['id_guru'];?>">
-                            <i class="fas fa-trash"></i>
+                          <a href="<?= base_url('C_Admin/edit_guru/').$g['id_guru']; ?>" class="btn btn-app bg-success">
+                            <i class="fas fa-edit"></i> Edit
+                          </a>
+                          <button type="button" class="btn btn-app bg-danger" data-toggle="modal" data-target="#hapus-<?= $g['id_guru'];?>">
+                            <i class="fas fa-trash"></i> Hapus
                           </button>
                         </td>
 
@@ -94,7 +94,7 @@
                     <th>NIP Guru</th>
                     <th>Nama Guru</th>
                     <th>Mata Pelajaran</th>
-                    <th>Action</th>
+                    <th></th>
                   </tfoot>
                 </table>
               </div>

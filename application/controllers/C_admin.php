@@ -23,6 +23,7 @@ class C_Admin extends CI_Controller {
 			$data['materi'] = $this->Model_Admin->hitungMateri();
 			$data['soal'] = $this->Model_Admin->hitungBankSoal();
 			$data['ujian'] = $this->Model_Admin->hitungUjian();
+			$data['hasil'] = $this->Model_Admin->hitungHasilUjian();
 
 			$this->load->view('v_admin/header', $data);
 			$this->load->view('v_admin/index', $data);
@@ -233,7 +234,7 @@ class C_Admin extends CI_Controller {
 			$data['guru'] = $this->Model_Admin->getAllGuru();
 
 			$this->load->view('v_admin/header', $data);
-			$this->load->view('v_admin/soal_ujian');
+			$this->load->view('v_admin/ujian', $data);
 			$this->load->view('v_admin/footer');
 		}
 		else {
@@ -507,6 +508,41 @@ class C_Admin extends CI_Controller {
 		else {
 			echo "<script>alert('gagal');</script>";
 			redirect('C_Admin/pilih_soal_ujian/'.$id_ujian.'/'.$guru.'/'.$kls.'/'.$jrs.'' , 'refresh');
+		}
+	}
+
+	public function hasil_ujian()
+	{
+		// code...
+		if (isset($_SESSION['id_guru'])) {
+			# code...
+			$data['title'] = 'Hasil Ujian';
+			$data['ujian'] = $this->Model_Admin->getHasilUjian();
+
+			$this->load->view('v_admin/header', $data);
+			$this->load->view('v_admin/hasil_ujian', $data);
+			$this->load->view('v_admin/footer');
+		}
+		else {
+			redirect('C_Login/index');
+		}
+	}
+
+	public function detail_hasil_ujian($id)
+	{
+		// code...
+		if (isset($_SESSION['id_guru'])) {
+			# code...
+			$data['title'] = 'Hasil Ujian';
+			$data['judul'] = $this->Model_Admin->judul_ujian($id);
+			$data['ujian'] = $this->Model_Admin->getDetailHasilUjian($id);
+
+			$this->load->view('v_admin/header', $data);
+			$this->load->view('v_admin/hasil_ujian_detail', $data);
+			$this->load->view('v_admin/footer');
+		}
+		else {
+			redirect('C_Login/index');
 		}
 	}
 

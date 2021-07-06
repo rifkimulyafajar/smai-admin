@@ -21,13 +21,13 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                   <a href="<?= base_url('C_Admin/tambah_siswa') ?>" class="btn btn-block btn-info btn-lg">
                     <i class="fa fa-user"><sup>+</sup></i>
                     &nbsp;&nbsp;Tambah Akun Siswa
                   </a>
                 </div>
-                <div class="col-lg-9"></div>
+                <div class="col-lg-8"></div>
               </div>
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
@@ -38,7 +38,7 @@
                       <th>Nama Siswa</th>
                       <th>Kelas</th>
                       <th>Jurusan</th>
-                      <th>Action</th>
+                      <th></th>
                     </tr>
                   </thead>
                     <tbody>
@@ -55,11 +55,11 @@
                         <td><?= $s['jurusan'] ?></td>
 
                         <td class="text-center">
-                          <a href="<?= base_url('C_Admin/edit_siswa/').$s['id_siswa']; ?>" class="btn bg-success">
-                            <i class="fas fa-edit"></i>
-                          </a> &nbsp;
-                          <button type="button" class="btn bg-danger" data-toggle="modal" data-target="#hapus-<?= $s['id_siswa'];?>">
-                            <i class="fas fa-trash"></i>
+                          <a href="<?= base_url('C_Admin/edit_siswa/').$s['id_siswa']; ?>" class="btn btn-app bg-success">
+                            <i class="fas fa-edit"></i> Edit
+                          </a>
+                          <button type="button" class="btn btn-app bg-danger" data-toggle="modal" data-target="#hapus-<?= $s['id_siswa'];?>">
+                            <i class="fas fa-trash"></i> Hapus
                           </button>
                         </td>
 
@@ -95,7 +95,7 @@
                     <th>Nama Siswa</th>
                     <th>Kelas</th>
                     <th>Jurusan</th>
-                    <th>Action</th>
+                    <th></th>
                   </tfoot>
                 </table>
               </div>

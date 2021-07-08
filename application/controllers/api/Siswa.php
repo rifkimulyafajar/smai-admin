@@ -205,4 +205,79 @@ class Siswa extends REST_Controller {
 		}
     }
 
+// ===================================================================
+
+    public function hasil_ujian_get()
+    {
+    	// code...
+    	$kls = $this->get('id_kelas');
+		$jrs = $this->get('id_jurusan');
+
+		$siswa = $this->Model_Siswa->getHasilUjian($kls, $jrs);
+
+		if ($siswa) {
+			# code...
+			$this->response([
+                    'status' => true,
+                    'message' => 'Success',
+                    'data' => $siswa
+                ], REST_Controller::HTTP_OK);
+		}
+		else {
+			$this->response([
+                    'status' => false,
+                    'message' => 'ujian not found!'
+                ], REST_Controller::HTTP_NOT_FOUND);
+		}
+    }
+
+// ===================================================================
+
+    public function detail_hasil_ujian_get()
+    {
+    	// code...
+    	$id = $this->get('id_ujian');
+
+    	$siswa = $this->Model_Siswa->getDetailHasilUjian($id);
+
+		if ($siswa) {
+			# code...
+			$this->response([
+                    'status' => true,
+                    'message' => 'Success',
+                    'data' => $siswa
+                ], REST_Controller::HTTP_OK);
+		}
+		else {
+			$this->response([
+                    'status' => false,
+                    'message' => 'ujian not found!'
+                ], REST_Controller::HTTP_NOT_FOUND);
+		}
+    }
+
+// ===================================================================
+
+    public function cek_siswa_get()
+    {
+    	// code...
+    	$siswa = $this->Model_Siswa->cek_siswa();
+
+		if ($siswa) {
+			# code...
+			$this->response([
+                    'status' => true,
+                    'message' => 'Success',
+                    'data' => $siswa
+                ], REST_Controller::HTTP_OK);
+		}
+		else {
+			$this->response([
+                    'status' => false,
+                    'message' => 'ujian not found!'
+                ], REST_Controller::HTTP_NOT_FOUND);
+		}
+    }
+
+
 }

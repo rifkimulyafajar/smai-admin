@@ -242,12 +242,6 @@ class C_Admin extends CI_Controller {
 		}
 	}
 
-	public function buat_ujian($id)
-	{
-		// code...
-		redirect('C_Admin/tambah_ujian/'.$id, 'refresh');
-	}
-
 	public function tambah_ujian($id)
 	{
 		// code...
@@ -557,6 +551,7 @@ class C_Admin extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Bank Soal';
+			$data['guru'] = $this->Model_Admin->getAllGuru();
 			$data['soal'] = $this->Model_Admin->getSoal();
 
 			$this->load->view('v_admin/header', $data);
@@ -585,13 +580,13 @@ class C_Admin extends CI_Controller {
 		}
 	}
 
-	public function tambah_bank_soal()
+	public function tambah_bank_soal($id)
 	{
 		# code...
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Buat Soal Bank Soal';
-			$data['guru'] = $this->Model_Admin->getAllGuru();
+			$data['guru'] = $this->Model_Admin->guruById($id);
 			$data['mapel'] = $this->Model_Admin->getMapel();
 			$data['kelas'] = $this->Model_Admin->getAllKelas();
 			$data['jurusan'] = $this->Model_Admin->getAllJurusan();
@@ -950,6 +945,7 @@ class C_Admin extends CI_Controller {
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Materi Siswa';
+			$data['guru'] = $this->Model_Admin->getAllGuru();
 			$data['materi'] = $this->Model_Admin->getAllMateri();
 
 			$this->load->view('v_admin/header', $data);
@@ -961,19 +957,19 @@ class C_Admin extends CI_Controller {
 		}
 	}
 
-	public function tambah_materi()
+	public function tambah_materi($id)
 	{
 		if (isset($_SESSION['id_guru'])) {
 			# code...
 			$data['title'] = 'Upload Materi';
-			$data['guru'] = $this->Model_Admin->getAllGuru();
-			$data['mapel'] = $this->Model_Admin->getAllMapel();
+			$data['guru'] = $this->Model_Admin->guruById($id);
 			$data['jurusan'] = $this->Model_Admin->getAllJurusan();
 			$data['kelas'] = $this->Model_Admin->getAllKelas();
 
-			$this->form_validation->set_rules('id_guru', 'Guru', 'required|trim');
-			$this->form_validation->set_rules('id_kelas', 'Kelas', 'required|trim');
-			$this->form_validation->set_rules('id_jurusan', 'Jurusan', 'required|trim');
+			$this->form_validation->set_rules('id_guru', 'File Materi', 'required');
+			if (empty($_FILES['file1']['name'])) {
+			    $this->form_validation->set_rules('file1', 'Document', 'required');
+			}
 
 			if ($this->form_validation->run() == FALSE) {
 				$this->load->view('v_admin/header', $data);

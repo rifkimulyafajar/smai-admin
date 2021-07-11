@@ -24,31 +24,19 @@
                 <h3 class="card-title">Upload Materi Anda</h3>
               </div>
               <!-- /.card-header -->
-              <!-- form start -->
-              <!-- <?php echo form_open_multipart('C_Admin/tambah_materi'); ?> -->
-              <form action="<?= base_url('C_Admin/tambah_materi') ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+              <form action="<?= base_url('C_Admin/tambah_materi/'.$guru['id_guru']) ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                 <div class="card-body">
 
                   <div class="row">
                     <div class="form-group col-6">
-                      <label>Nama Pengajar</label>
-                      <select class="custom-select rounded-0" name="id_guru">
-                        <?php foreach ($guru as $g) { ?>
-
-                        <option value="<?= $g['id_guru'] ?>"><?= $g['nama'] ?> - ( <?= $g['mapel'] ?> )</option>
-
-                        <?php } ?>
-                      </select>
+                      <label>Nama Guru</label>
+                      <input type="text" name="" class="form-control" value="<?= $guru['nama'] ?>" disabled>
+                      <input type="hidden" name="id_guru" value="<?= $guru['id_guru'] ?>">
                     </div>
                     <div class="form-group col-6">
                       <label>Mata Pelajaran</label>
-                      <select class="custom-select rounded-0" name="id_mapel">
-                        <?php foreach ($mapel as $m) { ?>
-
-                        <option value="<?= $m['id_mapel'] ?>"><?= $m['mapel'] ?></option>
-
-                        <?php } ?>
-                      </select>
+                      <input type="text" name="" class="form-control" value="<?= $guru['mapel'] ?>" disabled>
+                      <input type="hidden" name="id_mapel" value="<?= $guru['id_mapel'] ?>">
                     </div>
                   </div>
 
@@ -82,7 +70,7 @@
                   <div class="form-group">
                     <label>File Input</label><br>
                     <input type="file" id="file1" name="file1" class="form-control">
-                    <?= form_error('soal', '<small class="text-danger">', '</small>'); ?>
+                    <?= form_error('file1', '<small class="text-danger">', '</small>'); ?>
                   </div>
 
                   <div class="row">

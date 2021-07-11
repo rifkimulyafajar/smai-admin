@@ -77,11 +77,10 @@ class Siswa extends REST_Controller {
     public function bankSoal_get()
 	{
 		// code...
-		$id = $this->get('id_soal');
 		$kls = $this->get('id_kelas');
 		$jrs = $this->get('id_jurusan');
 
-		$soal = $this->Model_Siswa->getBankSoal($id, $kls, $jrs);
+		$soal = $this->Model_Siswa->getBankSoal($kls, $jrs);
 
 		if ($soal) {
 			# code...
@@ -98,15 +97,13 @@ class Siswa extends REST_Controller {
                 ], REST_Controller::HTTP_NOT_FOUND);
 		}
 	}
-
-// ===================================================================
 	
 	public function siswa_post($id)
 	{
 		# code...
 		$data = [
 	 		'username' => $this->post('username'),
-	 		'password' => $this->post('password')
+	 		'password' => password_hash($this->input->post('password', true), PASSWORD_DEFAULT)
 	 	];
 
 	 	if ($this->Model_Siswa->updateSiswa($data, $id) > 0) {
@@ -150,14 +147,13 @@ class Siswa extends REST_Controller {
 		}
     }
 
-// ===================================================================
-
     public function soalujian_get()
     {
     	// code...
     	$id = $this->get('id_ujian');
+    	$jns = $this->get('jenis');
 
-		$siswa = $this->Model_Siswa->getSoalUjian($id);
+		$siswa = $this->Model_Siswa->getSoalUjian($id, $jns);
 
 		if ($siswa) {
 			# code...
@@ -174,8 +170,6 @@ class Siswa extends REST_Controller {
                 ], REST_Controller::HTTP_NOT_FOUND);
 		}
     }
-
-// ===================================================================
 
     public function ujian_post()
     {
@@ -204,16 +198,15 @@ class Siswa extends REST_Controller {
                 ], REST_Controller::HTTP_NOT_FOUND);
 		}
     }
-
+    
 // ===================================================================
 
     public function hasil_ujian_get()
     {
     	// code...
-    	$kls = $this->get('id_kelas');
-		$jrs = $this->get('id_jurusan');
+    	$id = $this->get('id_siswa');
 
-		$siswa = $this->Model_Siswa->getHasilUjian($kls, $jrs);
+		$siswa = $this->Model_Siswa->getHasilUjian($id);
 
 		if ($siswa) {
 			# code...
@@ -230,7 +223,7 @@ class Siswa extends REST_Controller {
                 ], REST_Controller::HTTP_NOT_FOUND);
 		}
     }
-
+    
 // ===================================================================
 
     public function detail_hasil_ujian_get()
@@ -261,7 +254,8 @@ class Siswa extends REST_Controller {
     public function cek_siswa_get()
     {
     	// code...
-    	$siswa = $this->Model_Siswa->cek_siswa();
+    	$id = $this->get('id_siswa');
+    	$siswa = $this->Model_Siswa->cek_siswa($id);
 
 		if ($siswa) {
 			# code...
@@ -278,6 +272,5 @@ class Siswa extends REST_Controller {
                 ], REST_Controller::HTTP_NOT_FOUND);
 		}
     }
-
 
 }

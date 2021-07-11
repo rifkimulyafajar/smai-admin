@@ -51,7 +51,7 @@
                     <input type="text" value="<?= $g['nama'] ?>" class="form-control" disabled>
                   </div>
                   <div class="col-lg-2">
-                    <a href="<?= base_url('C_Admin/buat_ujian/'.$g['id_guru']) ?>" class="btn btn-block bg-success">Pilih</a>
+                    <a href="<?= base_url('C_Admin/tambah_ujian/'.$g['id_guru']) ?>" class="btn btn-block bg-success">Pilih</a>
                   </div> <br><br>
                 </div>
 

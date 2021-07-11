@@ -78,10 +78,10 @@ class Model_Siswa extends CI_Model {
     
 //=========================================================================================
     
-    public function getBankSoal($id, $kls, $jrs)
+    public function getBankSoal($kls, $jrs)
     {
         // code...
-        if ($id == null & $kls != null & $jrs != null) {
+        if ($kls != null & $jrs != null) {
 
             $this->db->select('*');
             $this->db->from('bank_soal');
@@ -92,20 +92,7 @@ class Model_Siswa extends CI_Model {
             $this->db->where('kelas.id_kelas', $kls);
             $this->db->where('jurusan.id_jurusan', $jrs);
             $this->db->where('bank_soal.status', 'Latihan');
-            $query = $this->db->get();
-
-            return $query->result_array();
-        }
-
-        elseif ($id != null & $kls == null & $jrs == null) {
-
-            $this->db->select('*');
-            $this->db->from('bank_soal');
-            $this->db->join('guru', 'bank_soal.id_guru = guru.id_guru');
-            $this->db->join('mapel', 'bank_soal.id_mapel = mapel.id_mapel');
-            $this->db->join('kelas', 'bank_soal.id_kelas = kelas.id_kelas');
-            $this->db->join('jurusan', 'bank_soal.id_jurusan = jurusan.id_jurusan');
-            $this->db->where('id_soal', $id);
+            $this->db->order_by('id_soal', 'RANDOM');
             $query = $this->db->get();
 
             return $query->result_array();
@@ -133,10 +120,10 @@ class Model_Siswa extends CI_Model {
     }
 
     
-    public function getSoalUjian($id)
+    public function getSoalUjian($id, $jns)
     {
         // code...
-        if ($id != null) {
+        if ($jns == 'acak') {
             $this->db->select('*');
             $this->db->from('bank_soal');
             $this->db->join('guru', 'bank_soal.id_guru = guru.id_guru');
@@ -144,16 +131,33 @@ class Model_Siswa extends CI_Model {
             $this->db->join('kelas', 'bank_soal.id_kelas = kelas.id_kelas');
             $this->db->join('jurusan', 'bank_soal.id_jurusan = jurusan.id_jurusan');
             $this->db->join('ujian', 'bank_soal.id_ujian = ujian.id_ujian');
+            $this->db->where('bank_soal.status', 'Ujian');
             $this->db->where('ujian.id_ujian', $id);
+            $this->db->order_by('id_soal', 'RANDOM');
             $query = $this->db->get();
-
+    
             return $query->result_array();
         }
+        else {
+            $this->db->select('*');
+            $this->db->from('bank_soal');
+            $this->db->join('guru', 'bank_soal.id_guru = guru.id_guru');
+            $this->db->join('mapel', 'bank_soal.id_mapel = mapel.id_mapel');
+            $this->db->join('kelas', 'bank_soal.id_kelas = kelas.id_kelas');
+            $this->db->join('jurusan', 'bank_soal.id_jurusan = jurusan.id_jurusan');
+            $this->db->join('ujian', 'bank_soal.id_ujian = ujian.id_ujian');
+            $this->db->where('bank_soal.status', 'Ujian');
+            $this->db->where('ujian.id_ujian', $id);
+            $query = $this->db->get();
+    
+            return $query->result_array();
+        }
+        
     }
-
+    
 //=========================================================================================
 
-    public function getHasilUjian($kls, $jrs)
+    public function getHasilUjian($id)
     {
         // code...
         $this->db->select('*');
@@ -163,15 +167,15 @@ class Model_Siswa extends CI_Model {
         $this->db->join('mapel', 'ujian.id_mapel = mapel.id_mapel');
         $this->db->join('kelas', 'ujian.id_kelas = kelas.id_kelas');
         $this->db->join('jurusan', 'ujian.id_jurusan = jurusan.id_jurusan');
-        $this->db->where('ujian.id_kelas', $kls);
-        $this->db->where('ujian.id_jurusan', $jrs);
+        $this->db->where('ujian_hasil.id_siswa', $id);
         $this->db->group_by('ujian_hasil.id_ujian');
+        $this->db->group_by('ujian_hasil.id_siswa');
         $this->db->order_by('ujian_hasil.id_ujian');
         $query = $this->db->get();
 
         return $query->result_array();
     }
-
+    
 //=========================================================================================
 
     public function getDetailHasilUjian($id)
@@ -185,6 +189,7 @@ class Model_Siswa extends CI_Model {
         $this->db->join('kelas', 'ujian.id_kelas = kelas.id_kelas');
         $this->db->join('jurusan', 'ujian.id_jurusan = jurusan.id_jurusan');
         $this->db->where('ujian.id_ujian', $id);
+        $this->db->group_by('ujian_hasil.id_siswa');
         $this->db->order_by('ujian_hasil.nilai', 'DESC');
         $query = $this->db->get();
 
@@ -193,19 +198,15 @@ class Model_Siswa extends CI_Model {
 
 //=========================================================================================
 
-    public function cek_siswa()
+    public function cek_siswa($idsiswa)
     {
         // code...
         $this->db->select('*');
         $this->db->from('ujian_hasil');
-        $this->db->join('ujian', 'ujian_hasil.id_ujian = ujian.id_ujian');
-        $this->db->join('siswa', 'ujian_hasil.id_siswa = siswa.id_siswa');
-        $this->db->join('mapel', 'ujian.id_mapel = mapel.id_mapel');
-        $this->db->join('kelas', 'ujian.id_kelas = kelas.id_kelas');
-        $this->db->join('jurusan', 'ujian.id_jurusan = jurusan.id_jurusan');
-        $this->db->group_by('ujian_hasil.id_siswa');
-        $this->db->order_by('ujian_hasil.id_ujian');
+        $this->db->join('ujian', 'ujian.id_ujian = ujian_hasil.id_ujian');
+        $this->db->where('id_siswa', $idsiswa);
         $query = $this->db->get();
+
 
         return $query->result_array();
     }

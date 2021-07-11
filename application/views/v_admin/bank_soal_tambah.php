@@ -19,35 +19,25 @@
         <div class="row">
           <div class="col-lg-12">
             <!-- general form elements -->
-            <div class="card card-success">
+            <div class="card card-warning">
               <div class="card-header">
                 <h3 class="card-title">Soal</h3>
               </div>    
               <!-- /.card-header -->
 
-              <form action="<?= base_url('C_Admin/tambah_bank_soal') ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+              <form action="<?= base_url('C_Admin/tambah_bank_soal/'.$guru['id_guru']) ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                 <div class="card-body after-add-more">
 
                   <div class="row">
                     <div class="form-group col-6">
-                      <label>Nama Pengajar</label>
-                      <select class="custom-select rounded-0" name="id_guru">
-                        <?php foreach ($guru as $g) { ?>
-
-                        <option value="<?= $g['id_guru'] ?>"><?= $g['nama'] ?> - ( <?= $g['mapel'] ?> )</option>
-
-                        <?php } ?>
-                      </select>
+                      <label>Nama Guru</label>
+                      <input type="text" name="" class="form-control" value="<?= $guru['nama'] ?>" disabled>
+                      <input type="hidden" name="id_guru" value="<?= $guru['id_guru'] ?>">
                     </div>
                     <div class="form-group col-6">
                       <label>Mata Pelajaran</label>
-                      <select class="custom-select rounded-0" name="id_mapel">
-                        <?php foreach ($mapel as $m) { ?>
-
-                        <option value="<?= $m['id_mapel'] ?>"><?= $m['mapel'] ?></option>
-
-                        <?php } ?>
-                      </select>
+                      <input type="text" name="" class="form-control" value="<?= $guru['mapel'] ?>" disabled>
+                      <input type="hidden" name="id_mapel" value="<?= $guru['id_mapel'] ?>">
                     </div>
                   </div>
 
@@ -225,7 +215,7 @@
                   <div class="row">
                     <div class="col-4"></div>
                     <div class="col-4">
-                      <button class="btn btn-block bg-success">
+                      <button class="btn btn-block bg-warning">
                         <i class="fas fa-check"></i>&nbsp;&nbsp; Simpan Soal
                       </button>
                     </div>

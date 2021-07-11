@@ -20,7 +20,7 @@
         <div class="row">
           <div class="col-lg-12">
             <!-- general form elements -->
-            <div class="card card-info">
+            <div class="card card-success">
               <div class="card-header">
                 <h3 class="card-title">Buat Ujian</h3>
               </div>
@@ -41,15 +41,14 @@
                     <div class="form-group col-6">
                       <label>Nama Guru</label>
                       <input type="text" name="" class="form-control" value="<?= $guru['nama'] ?>" disabled>
+                      <input type="hidden" name="id_guru" value="<?= $guru['id_guru'] ?>">
                     </div>
                     <div class="form-group col-6">
                       <label>Mata Pelajaran</label>
                       <input type="text" name="" class="form-control" value="<?= $guru['mapel'] ?>" disabled>
+                      <input type="hidden" name="id_mapel" value="<?= $guru['id_mapel'] ?>">
                     </div>
-                  </div>
-
-                  <input type="hidden" name="id_guru" value="<?= $guru['id_guru'] ?>">
-                  <input type="hidden" name="id_mapel" value="<?= $guru['id_mapel'] ?>">
+                  </div>                  
 
                   <div class="row">
                     <div class="form-group col-6">

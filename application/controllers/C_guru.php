@@ -963,4 +963,109 @@ class C_Guru extends CI_Controller {
 
 	}
 
+
+
+
+	public function rekap_nilai()
+	{
+		if (isset($_SESSION['id_guru'])) {
+			# code...
+			$data['title'] = 'Hasil Nilai Siswa';
+
+			if (isset($_POST['id_kelas']) && !empty($_POST['id_kelas']) && isset($_POST['id_jurusan']) && !empty($_POST['id_jurusan'])) {
+				$kls = $_POST['id_kelas'];
+				$jrs = $_POST['id_jurusan'];
+
+				if ($kls == '1' && $jrs == '1') {
+					# code...
+					$tampilSiswa = $this->Model_Guru->getSiswaByKelJur($kls, $jrs);
+				}
+				else if ($kls == '1' && $jrs == '2') {
+					# code...
+					$tampilSiswa = $this->Model_Guru->getSiswaByKelJur($kls, $jrs);
+				}
+				else if ($kls == '1' && $jrs == '3') {
+					# code...
+					$tampilSiswa = $this->Model_Guru->getSiswaByKelJur($kls, $jrs);
+				}
+				else if ($kls == '1' && $jrs == '4') {
+					# code...
+					$tampilSiswa = $this->Model_Guru->getSiswaByKelJur($kls, $jrs);
+				}
+				else if ($kls == '1' && $jrs == '5') {
+					# code...
+					$tampilSiswa = $this->Model_Guru->getSiswaByKelJur($kls, $jrs);
+				}
+				else if ($kls == '1' && $jrs == '6') {
+					# code...
+					$tampilSiswa = $this->Model_Guru->getSiswaByKelJur($kls, $jrs);
+				}
+				else if ($kls == '2' && $jrs == '1') {
+					# code...
+					$tampilSiswa = $this->Model_Guru->getSiswaByKelJur($kls, $jrs);
+				}
+				else if ($kls == '2' && $jrs == '2') {
+					# code...
+					$tampilSiswa = $this->Model_Guru->getSiswaByKelJur($kls, $jrs);
+				}
+				else if ($kls == '2' && $jrs == '3') {
+					# code...
+					$tampilSiswa = $this->Model_Guru->getSiswaByKelJur($kls, $jrs);
+				}
+				else if ($kls == '2' && $jrs == '4') {
+					# code...
+					$tampilSiswa = $this->Model_Guru->getSiswaByKelJur($kls, $jrs);
+				}
+				else if ($kls == '2' && $jrs == '5') {
+					# code...
+					$tampilSiswa = $this->Model_Guru->getSiswaByKelJur($kls, $jrs);
+				}
+				else if ($kls == '2' && $jrs == '6') {
+					# code...
+					$tampilSiswa = $this->Model_Guru->getSiswaByKelJur($kls, $jrs);
+				}
+				else if ($kls == '3' && $jrs == '1') {
+					# code...
+					$tampilSiswa = $this->Model_Guru->getSiswaByKelJur($kls, $jrs);
+				}
+				else if ($kls == '3' && $jrs == '2') {
+					# code...
+					$tampilSiswa = $this->Model_Guru->getSiswaByKelJur($kls, $jrs);
+				}
+				else if ($kls == '3' && $jrs == '3') {
+					# code...
+					$tampilSiswa = $this->Model_Guru->getSiswaByKelJur($kls, $jrs);
+				}
+				else if ($kls == '3' && $jrs == '4') {
+					# code...
+					$tampilSiswa = $this->Model_Guru->getSiswaByKelJur($kls, $jrs);
+				}
+				else if ($kls == '3' && $jrs == '5') {
+					# code...
+					$tampilSiswa = $this->Model_Guru->getSiswaByKelJur($kls, $jrs);
+				}
+				else if ($kls == '3' && $jrs == '6') {
+					# code...
+					$tampilSiswa = $this->Model_Guru->getSiswaByKelJur($kls, $jrs);
+				}
+			}
+			else {
+				$tampilSiswa = $this->Model_Guru->getSiswaSudahUjian($_SESSION['id_guru']);
+			}
+
+			$data['siswa'] = $tampilSiswa;
+			$data['jurusan'] = $this->Model_Guru->getAllJurusan();
+			$data['kelas'] = $this->Model_Guru->getAllKelas();
+			$data['ujian'] = $this->Model_Guru->getUjianGuru($_SESSION['id_guru']);
+
+			$this->load->view('v_guru/header', $data);
+			$this->load->view('v_guru/rekap_nilai', $data);
+			$this->load->view('v_guru/footer');
+		}
+		else {
+			redirect('C_Login/index');
+		}
+	}
+	
+
 }

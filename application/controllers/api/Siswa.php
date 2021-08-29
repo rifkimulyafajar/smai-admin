@@ -13,6 +13,7 @@ class Siswa extends REST_Controller {
 		# code...
 		parent::__construct();
 		$this->load->model('Model_Siswa');
+		$this->load->library('Authorization_Token');
 	}
 	
 // ===================================================================
@@ -25,10 +26,13 @@ class Siswa extends REST_Controller {
 
         if (!empty($username) && !empty($pass)) {
             $user = $this->Model_Siswa->login($username, $password);
+
+            $token = $this->authorization_token->generateToken($user);
+
             if ($user) {
                 $this->response([
                     'status' => true,
-                    'data' => $user
+                    'data' => $token
                 ], REST_Controller::HTTP_OK);
             }
             else{
@@ -44,6 +48,25 @@ class Siswa extends REST_Controller {
                 'message' => 'provide a data'
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
+	}
+
+
+	public function decode_post()
+	{
+		// code...
+		$headers = $this->input->request_headers();
+		$decodeToken = $this->authorization_token->validateToken($headers['Authorization']);
+
+		if ($decodeToken) {
+			// code...
+			$this->response($decodeToken);
+		}
+		else {
+			$this->response([
+                'success' => false,
+                'message' => 'provide a data'
+            ], REST_Controller::HTTP_BAD_REQUEST);
+		}
 	}
 
 // ===================================================================

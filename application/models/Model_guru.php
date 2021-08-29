@@ -15,7 +15,7 @@ class Model_Guru extends CI_Model {
 
     public function getGuru($id)
     {
-    	# code...
+        # code...
         $this->db->select('*');
         $this->db->from('guru');
         $this->db->join('mapel', 'guru.id_mapel = mapel.id_mapel');
@@ -27,10 +27,10 @@ class Model_Guru extends CI_Model {
 
 //============================================================================================================
 
-	public function getAllMapel()
+    public function getAllMapel()
     {
-    	# code...
-    	$query = $this->db->get('mapel');
+        # code...
+        $query = $this->db->get('mapel');
         return $query->result_array();
     }
 
@@ -38,9 +38,37 @@ class Model_Guru extends CI_Model {
 
     public function getAllJurusan()
     {
-    	# code...
-    	$query = $this->db->get('jurusan');
+        # code...
+        $query = $this->db->get('jurusan');
         return $query->result_array();
+    }
+
+//============================================================================================================
+
+    public function getAllSiswa()
+    {
+        $this->db->select('*');
+        $this->db->from('siswa');
+        $this->db->join('kelas', 'siswa.id_kelas = kelas.id_kelas');
+        $this->db->join('jurusan', 'siswa.id_jurusan = jurusan.id_jurusan');
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
+    public function getSiswaById($id)
+    {
+        # code...
+        // return $this->db->get_where('siswa', array('id_siswa' => $id))->row_array();
+
+        $this->db->select('*');
+        $this->db->from('siswa');
+        $this->db->join('kelas', 'siswa.id_kelas = kelas.id_kelas');
+        $this->db->join('jurusan', 'siswa.id_jurusan = jurusan.id_jurusan');
+        $this->db->where('id_siswa', $id);
+        $query = $this->db->get();
+
+        return $query->row_array();
     }
 
 //============================================================================================================
@@ -57,7 +85,7 @@ class Model_Guru extends CI_Model {
 
     public function getAllMateri($id)
     {
-    	# code...
+        # code...
         $this->db->select('*');
         $this->db->from('materi');
         $this->db->join('guru', 'materi.id_guru = guru.id_guru');
@@ -87,19 +115,19 @@ class Model_Guru extends CI_Model {
 
     public function tambahMateri()
     {
-    	# code...
-    	$this->id_materi = uniqid();
-    	$data = [
-    		"id_guru" => $this->input->post('id_guru', true),
+        # code...
+        $this->id_materi = uniqid();
+        $data = [
+            "id_guru" => $this->input->post('id_guru', true),
             "id_mapel" => $this->input->post('id_mapel', true),
-    		"id_kelas" => $this->input->post('kelas', true),
-    		"id_jurusan" => $this->input->post('jurusan', true),
-    		"file1" => $this->uploadFile1(),
-    		"file2" => $this->uploadFile2(),
-    		"file3" => $this->uploadFile3()
-    	];
+            "id_kelas" => $this->input->post('kelas', true),
+            "id_jurusan" => $this->input->post('jurusan', true),
+            "file1" => $this->uploadFile1(),
+            "file2" => $this->uploadFile2(),
+            "file3" => $this->uploadFile3()
+        ];
 
-    	$this->db->insert('materi', $data);
+        $this->db->insert('materi', $data);
     }
 
     public function editMateri()
@@ -140,13 +168,13 @@ class Model_Guru extends CI_Model {
 
     public function uploadFile1()
     {
-    	# code...
-    	$config['upload_path'] = './upload/materi/';
-    	$config['allowed_types'] = 'jpg|jpeg|png|pdf|docx|doc|pptx|xls|xlsx';
-    	$config['filename'] = $this->id_materi;
-    	$config['overwrite'] = true;
+        # code...
+        $config['upload_path'] = './upload/materi/';
+        $config['allowed_types'] = 'jpg|jpeg|png|pdf|docx|doc|pptx|xls|xlsx';
+        $config['filename'] = $this->id_materi;
+        $config['overwrite'] = true;
 
-    	$this->upload->initialize($config);
+        $this->upload->initialize($config);
 
         $this->load->library('upload', $config);
         
@@ -157,13 +185,13 @@ class Model_Guru extends CI_Model {
 
     public function uploadFile2()
     {
-    	# code...
-    	$config['upload_path'] = './upload/materi/';
-    	$config['allowed_types'] = 'jpg|jpeg|png|pdf|docx|doc|pptx|xls|xlsx';
-    	$config['filename'] = $this->id_materi;
-    	$config['overwrite'] = true;
+        # code...
+        $config['upload_path'] = './upload/materi/';
+        $config['allowed_types'] = 'jpg|jpeg|png|pdf|docx|doc|pptx|xls|xlsx';
+        $config['filename'] = $this->id_materi;
+        $config['overwrite'] = true;
 
-    	$this->upload->initialize($config);
+        $this->upload->initialize($config);
 
         $this->load->library('upload', $config);
         
@@ -174,13 +202,13 @@ class Model_Guru extends CI_Model {
 
     public function uploadFile3()
     {
-    	# code...
-    	$config['upload_path'] = './upload/materi/';
-    	$config['allowed_types'] = 'jpg|jpeg|png|pdf|docx|doc|pptx|xls|xlsx';
-    	$config['filename'] = $this->id_materi;
-    	$config['overwrite'] = true;
+        # code...
+        $config['upload_path'] = './upload/materi/';
+        $config['allowed_types'] = 'jpg|jpeg|png|pdf|docx|doc|pptx|xls|xlsx';
+        $config['filename'] = $this->id_materi;
+        $config['overwrite'] = true;
 
-    	$this->upload->initialize($config);
+        $this->upload->initialize($config);
 
         $this->load->library('upload', $config);
         
@@ -197,13 +225,13 @@ class Model_Guru extends CI_Model {
 
     public function update_akun($id)
     {
-    	# code..
+        # code..
         $post = $this->input->post();
 
         $this->nip = $post["nip"];
         $this->nama = $post["nama"];
         $this->username = $post["username"];
-    		
+            
         if (!empty($post["password"])) {
             $this->password = password_hash($post["password"], PASSWORD_DEFAULT);
         } else {
@@ -530,7 +558,7 @@ class Model_Guru extends CI_Model {
 
 
 
-    public function getSoalUjian($id, $kelas, $jurusan)
+    public function getSoalUjian($id)
     {
         # code...
         $this->db->select('*');
@@ -540,16 +568,14 @@ class Model_Guru extends CI_Model {
         $this->db->join('kelas', 'bank_soal.id_kelas = kelas.id_kelas', 'left');
         $this->db->join('jurusan', 'bank_soal.id_jurusan = jurusan.id_jurusan', 'left');
         $this->db->join('kategori', 'bank_soal.id_kategori = kategori.id_kategori', 'left');
-        $this->db->where('guru.id_guru', $id);
-        $this->db->where('kelas.id_kelas', $kelas);
-        $this->db->where('jurusan.id_jurusan', $jurusan);
         $this->db->where('bank_soal.status', 'Ujian');
+        $this->db->where('bank_soal.id_ujian', $id);
         $query = $this->db->get();
 
         return $query->result_array();
     }
 
-    public function getSoalLatihan($id, $kelas, $jurusan)
+    public function getSoalLatihan($guru, $kelas, $jurusan)
     {
         // code...
         $this->db->select('*');
@@ -559,10 +585,11 @@ class Model_Guru extends CI_Model {
         $this->db->join('kelas', 'bank_soal.id_kelas = kelas.id_kelas', 'left');
         $this->db->join('jurusan', 'bank_soal.id_jurusan = jurusan.id_jurusan', 'left');
         $this->db->join('kategori', 'bank_soal.id_kategori = kategori.id_kategori', 'left');
-        $this->db->where('guru.id_guru', $id);
-        $this->db->where('kelas.id_kelas', $kelas);
-        $this->db->where('jurusan.id_jurusan', $jurusan);
-        $this->db->where('bank_soal.status', null);
+        $this->db->where('bank_soal.id_guru', $guru);
+        $this->db->where('bank_soal.id_kelas', $kelas);
+        $this->db->where('bank_soal.id_jurusan', $jurusan);
+        $this->db->where('bank_soal.id_ujian', null);
+        $this->db->where_not_in('bank_soal.status', "Latihan");
         $query = $this->db->get();
 
         return $query->result_array();
@@ -580,6 +607,7 @@ class Model_Guru extends CI_Model {
     {
         // code...
         $this->db->where('id_ujian', $id);
+        $this->db->where('bank_soal.status', 'Ujian');
         $this->db->from('bank_soal');
         return $this->db->count_all_results();
     }
@@ -714,7 +742,7 @@ class Model_Guru extends CI_Model {
         // code...
         return $this->db->delete('ujian', array("id_ujian" => $id));
     }
-
+    
     public function hitungHasilUjian($id)
     {
         // code...
@@ -761,9 +789,77 @@ class Model_Guru extends CI_Model {
         $this->db->join('kelas', 'ujian.id_kelas = kelas.id_kelas');
         $this->db->join('jurusan', 'ujian.id_jurusan = jurusan.id_jurusan');
         $this->db->where('ujian.id_ujian', $id);
+        $this->db->group_by('ujian_hasil.id_siswa');
         $this->db->order_by('ujian_hasil.nilai', 'DESC');
         $query = $this->db->get();
 
         return $query->result_array();
     }
+    
+    
+    
+    
+    public function getSiswaByKelJur($kls, $jrs)
+    {
+        // code...
+        $this->db->select('*');
+        $this->db->from('ujian_hasil');
+        $this->db->join('siswa', 'ujian_hasil.id_siswa = siswa.id_siswa');
+        $this->db->join('kelas', 'siswa.id_kelas = kelas.id_kelas');
+        $this->db->join('jurusan', 'siswa.id_jurusan = jurusan.id_jurusan');
+        $this->db->where('siswa.id_kelas', $kls);
+        $this->db->where('siswa.id_jurusan', $jrs);
+        $this->db->group_by('siswa.id_siswa');
+        $query = $this->db->get();
+        
+        return $query->result_array();
+    }
+    
+    public function getSiswaSudahUjian($id_guru) {
+        $this->db->select('*');
+        $this->db->from('ujian_hasil');
+        $this->db->join('ujian', 'ujian_hasil.id_ujian = ujian.id_ujian');
+        $this->db->join('siswa', 'ujian_hasil.id_siswa = siswa.id_siswa');
+        $this->db->join('kelas', 'siswa.id_kelas = kelas.id_kelas');
+        $this->db->join('jurusan', 'siswa.id_jurusan = jurusan.id_jurusan');
+        $this->db->where('ujian.id_guru', $id_guru);
+        $this->db->group_by('siswa.id_siswa');
+        $query = $this->db->get();
+        
+        return $query->result_array();
+    }
+    
+    public function getHasilNilai($id_siswa, $id_ujian)
+    {
+        // code...
+        $this->db->select('*');
+        $this->db->from('ujian_hasil hsl');
+        $this->db->join('ujian u', 'hsl.id_ujian = u.id_ujian');
+        $this->db->join('siswa s', 'hsl.id_siswa = s.id_siswa');
+        $this->db->join('guru g', 'u.id_guru = g.id_guru');
+        $this->db->join('mapel', 'g.id_mapel = mapel.id_mapel');
+        $this->db->where('s.id_siswa', $id_siswa);
+        $this->db->where('u.id_ujian', $id_ujian);
+        $this->db->group_by('u.id_ujian');
+        $query = $this->db->get();
+
+        return $query->row_array();
+    }
+
+    public function total($id_siswa, $id_guru)
+    {
+        // code...
+        $this->db->select('*');
+        $this->db->from('ujian_hasil hsl');
+        $this->db->join('ujian u', 'hsl.id_ujian = u.id_ujian');
+        $this->db->join('siswa s', 'hsl.id_siswa = s.id_siswa');
+        $this->db->join('guru g', 'u.id_guru = g.id_guru');
+        $this->db->where('s.id_siswa', $id_siswa);
+        $this->db->where('g.id_guru', $id_guru);
+        $this->db->group_by('u.id_ujian');
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+    
 }

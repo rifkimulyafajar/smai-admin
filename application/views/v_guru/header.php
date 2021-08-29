@@ -143,6 +143,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?= base_url("C_Guru/rekap_nilai"); ?>" class="nav-link">
+              <i class="nav-icon fas fa-poll"></i>
+              <p>
+                Rekap Nilai
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="<?= base_url('C_Guru/akun_saya/'.$_SESSION['id_guru']) ?>" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>

@@ -75,7 +75,6 @@
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
           <a href="<?= base_url('C_Admin/hapus_guru/').$g['id_guru']; ?>" type="button" class="btn btn-danger">Sangat Yakin!</a>
-          <!-- <a href="<?= base_url('api/admin/guru') ?>" type="button" class="btn btn-danger">Sangat Yakin!</a> -->
         </div>
       </div>
       <!-- /.modal-content -->
